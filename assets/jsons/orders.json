@@ -1,0 +1,1557 @@
+{
+    "data": {
+        "orders": [
+            {
+                "code": "60EF-7899-E0BB0",
+                "hotel_id": 3617,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "2863",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "2863",
+                "customer": {
+                    "email": "booking@numeroid.ru",
+                    "first_name": "Менеджер",
+                    "last_name": "Служба поддержки клиентов",
+                    "middle_name": null,
+                    "phone": "89135684997"
+                },
+                "arrival_date": "2024-05-14",
+                "departure_date": "2024-05-15",
+                "cancelled_at": "2024-01-15T08:13:07Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "1_2024-05-14_2024-05-15__1_",
+                "order_items": null
+            },
+            {
+                "code": "60F8-495D-92C90",
+                "hotel_id": 272254,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "7000",
+                    "price_breakdown": [
+                        "7000"
+                    ],
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "3500",
+                "customer": {
+                    "email": "doroshko@numeroid.ru",
+                    "first_name": "Test",
+                    "last_name": "Numeroid",
+                    "middle_name": null,
+                    "phone": "+79096682634"
+                },
+                "arrival_date": "2024-04-15",
+                "departure_date": "2024-04-16",
+                "cancelled_at": "2024-01-22T08:34:42Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h272254_2024-04-15_2024-04-16__1_",
+                "order_items": null
+            },
+            {
+                "code": "607D-4401-A5E94",
+                "hotel_id": 3354,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "2024",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "2024",
+                "customer": {
+                    "email": "wc3inside@gmail.com",
+                    "first_name": "Boris",
+                    "last_name": "Bezb",
+                    "middle_name": null,
+                    "phone": "66755444466"
+                },
+                "arrival_date": "2024-02-22",
+                "departure_date": "2024-02-24",
+                "cancelled_at": "2023-10-16T12:15:05Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "1_2024-02-22_2024-02-24__1_",
+                "order_items": null
+            },
+            {
+                "code": "60D0-2D22-FCEBC",
+                "hotel_id": 2631,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "4018",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "4018",
+                "customer": {
+                    "email": "borisbezb@yandex.ru",
+                    "first_name": "Борис",
+                    "last_name": "Тест",
+                    "middle_name": null,
+                    "phone": "7623232222"
+                },
+                "arrival_date": "2024-02-22",
+                "departure_date": "2024-02-24",
+                "cancelled_at": "2023-12-21T10:48:40Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-02-22_2024-02-24__1_",
+                "order_items": null
+            },
+            {
+                "code": "60D7-A6E2-D7CDA",
+                "hotel_id": 272180,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "12000",
+                    "price_breakdown": [
+                        "12000"
+                    ],
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "6000",
+                "customer": {
+                    "email": "doroshko@numeroid.ru",
+                    "first_name": "Олег",
+                    "last_name": "Дорошко",
+                    "middle_name": null,
+                    "phone": "89096682634"
+                },
+                "arrival_date": "2024-02-21",
+                "departure_date": "2024-02-22",
+                "cancelled_at": "2024-01-09T07:12:08Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h272180_2024-02-21_2024-02-22__1_",
+                "order_items": null
+            },
+            {
+                "code": "607D-4604-5C6A1",
+                "hotel_id": 3354,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "1012",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "1012",
+                "customer": {
+                    "email": "wc3inside@gmail.com",
+                    "first_name": "Boris",
+                    "last_name": "Bezb",
+                    "middle_name": null,
+                    "phone": "1231223233"
+                },
+                "arrival_date": "2024-02-21",
+                "departure_date": "2024-02-22",
+                "cancelled_at": "2023-11-07T11:21:51Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "1_2024-02-21_2024-02-22__1_",
+                "order_items": null
+            },
+            {
+                "code": "60D0-2A81-F2594",
+                "hotel_id": 159207,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "5720",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "4320",
+                "customer": {
+                    "email": "borisbezb@yandex.ru",
+                    "first_name": "Борис",
+                    "last_name": "Тест",
+                    "middle_name": null,
+                    "phone": "79232322222"
+                },
+                "arrival_date": "2024-02-21",
+                "departure_date": "2024-02-23",
+                "cancelled_at": "2023-12-21T10:36:12Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-02-21_2024-02-23__1_",
+                "order_items": null
+            },
+            {
+                "code": "60D0-3CF7-2D6DA",
+                "hotel_id": 160954,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "2820",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "2820",
+                "customer": {
+                    "email": "marketingsh@yandex.ru",
+                    "first_name": "Иван",
+                    "last_name": "Бранников",
+                    "middle_name": null,
+                    "phone": "79520332222"
+                },
+                "arrival_date": "2024-02-20",
+                "departure_date": "2024-02-23",
+                "cancelled_at": "2023-12-21T12:01:05Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-02-20_2024-02-23__1_",
+                "order_items": null
+            },
+            {
+                "code": "60CD-9D88-CC39C",
+                "hotel_id": 2531,
+                "status": 6,
+                "price": {
+                    "currency": "RUB",
+                    "price": "4284",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "0",
+                "customer": {
+                    "email": "wc3inside@gmail.com",
+                    "first_name": "Boris",
+                    "last_name": "Test",
+                    "middle_name": null,
+                    "phone": "+79529140211"
+                },
+                "arrival_date": "2024-02-20",
+                "departure_date": "2024-02-23",
+                "cancelled_at": null,
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-02-20_2024-02-23__1_",
+                "order_items": null
+            },
+            {
+                "code": "60CD-804D-F03FD",
+                "hotel_id": 157508,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "0",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "5544",
+                "customer": {
+                    "email": "wc3inside@gmail.com",
+                    "first_name": "Boris",
+                    "last_name": "Test",
+                    "middle_name": null,
+                    "phone": "79529140211"
+                },
+                "arrival_date": "2024-02-14",
+                "departure_date": "2024-02-17",
+                "cancelled_at": "2023-12-19T07:47:56Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-02-14_2024-02-17__1_",
+                "order_items": null
+            },
+            {
+                "code": "60F1-0193-B5A14",
+                "hotel_id": 596,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "33169",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "31069",
+                "customer": {
+                    "email": "konkin@numeroid.ru",
+                    "first_name": "Захар",
+                    "last_name": "Конкин",
+                    "middle_name": null,
+                    "phone": "89232483790"
+                },
+                "arrival_date": "2024-02-12",
+                "departure_date": "2024-02-13",
+                "cancelled_at": "2024-01-16T13:31:59Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h596_2024-02-12_2024-02-13__1_",
+                "order_items": null
+            },
+            {
+                "code": "60CF-FC5F-9CCA7",
+                "hotel_id": 670,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "4472",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "4472",
+                "customer": {
+                    "email": "borisbezb@yandex.ru",
+                    "first_name": "Борис",
+                    "last_name": "Тест",
+                    "middle_name": null,
+                    "phone": "2332323233"
+                },
+                "arrival_date": "2024-01-19",
+                "departure_date": "2024-01-21",
+                "cancelled_at": "2023-12-21T07:12:12Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-01-19_2024-01-21__1_",
+                "order_items": null
+            },
+            {
+                "code": "60CF-F12B-72227",
+                "hotel_id": 160954,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "1880",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "1880",
+                "customer": {
+                    "email": "borisbezb@yandex.ru",
+                    "first_name": "Борис",
+                    "last_name": "Тест",
+                    "middle_name": null,
+                    "phone": "3232323232"
+                },
+                "arrival_date": "2024-01-19",
+                "departure_date": "2024-01-21",
+                "cancelled_at": "2023-12-21T06:28:23Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-01-19_2024-01-21__1_",
+                "order_items": null
+            },
+            {
+                "code": "60D0-2E76-A3C06",
+                "hotel_id": 2331,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "3132",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": null
+                },
+                "penalty": "0",
+                "refund": "3132",
+                "customer": {
+                    "email": "borisbezb@yandex.ru",
+                    "first_name": "Артур",
+                    "last_name": "Захарян",
+                    "middle_name": null,
+                    "phone": "7923230222"
+                },
+                "arrival_date": "2024-01-18",
+                "departure_date": "2024-01-20",
+                "cancelled_at": "2023-12-21T10:54:20Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "19_2024-01-18_2024-01-20__1_",
+                "order_items": null
+            },
+            {
+                "code": "6087-4CA2-88531",
+                "hotel_id": 164936,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "5000",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "5000",
+                "customer": {
+                    "email": "perezhogin86max@gmail.com",
+                    "first_name": "ТЕСТ",
+                    "last_name": "ТЕСТОВ",
+                    "middle_name": null,
+                    "phone": "89859962479"
+                },
+                "arrival_date": "2023-12-06",
+                "departure_date": "2023-12-07",
+                "cancelled_at": "2023-11-07T11:21:38Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h164936_2023-12-06_2023-12-07__1_",
+                "order_items": null
+            },
+            {
+                "code": "6086-13E5-9C304",
+                "hotel_id": 2263,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "21471",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "21471",
+                "customer": {
+                    "email": "konkin@numeroid.ru",
+                    "first_name": "Захар",
+                    "last_name": "Конкин",
+                    "middle_name": null,
+                    "phone": "+79232483791"
+                },
+                "arrival_date": "2023-12-04",
+                "departure_date": "2023-12-07",
+                "cancelled_at": "2023-10-23T12:21:05Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "1_2023-12-04_2023-12-07__1_",
+                "order_items": null
+            },
+            {
+                "code": "6087-4D26-AF541",
+                "hotel_id": 164936,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "5000",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "5000",
+                "customer": {
+                    "email": "doroshko@numeroid.ru",
+                    "first_name": "Олег",
+                    "last_name": "Дорошко_Тест",
+                    "middle_name": null,
+                    "phone": "+79096682634"
+                },
+                "arrival_date": "2023-11-27",
+                "departure_date": "2023-11-28",
+                "cancelled_at": "2023-10-24T11:47:44Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h164936_2023-11-27_2023-11-28__1_",
+                "order_items": null
+            },
+            {
+                "code": "6087-2922-6D3CE",
+                "hotel_id": 164936,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "6000",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "6000",
+                "customer": {
+                    "email": "perezhogin86max@gmail.com",
+                    "first_name": "Максим",
+                    "last_name": "Пережогин",
+                    "middle_name": null,
+                    "phone": "89859962479"
+                },
+                "arrival_date": "2023-11-24",
+                "departure_date": "2023-11-25",
+                "cancelled_at": "2023-10-24T09:22:02Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h164936_2023-11-24_2023-11-25__1_",
+                "order_items": null
+            },
+            {
+                "code": "608A-F61C-70151",
+                "hotel_id": 164936,
+                "status": 2,
+                "price": {
+                    "currency": "RUB",
+                    "price": "6000",
+                    "price_breakdown": null,
+                    "is_vat_included": false,
+                    "vat_amount": "",
+                    "tax_currency": "",
+                    "tax_amount": "0",
+                    "taxes": []
+                },
+                "penalty": "0",
+                "refund": "6000",
+                "customer": {
+                    "email": "perezhogin86max@gmail.com",
+                    "first_name": "ТЕСТ",
+                    "last_name": "ТЕСТОВ",
+                    "middle_name": null,
+                    "phone": "89859962479"
+                },
+                "arrival_date": "2023-11-23",
+                "departure_date": "2023-11-24",
+                "cancelled_at": "2023-11-07T11:21:27Z",
+                "payment_methods": [
+                    "online"
+                ],
+                "tax_amount": "0",
+                "taxes": null,
+                "search_hash": "h164936_2023-11-23_2023-11-24__1_",
+                "order_items": null
+            }
+        ],
+        "hotels": [
+            {
+                "id": 596,
+                "name_ru": "Лотте Отель Москва",
+                "name_en": null,
+                "city_id": 1,
+                "category": 5,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.751133,
+                    "longitude": 37.58398
+                },
+                "status": 1,
+                "photo_id": 7862,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Новинский бульвар, 8, строение 2",
+                "address_en": null,
+                "photo": {
+                    "id": 7862,
+                    "hotel_id": 596,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/900418/570231122_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 13,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 1,
+                    "name_ru": "Москва",
+                    "name_en": "Moscow",
+                    "country_id": 192,
+                    "region_id": 45,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.755773,
+                        "longitude": 37.617815
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3741,
+                    3743,
+                    3749,
+                    3750,
+                    3754,
+                    3756,
+                    3772,
+                    3778,
+                    3794,
+                    3795,
+                    3796,
+                    3797,
+                    3803,
+                    3807,
+                    3815,
+                    3836,
+                    3844,
+                    3845
+                ]
+            },
+            {
+                "id": 670,
+                "name_ru": "Якутия",
+                "name_en": null,
+                "city_id": 19,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.001162,
+                    "longitude": 82.954633
+                },
+                "status": 1,
+                "photo_id": 8881,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Большевистская улица, 103",
+                "address_en": null,
+                "photo": {
+                    "id": 8881,
+                    "hotel_id": 670,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1000021/3054712830_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3740,
+                    3741,
+                    3749,
+                    3756,
+                    3765,
+                    3817,
+                    3823,
+                    3836,
+                    3843
+                ]
+            },
+            {
+                "id": 2263,
+                "name_ru": "Пальмира Бизнес Клуб",
+                "name_en": null,
+                "city_id": 1,
+                "category": 4,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.697742,
+                    "longitude": 37.625424
+                },
+                "status": 1,
+                "photo_id": 29546,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Новоданиловская набережная, 6 к.2",
+                "address_en": null,
+                "photo": {
+                    "id": 29546,
+                    "hotel_id": 2263,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1305487/361862685_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 1,
+                    "name_ru": "Москва",
+                    "name_en": "Moscow",
+                    "country_id": 192,
+                    "region_id": 45,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.755773,
+                        "longitude": 37.617815
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3743,
+                    3749,
+                    3750,
+                    3754,
+                    3756,
+                    3773,
+                    3778,
+                    3794,
+                    3795,
+                    3796,
+                    3797,
+                    3825,
+                    3836
+                ]
+            },
+            {
+                "id": 2331,
+                "name_ru": "Антураж",
+                "name_en": null,
+                "city_id": 19,
+                "category": 2,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.051154,
+                    "longitude": 83.000164
+                },
+                "status": 1,
+                "photo_id": 30560,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "улица Новороссийская, 2",
+                "address_en": null,
+                "photo": {
+                    "id": 30560,
+                    "hotel_id": 2331,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1305987/870722783_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3749,
+                    3756,
+                    3828,
+                    3844
+                ]
+            },
+            {
+                "id": 2531,
+                "name_ru": "Шале на Комсомольском",
+                "name_en": null,
+                "city_id": 19,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.032119,
+                    "longitude": 82.907197
+                },
+                "status": 1,
+                "photo_id": 33407,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Комсомольский проспект, 24",
+                "address_en": null,
+                "photo": {
+                    "id": 33407,
+                    "hotel_id": 2531,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1307121/1468775579_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3740,
+                    3741,
+                    3749,
+                    3756,
+                    3773,
+                    3795,
+                    3823,
+                    3836,
+                    3843,
+                    3844
+                ]
+            },
+            {
+                "id": 2631,
+                "name_ru": "Рэд Отель",
+                "name_en": null,
+                "city_id": 19,
+                "category": 2,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.055844,
+                    "longitude": 82.908757
+                },
+                "status": 1,
+                "photo_id": 34475,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Красный проспект, 153а",
+                "address_en": null,
+                "photo": {
+                    "id": 34475,
+                    "hotel_id": 2631,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1307564/886709516_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3740,
+                    3741,
+                    3749,
+                    3756,
+                    3772,
+                    3836,
+                    3844
+                ]
+            },
+            {
+                "id": 3354,
+                "name_ru": "ИнтерКуб Третьяковская Капсульный Отель",
+                "name_en": null,
+                "city_id": 1,
+                "category": 0,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.73947,
+                    "longitude": 37.632188
+                },
+                "status": 1,
+                "photo_id": 42654,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Старый Толмачевский переулок, 3",
+                "address_en": null,
+                "photo": {
+                    "id": 42654,
+                    "hotel_id": 3354,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1313263/877780714_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 1,
+                    "name_ru": "Москва",
+                    "name_en": "Moscow",
+                    "country_id": 192,
+                    "region_id": 45,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.755773,
+                        "longitude": 37.617815
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3741,
+                    3749,
+                    3750,
+                    3756
+                ]
+            },
+            {
+                "id": 3617,
+                "name_ru": "Апельсин Отель Чистые Пруды",
+                "name_en": null,
+                "city_id": 1,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.7625,
+                    "longitude": 37.644441
+                },
+                "status": 1,
+                "photo_id": 45649,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Чистопрудный бульвар, 11, строение 1",
+                "address_en": null,
+                "photo": {
+                    "id": 45649,
+                    "hotel_id": 3617,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1315341/343593480_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 1,
+                    "name_ru": "Москва",
+                    "name_en": "Moscow",
+                    "country_id": 192,
+                    "region_id": 45,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.755773,
+                        "longitude": 37.617815
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3749,
+                    3750,
+                    3756,
+                    3762,
+                    3765,
+                    3817,
+                    3823,
+                    3828,
+                    3836,
+                    3844
+                ]
+            },
+            {
+                "id": 157508,
+                "name_ru": "Мира-Локус",
+                "name_en": null,
+                "city_id": 19,
+                "category": 0,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 54.964551,
+                    "longitude": 82.924679
+                },
+                "status": 1,
+                "photo_id": 1901546,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "улица Мира, 63А, корпус 7",
+                "address_en": null,
+                "photo": {
+                    "id": 1901546,
+                    "hotel_id": 157508,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1497397/3009997722_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3740,
+                    3741,
+                    3749,
+                    3756,
+                    3807
+                ]
+            },
+            {
+                "id": 159207,
+                "name_ru": "Место",
+                "name_en": null,
+                "city_id": 19,
+                "category": 4,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.031226,
+                    "longitude": 82.940893
+                },
+                "status": 1,
+                "photo_id": 1910638,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "улица Ипподромская, 15",
+                "address_en": null,
+                "photo": {
+                    "id": 1910638,
+                    "hotel_id": 159207,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1502593/3295198567_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3741,
+                    3754,
+                    3756,
+                    3778,
+                    3792,
+                    3822,
+                    3825,
+                    3828,
+                    3836
+                ]
+            },
+            {
+                "id": 160954,
+                "name_ru": "Маршал",
+                "name_en": null,
+                "city_id": 19,
+                "category": 1,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 55.15426,
+                    "longitude": 82.960108
+                },
+                "status": 1,
+                "photo_id": 1915120,
+                "type_id": null,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "улица Солидарности, 72а",
+                "address_en": null,
+                "photo": {
+                    "id": 1915120,
+                    "hotel_id": 160954,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://images.acase.ru/acase_images/1505409/3281795294_P.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": null,
+                    "mime_type": null,
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {},
+                "city": {
+                    "id": 19,
+                    "name_ru": "Новосибирск",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 26,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 55.029281,
+                        "longitude": 82.921004
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3738,
+                    3741,
+                    3756,
+                    3772,
+                    3825,
+                    3828,
+                    3836,
+                    3844
+                ]
+            },
+            {
+                "id": 164936,
+                "name_ru": "Максима Парк Отель",
+                "name_en": null,
+                "city_id": 177,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 56.094391,
+                    "longitude": 37.479131
+                },
+                "status": 1,
+                "photo_id": 1929470,
+                "type_id": 1,
+                "review_score": null,
+                "review_count": 0,
+                "options": 0,
+                "address_ru": "Московская область, г. Дмитров, ул. дер. Горки Сухаревские, д. 1",
+                "address_en": null,
+                "photo": {
+                    "id": 1929470,
+                    "hotel_id": 164936,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://s3.numeroid.ru/hotels/hotelsPhotos/164936/e2086b22-442e-4913-a38f-ef77bca08c24.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": 241215,
+                    "mime_type": "image/jpeg",
+                    "sort": 1,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {
+                    "id": 1,
+                    "name_ru": "Отель",
+                    "name_en": "Hotel",
+                    "code": "hotel",
+                    "update_source": "manual"
+                },
+                "city": {
+                    "id": 177,
+                    "name_ru": "Дмитров",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 1,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 56.344157,
+                        "longitude": 37.520015
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": null
+            },
+            {
+                "id": 272180,
+                "name_ru": "Максима Парк Отель",
+                "name_en": "Maxima Park Hotel",
+                "city_id": 177,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 56.093880998672915,
+                    "longitude": 37.480752282312366
+                },
+                "status": 1,
+                "photo_id": 6295476,
+                "type_id": 1,
+                "review_score": null,
+                "review_count": 0,
+                "options": 1,
+                "address_ru": "Московская область, Дмитровский р-н, дер. Горки Сухаревские, д. 1",
+                "address_en": null,
+                "photo": {
+                    "id": 6295476,
+                    "hotel_id": 272180,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://s3.numeroid.ru/hotels/hotelsPhotos/272180/8f59da60-49cb-4f7e-9e61-01791752614a.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": 241215,
+                    "mime_type": "image/jpeg",
+                    "sort": 0,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {
+                    "id": 1,
+                    "name_ru": "Отель",
+                    "name_en": "Hotel",
+                    "code": "hotel",
+                    "update_source": "manual"
+                },
+                "city": {
+                    "id": 177,
+                    "name_ru": "Дмитров",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 1,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 56.344157,
+                        "longitude": 37.520015
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3737,
+                    3738,
+                    3740,
+                    3742,
+                    3790,
+                    3822,
+                    3832
+                ]
+            },
+            {
+                "id": 272254,
+                "name_ru": "Восток",
+                "name_en": "Vostok",
+                "city_id": 34,
+                "category": 3,
+                "deleted_at": null,
+                "coordinates": {
+                    "latitude": 57.136302,
+                    "longitude": 65.574447
+                },
+                "status": 1,
+                "photo_id": 6297175,
+                "type_id": 1,
+                "review_score": null,
+                "review_count": 0,
+                "options": 1,
+                "address_ru": "Тюменская область, г. Тюмень, ул. Республики, д. 159",
+                "address_en": null,
+                "photo": {
+                    "id": 6297175,
+                    "hotel_id": 272254,
+                    "description_ru": null,
+                    "description_en": null,
+                    "url": "https://s3.numeroid.ru/hotels/hotelsPhotos/272254/71c5c889-8766-4bf2-ac92-e10ca3b7a689.jpg",
+                    "width": null,
+                    "height": null,
+                    "file_size": 83361,
+                    "mime_type": "image/jpeg",
+                    "sort": 0,
+                    "processed": true,
+                    "update_source": ""
+                },
+                "type": {
+                    "id": 1,
+                    "name_ru": "Отель",
+                    "name_en": "Hotel",
+                    "code": "hotel",
+                    "update_source": "manual"
+                },
+                "city": {
+                    "id": 34,
+                    "name_ru": "Тюмень",
+                    "name_en": null,
+                    "country_id": 192,
+                    "region_id": 64,
+                    "deleted_at": null,
+                    "coordinates": {
+                        "latitude": 57.153626,
+                        "longitude": 65.54254
+                    },
+                    "photo_id": null,
+                    "update_source": "academ"
+                },
+                "facilities": [
+                    3737,
+                    3740,
+                    3741,
+                    3746,
+                    3747,
+                    3748,
+                    3751,
+                    3753,
+                    3754,
+                    3755,
+                    3756,
+                    3757,
+                    3759,
+                    3761,
+                    3763,
+                    3766,
+                    3773,
+                    3776,
+                    3777,
+                    3779,
+                    3783,
+                    3784,
+                    3785,
+                    3787,
+                    3790,
+                    3792,
+                    3794,
+                    3795,
+                    3796,
+                    3797,
+                    3800,
+                    3801,
+                    3805,
+                    3807,
+                    3812,
+                    3813,
+                    3815,
+                    3821,
+                    3822,
+                    3823,
+                    3824,
+                    3825,
+                    3829,
+                    3830,
+                    3837,
+                    3839,
+                    3841,
+                    3845
+                ]
+            }
+        ]
+    },
+    "meta": {
+        "total_count": 19,
+        "page": 1,
+        "total_pages": 1,
+        "limit": 25
+    }
+}
