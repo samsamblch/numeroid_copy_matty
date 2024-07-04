@@ -43,8 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 14, right: 10, bottom: 12),
+                        padding: const EdgeInsets.only(top: 14, right: 10, bottom: 12),
                         child: SizedBox(
                           height: 40,
                           child: Row(
@@ -61,10 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                               Expanded(
                                 child: _FilterLocation(
-                                  city: context
-                                      .read<SearchBloc>()
-                                      .searchParameters
-                                      .city,
+                                  city: context.read<SearchBloc>().searchParameters.city,
                                 ),
                               ),
                             ],
@@ -72,14 +68,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                       const Padding(
-                        padding:
-                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                         child: _FilterMore(),
                       ),
                       if (!_isMap)
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, bottom: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                           child: SizedBox(
                             width: double.infinity,
                             child: (state is SearchFinish)
@@ -175,7 +169,7 @@ class _FilterMore extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            '${Formatters.fromDateCalendar2(state.search.startDate)} - ${Formatters.fromDateCalendar2(state.search.startDate)}',
+                            '${Formatters.fromDateCalendar2(state.search.startDate)} - ${Formatters.fromDateCalendar2(state.search.endDate)}',
                             style: AppTypography.medium13.copyWith(
                               color: appTheme.colors.text.primary,
                             ),
@@ -244,7 +238,7 @@ class _FilterMore extends StatelessWidget {
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(
                             width: 1,
-                            color: appTheme.colors.active.blue,
+                            color: appTheme.colors.elements.blue,
                           ),
                         ),
                         child: InkWell(
@@ -258,14 +252,14 @@ class _FilterMore extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.tune_rounded,
-                                color: appTheme.colors.active.blue,
+                                color: appTheme.colors.elements.blue,
                                 size: 16,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 'Фильтры',
                                 style: AppTypography.medium13.copyWith(
-                                  color: appTheme.colors.active.blue,
+                                  color: appTheme.colors.elements.blue,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -298,8 +292,7 @@ class _FilterLocation extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         return (state is SearchFinish)
-            ? LocationTextField(
-                city: city, enableBorder: true, onChange: (value) {})
+            ? LocationTextField(city: city, enableBorder: true, onChange: (value) {})
             : Container(
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,

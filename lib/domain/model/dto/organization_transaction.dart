@@ -47,7 +47,7 @@ class OrganizationTransaction {
   Color get statusColor => switch (status) {
         'accepted' => appTheme.colors.brand.greenDarky,
         'declined' => appTheme.colors.brand.red,
-        String() => appTheme.colors.brand.grey,
+        String() => appTheme.colors.elements.grey,
       };
 }
 

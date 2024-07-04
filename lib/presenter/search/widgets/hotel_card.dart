@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
-import '../../../domain/model/bo/hotel.dart';
+import '../../../domain/model/bo/search_hotel.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/spacers.dart';
+import '../../../widgets/kit/stars_rate_view.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({
@@ -16,7 +17,7 @@ class HotelCard extends StatelessWidget {
     required this.onTap,
   });
 
-  final Hotel hotel;
+  final SearchHotel hotel;
   final int days;
   final int adult;
   final VoidCallback onTap;
@@ -61,45 +62,8 @@ class HotelCard extends StatelessWidget {
                             style: AppTypography.bold15,
                           ),
                           const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star_rounded,
-                                size: 14,
-                                color: (hotel.info.stars ?? 0) > 0
-                                    ? appTheme.colors.brand.peachy
-                                    : Colors.grey.shade200,
-                              ),
-                              Icon(
-                                Icons.star_rounded,
-                                size: 14,
-                                color: (hotel.info.stars ?? 0) > 1
-                                    ? appTheme.colors.brand.peachy
-                                    : Colors.grey.shade300,
-                              ),
-                              Icon(
-                                Icons.star_rounded,
-                                size: 14,
-                                color: (hotel.info.stars ?? 0) > 2
-                                    ? appTheme.colors.brand.peachy
-                                    : Colors.grey.shade300,
-                              ),
-                              Icon(
-                                Icons.star_rounded,
-                                size: 14,
-                                color: (hotel.info.stars ?? 0) > 3
-                                    ? appTheme.colors.brand.peachy
-                                    : Colors.grey.shade300,
-                              ),
-                              Icon(
-                                Icons.star_rounded,
-                                size: 14,
-                                color: (hotel.info.stars ?? 0) > 4
-                                    ? appTheme.colors.brand.peachy
-                                    : Colors.grey.shade300,
-                              ),
-                            ],
-                          ),
+                          StarsRateView(rate: hotel.info.stars ?? 0),
+                          
                         ],
                       ),
                     ),

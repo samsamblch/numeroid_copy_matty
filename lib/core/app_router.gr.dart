@@ -10,7 +10,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i17;
 import 'package:flutter/material.dart' as _i18;
-import 'package:numeroid/domain/model/bo/hotel.dart' as _i19;
 import 'package:numeroid/presenter/auth/forgot_password_finish_screen.dart'
     as _i3;
 import 'package:numeroid/presenter/auth/forgot_password_screen.dart' as _i4;
@@ -18,7 +17,8 @@ import 'package:numeroid/presenter/auth/login_screen.dart' as _i6;
 import 'package:numeroid/presenter/auth/password_screen.dart' as _i9;
 import 'package:numeroid/presenter/booking/booking_screen.dart' as _i1;
 import 'package:numeroid/presenter/favourites/favourites_screen.dart' as _i2;
-import 'package:numeroid/presenter/hotel/hotel_detail_screen.dart' as _i5;
+import 'package:numeroid/presenter/hotel_detail/hotel_detail_screen.dart'
+    as _i5;
 import 'package:numeroid/presenter/main_screen.dart' as _i7;
 import 'package:numeroid/presenter/organization_settings/organization_settings_screen.dart'
     as _i8;
@@ -75,7 +75,7 @@ abstract class $AppRouter extends _i17.RootStackRouter {
         routeData: routeData,
         child: _i5.HotelDetailScreen(
           key: args.key,
-          hotel: args.hotel,
+          hotelId: args.hotelId,
         ),
       );
     },
@@ -262,13 +262,13 @@ class ForgotPasswordRouteArgs {
 class HotelDetailRoute extends _i17.PageRouteInfo<HotelDetailRouteArgs> {
   HotelDetailRoute({
     _i18.Key? key,
-    required _i19.Hotel hotel,
+    required int hotelId,
     List<_i17.PageRouteInfo>? children,
   }) : super(
           HotelDetailRoute.name,
           args: HotelDetailRouteArgs(
             key: key,
-            hotel: hotel,
+            hotelId: hotelId,
           ),
           initialChildren: children,
         );
@@ -282,16 +282,16 @@ class HotelDetailRoute extends _i17.PageRouteInfo<HotelDetailRouteArgs> {
 class HotelDetailRouteArgs {
   const HotelDetailRouteArgs({
     this.key,
-    required this.hotel,
+    required this.hotelId,
   });
 
   final _i18.Key? key;
 
-  final _i19.Hotel hotel;
+  final int hotelId;
 
   @override
   String toString() {
-    return 'HotelDetailRouteArgs{key: $key, hotel: $hotel}';
+    return 'HotelDetailRouteArgs{key: $key, hotelId: $hotelId}';
   }
 }
 

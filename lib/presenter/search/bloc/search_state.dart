@@ -4,26 +4,36 @@ part of 'search_bloc.dart';
 sealed class SearchState {
   final SearchParams search;
   final FilterParameters filter;
+  final SortType sortType;
 
-  const SearchState({required this.search, required this.filter});
+  const SearchState({
+    required this.search,
+    required this.filter,
+    required this.sortType,
+  });
 }
 
 final class SearchInitial extends SearchState {
-  const SearchInitial({required super.filter, required super.search});
+  const SearchInitial({
+    required super.filter,
+    required super.search,
+    required super.sortType,
+  });
 }
 
 final class SearchProccess implements SearchState {
-  // const SearchProccess({filter});
   @override
   final SearchParams search;
   @override
   final FilterParameters filter;
+  @override
+  final SortType sortType;
 
-  SearchProccess({required this.search, required this.filter});
+  SearchProccess({required this.search, required this.filter, required this.sortType});
 }
 
 final class SearchError extends SearchState {
-  const SearchError({required super.filter, required super.search});
+  const SearchError({required super.filter, required super.search, required super.sortType});
 }
 
 final class SearchFinish extends SearchState {
@@ -31,7 +41,8 @@ final class SearchFinish extends SearchState {
     required this.hotels,
     required super.search,
     required super.filter,
+    required super.sortType,
   });
 
-  final List<Hotel> hotels;
+  final List<SearchHotel> hotels;
 }

@@ -239,7 +239,7 @@ class _MenuBanner extends StatelessWidget {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: appTheme.colors.brand.pale,
+                    color: appTheme.colors.elements.paleBlue,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Center(

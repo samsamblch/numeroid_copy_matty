@@ -45,7 +45,7 @@ class AuthDisclaimer extends StatelessWidget {
           TextSpan(
             text: LocaleKeys.login_disclaimer_3.tr(),
             style: AppTypography.semiBold14.copyWith(
-              color: appTheme.colors.active.blue,
+              color: appTheme.colors.elements.blue,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
@@ -58,7 +58,7 @@ class AuthDisclaimer extends StatelessWidget {
           TextSpan(
             text: LocaleKeys.login_disclaimer_5.tr(),
             style: AppTypography.semiBold14.copyWith(
-              color: appTheme.colors.active.blue,
+              color: appTheme.colors.elements.blue,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {

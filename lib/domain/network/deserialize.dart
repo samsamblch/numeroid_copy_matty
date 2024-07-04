@@ -1,3 +1,4 @@
+import 'package:numeroid/domain/model/dto/hotel_details.dart';
 import 'package:numeroid/domain/model/dto/organization.dart';
 import 'package:numeroid/domain/model/ro/booking_orders_list_ro.dart';
 import 'package:numeroid/domain/model/ro/organization_members_list_ro.dart';
@@ -13,8 +14,7 @@ final _regList = RegExp(r'^List<(.*)>$');
 final _regSet = RegExp(r'^Set<(.*)>$');
 final _regMap = RegExp(r'^Map<String,(.*)>$');
 
-ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
-    {bool growable = true}) {
+ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType, {bool growable = true}) {
   switch (targetType) {
     case 'String':
       return '$value' as ReturnType;
@@ -35,21 +35,19 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
     case 'HotelInfoRo':
       return HotelInfoRo.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'HotelOffersRo':
-      return HotelOffersRo.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
+      return HotelOffersRo.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'LoginRo':
       return LoginRo.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'BookingOrdersListRo':
-      return BookingOrdersListRo.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
+      return BookingOrdersListRo.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'Organization':
       return Organization.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'OrganizationMembersListRo':
-      return OrganizationMembersListRo.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
+      return OrganizationMembersListRo.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'HotelDetails':
+      return HotelDetails.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'OrganizationTransactionListRo':
-      return OrganizationTransactionListRo.fromJson(
-          value as Map<String, dynamic>) as ReturnType;
+      return OrganizationTransactionListRo.fromJson(value as Map<String, dynamic>) as ReturnType;
 
     default:
       RegExpMatch? match;
@@ -57,26 +55,20 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType,
       if (value is List && (match = _regList.firstMatch(targetType)) != null) {
         targetType = match![1]!; // ignore: parameter_assignments
         return value
-            .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(
-                v, targetType,
-                growable: growable))
+            .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable))
             .toList(growable: growable) as ReturnType;
       }
       if (value is Set && (match = _regSet.firstMatch(targetType)) != null) {
         targetType = match![1]!; // ignore: parameter_assignments
         return value
-            .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(
-                v, targetType,
-                growable: growable))
+            .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable))
             .toSet() as ReturnType;
       }
       if (value is Map && (match = _regMap.firstMatch(targetType)) != null) {
         targetType = match![1]!; // ignore: parameter_assignments
         return Map<dynamic, BaseType>.fromIterables(
           value.keys,
-          value.values.map((dynamic v) => deserialize<BaseType, BaseType>(
-              v, targetType,
-              growable: growable)),
+          value.values.map((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable)),
         ) as ReturnType;
       }
       break;

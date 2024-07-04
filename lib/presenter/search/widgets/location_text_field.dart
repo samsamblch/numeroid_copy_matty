@@ -143,7 +143,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/icons/icon_pin.png',
+                              'assets/icons/pin.png',
                               width: 22,
                             ),
                             const HorizontalSpacer8(),
@@ -187,7 +187,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
           child: Row(
             children: [
               Image.asset(
-                'assets/icons/icon_pin.png',
+                'assets/icons/pin.png',
                 width: 22,
               ),
               const SizedBox(width: 8),

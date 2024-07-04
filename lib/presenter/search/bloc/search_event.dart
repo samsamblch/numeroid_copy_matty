@@ -34,3 +34,11 @@ class ChangeRooms extends SearchEvent {
     required this.rooms,
   });
 }
+
+class ChangeSortType extends SearchEvent {
+  final SortType sortType;
+
+  ChangeSortType({
+    required this.sortType,
+  });
+}

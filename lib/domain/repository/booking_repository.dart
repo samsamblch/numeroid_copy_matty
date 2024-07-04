@@ -1,13 +1,15 @@
-import 'package:numeroid/domain/model/bo/hotel.dart';
+import 'package:numeroid/domain/model/bo/search_hotel.dart';
 import 'package:numeroid/domain/model/bo/search_params.dart';
 import 'package:numeroid/domain/model/dto/booking_order.dart';
+import 'package:numeroid/domain/model/dto/facility.dart';
+import 'package:numeroid/domain/model/dto/hotel_details.dart';
 import 'package:numeroid/utils/formatters.dart';
 
 import '../../core/locator.dart';
 import '../model/dto/city.dart';
 
 class BookingRepository {
-  Map<String, List<City>> _locations = {};
+  final Map<String, List<City>> _locations = {};
 
   Future<List<City>> loadLocations({
     required String? term,
@@ -25,7 +27,7 @@ class BookingRepository {
     return _locations[key] ?? [];
   }
 
-  Future<List<Hotel>> loadHotels({
+  Future<List<SearchHotel>> loadHotels({
     required SearchParams searchParameters,
   }) async {
     final api = authApi.getBookingApi();
@@ -47,32 +49,44 @@ class BookingRepository {
 
       final infoList = info.data?.hotels ?? [];
       final offersList = detail.data?.offers ?? [];
+      final facilities = info.data?.facilities ?? [];
 
-      List<Hotel> hotels = [];
+      List<SearchHotel> hotels = [];
 
       for (var offer in offersList) {
-        final hotelIndex =
-            hotels.indexWhere((element) => element.info.id == offer.hotelId);
+        final hotelIndex = hotels.indexWhere((element) => element.info.id == offer.hotelId);
 
         if (hotelIndex >= 0) {
           hotels[hotelIndex].offers.add(offer);
         } else {
-          final infoIndex =
-              infoList.indexWhere((element) => element.id == offer.hotelId);
+          final infoIndex = infoList.indexWhere((element) => element.id == offer.hotelId);
           if (infoIndex >= 0) {
+            final hotelInfo = infoList[infoIndex];
+            final List<Facility?> tempHotelFacilities = hotelInfo.facilities?.map((e) {
+                  final index = facilities.indexWhere((e2) => e == e2.id);
+                  if (index >= 0) {
+                    return facilities[index];
+                  } else {
+                    return null;
+                  }
+                }).toList() ??
+                [];
+            final hotelFacilities = List<Facility>.from(tempHotelFacilities.where((e) => e != null));
+
             hotels.add(
-              Hotel(
-                info: infoList[infoIndex],
+              SearchHotel(
+                info: hotelInfo,
                 offers: [offer],
+                facilities: hotelFacilities,
               ),
             );
           }
         }
       }
 
-      hotels.forEach((element) {
+      for (var element in hotels) {
         element.offers.sort((a, b) => (a.price.value).compareTo(b.price.value));
-      });
+      }
 
       hotels.sort((a, b) {
         int starsComp = (a.info.stars ?? 0).compareTo(b.info.stars ?? 0);
@@ -93,8 +107,7 @@ class BookingRepository {
     final data = response.data?.data;
     if (data != null) {
       final orders = data.orders.map((e) {
-        final index =
-            data.hotels.indexWhere((element) => element.id == e.hotelId);
+        final index = data.hotels.indexWhere((element) => element.id == e.hotelId);
 
         if (index >= 0) {
           return BookingOrder(order: e, hotel: data.hotels[index]);
@@ -107,5 +120,10 @@ class BookingRepository {
     }
 
     return [];
+  }
+
+  Future<HotelDetails> loadHotelDetails({required int hotelId}) async {
+    final response = await authApi.getBookingApi().hotelDetailsGet(hotelId: hotelId);
+    return response.data!;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/utils/formatters.dart';
-import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/kit/buttons.dart';
 
 import '../core/app_typography.dart';
 import 'month_calendar.dart';
@@ -118,7 +118,7 @@ class _AppCalendarState extends State<AppCalendar> {
         ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: 100,
-            maxHeight: MediaQuery.of(context).size.height - 40 - 160 - 100,
+            maxHeight: 400, //MediaQuery.of(context).size.height - 40 - 160 - 100,
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -133,18 +133,14 @@ class _AppCalendarState extends State<AppCalendar> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: SizedBox(
-            width: double.infinity,
-            child: AppButtonBlue(
-              text: 'Подтвердить',
-              onTap: () {
-                if (selectedBeginPeriod != null && selectedEndPeriod != null) {
-                  widget.onApplyPeriod(
-                      (selectedBeginPeriod!, selectedEndPeriod!));
-                }
-              },
-            ),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: KitButtonBlue(
+            text: 'Подтвердить',
+            onTap: () {
+              if (selectedBeginPeriod != null && selectedEndPeriod != null) {
+                widget.onApplyPeriod((selectedBeginPeriod!, selectedEndPeriod!));
+              }
+            },
           ),
         ),
       ],

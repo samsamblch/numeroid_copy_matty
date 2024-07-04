@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
+import 'package:numeroid/widgets/kit/common.dart';
+import 'package:numeroid/widgets/kit/decorations.dart';
 
 import '../domain/repository/support_repository.dart';
 
@@ -14,64 +16,72 @@ class Dialogs {
     showDialog(
         context: context,
         builder: (context) {
-          return Dialog(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-            insetPadding: const EdgeInsets.all(10),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    color: appTheme.colors.background.primary,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          return Scaffold(
+            // elevation: 0,
+            backgroundColor: Colors.transparent,
+            // shape: const RoundedRectangleBorder(
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(12),
+            //   ),
+            // ),
+            // insetPadding: const EdgeInsets.all(10),
+            body: Column(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    decoration: KitDecorations.whiteRBoxWithBorder(radius: 12).copyWith(
+                      color: appTheme.colors.background.primary,
+                    ),
+                    child: Column(
                       children: [
-                        const SizedBox(width: 44),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              title,
-                              style: AppTypography.semiBold16.copyWith(
-                                color: appTheme.colors.text.primary,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 44),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                  title,
+                                  style: AppTypography.semiBold16.copyWith(
+                                    color: appTheme.colors.text.primary,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              textAlign: TextAlign.center,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 44,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.cancel_outlined,
-                              color: appTheme.colors.text.secondary,
-                              size: 24,
+                            SizedBox(
+                              width: 44,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.cancel_outlined,
+                                  color: appTheme.colors.text.secondary,
+                                  size: 24,
+                                ),
+                                onPressed: () {
+                                  appNavigator.pop();
+                                },
+                              ),
                             ),
-                            onPressed: () {
-                              appNavigator.pop();
-                            },
-                          ),
+                          ],
                         ),
+                        const KitSeparator(),
+                        // body,
+                        if (autoScroll)
+                          Container(
+                            constraints: const BoxConstraints(maxHeight: 500),
+                            child: SingleChildScrollView(child: body),
+                          )
+                        else
+                          body,
                       ],
                     ),
                   ),
-                  Container(
-                    height: 1,
-                    color: appTheme.colors.border.grey,
-                  ),
-                  if (autoScroll)
-                    Flexible(child: SingleChildScrollView(child: body))
-                  else
-                    body,
-                ],
-              ),
+                ),
+                const Spacer(),
+              ],
             ),
           );
         });
@@ -101,7 +111,7 @@ class Dialogs {
     required BuildContext context,
     required Widget child,
   }) {
-showDialog(
+    showDialog(
         context: context,
         builder: (context) {
           return child;

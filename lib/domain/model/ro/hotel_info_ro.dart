@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../dto/facility.dart';
 import '../dto/hotel_info.dart';
 
 part 'hotel_info_ro.g.dart';
@@ -7,13 +8,14 @@ part 'hotel_info_ro.g.dart';
 @JsonSerializable()
 class HotelInfoRo {
   final List<HotelInfo>? hotels;
+  final List<Facility>? facilities;
 
   HotelInfoRo({
     required this.hotels,
+    required this.facilities,
   });
 
-  factory HotelInfoRo.fromJson(Map<String, dynamic> json) =>
-      _$HotelInfoRoFromJson(json);
+  factory HotelInfoRo.fromJson(Map<String, dynamic> json) => _$HotelInfoRoFromJson(json);
 
   Map<String, dynamic> toJson() => _$HotelInfoRoToJson(this);
 }

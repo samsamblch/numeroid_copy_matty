@@ -341,7 +341,7 @@ class _MemberCard extends StatelessWidget {
                         onPressed: onTapEdit,
                         child: Icon(
                           Icons.edit_outlined,
-                          color: appTheme.colors.brand.grey,
+                          color: appTheme.colors.elements.grey,
                         ),
                       ),
                     ),
@@ -362,7 +362,7 @@ class _MemberCard extends StatelessWidget {
                         onPressed: onTapDelete,
                         child: Icon(
                           Icons.delete_outlined,
-                          color: appTheme.colors.brand.grey,
+                          color: appTheme.colors.elements.grey,
                         ),
                       ),
                     ),

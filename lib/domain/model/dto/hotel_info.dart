@@ -12,18 +12,23 @@ class HotelInfo {
   final Photo? photo;
   @JsonKey(name: 'category')
   final int? stars;
-  // final City? city;
+  @JsonKey(name: 'address_ru')
+  final String? address;
+  @JsonKey(name: 'facilities')
+  final List<int>? facilities;
 
   HotelInfo({
     required this.id,
     required this.name,
     required this.photo,
     required this.stars,
-    // required this.city,
+    required this.address,
+    required this.facilities,
   });
 
-  factory HotelInfo.fromJson(Map<String, dynamic> json) =>
-      _$HotelInfoFromJson(json);
+  factory HotelInfo.fromJson(Map<String, dynamic> json) => _$HotelInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$HotelInfoToJson(this);
+
+  int get rate => stars ?? 0;
 }

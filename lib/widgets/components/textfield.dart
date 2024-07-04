@@ -19,7 +19,7 @@ InputDecoration _getDecorator({
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color:
-            isError ? appTheme.colors.brand.red : appTheme.colors.active.blue,
+            isError ? appTheme.colors.brand.red : appTheme.colors.elements.blue,
         width: 1,
       ),
     ),
@@ -137,7 +137,7 @@ class _AppTextFieldState extends State<AppTextField> {
         ),
         controller: controller,
         cursorHeight: 16,
-        cursorColor: appTheme.colors.active.blue,
+        cursorColor: appTheme.colors.elements.blue,
         decoration: _getDecorator(
           isError: widget.errMessage != null,
           hintText: widget.hintText,
@@ -180,7 +180,7 @@ class _AppSecureTextFieldState extends State<AppSecureTextField> {
           color: appTheme.colors.text.primary,
         ),
         cursorHeight: 16,
-        cursorColor: appTheme.colors.active.blue,
+        cursorColor: appTheme.colors.elements.blue,
         decoration: _getDecorator(
           isError: widget.errMessage != null,
           hintText: widget.hintText,

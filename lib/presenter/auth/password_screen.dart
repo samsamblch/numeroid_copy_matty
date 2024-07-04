@@ -115,7 +115,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       child: Text(
                         'Забыли пароль?',
                         style: AppTypography.medium14.copyWith(
-                          color: appTheme.colors.active.blue,
+                          color: appTheme.colors.elements.blue,
                         ),
                       ),
                     ),

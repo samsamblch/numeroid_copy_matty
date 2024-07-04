@@ -53,7 +53,7 @@ class AppButtonBlue extends StatelessWidget {
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
           backgroundColor: enable
-              ? appTheme.colors.active.blue
+              ? appTheme.colors.elements.blue
               : appTheme.colors.border.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
@@ -64,7 +64,7 @@ class AppButtonBlue extends StatelessWidget {
         child: Text(
           text,
           style: AppTypography.semiBold14.copyWith(
-            color: enable ? Colors.white : appTheme.colors.brand.grey,
+            color: enable ? Colors.white : appTheme.colors.elements.grey,
           ),
         ),
       ),
@@ -100,7 +100,7 @@ class AppButtonRed extends StatelessWidget {
       child: Text(
         text,
         style: AppTypography.semiBold14.copyWith(
-          color: enable ? Colors.white : appTheme.colors.brand.grey,
+          color: enable ? Colors.white : appTheme.colors.elements.grey,
         ),
       ),
     );

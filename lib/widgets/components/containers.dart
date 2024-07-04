@@ -70,7 +70,7 @@ class YellowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _BaseContainer(
-      color: appTheme.colors.active.yellow,
+      color: appTheme.colors.elements.yellow,
       border: false,
       shadow: false,
       child: child,

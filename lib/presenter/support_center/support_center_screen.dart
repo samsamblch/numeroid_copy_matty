@@ -41,9 +41,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
   List<FaqQuestion> getQuestionList() {
     if (faq == null) return [];
     if (selectedCategory == null) return [];
-    return faq!.questions
-        .where((element) => selectedCategory!.questions.contains(element.id))
-        .toList();
+    return faq!.questions.where((element) => selectedCategory!.questions.contains(element.id)).toList();
   }
 
   void onTapFastRequest() {
@@ -55,11 +53,11 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Укажите номер бронирования и пин-код. Эти данные можно посмотреть вверху письма подтверждения',
               style: AppTypography.semiBold15,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: AppTextField(
@@ -85,8 +83,8 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               height: 1,
               color: appTheme.colors.border.grey,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
               child: Text(
                 'Повторная отправка подтверждения',
                 style: AppTypography.semiBold16,
@@ -120,14 +118,14 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Свяжитесь с нами любым удобным способом. Мы работаем круглосуточно!',
                       style: AppTypography.medium14,
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
                         Expanded(
@@ -140,7 +138,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: _SupportButton(
                             text: 'Форма мгновенной связи',
@@ -157,10 +155,9 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               if (faq != null)
                 Container(
                   width: double.infinity,
-                  color: appTheme.colors.brand.pale,
+                  color: appTheme.colors.elements.paleBlue,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 24, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 10),
                     child: Column(
                       children: [
                         const Text(
@@ -190,8 +187,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
                             children: getQuestionList()
                                 .map(
                                   (e) => Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                    padding: const EdgeInsets.symmetric(vertical: 5),
                                     child: _Question(
                                       question: e,
                                     ),
@@ -238,7 +234,7 @@ class _SupportButton extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 6),
                 child: CircleAvatar(
                     radius: 30,
-                    backgroundColor: appTheme.colors.brand.pale,
+                    backgroundColor: appTheme.colors.elements.paleBlue,
                     child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Image.asset(iconPath),
@@ -282,16 +278,13 @@ class _CategoryButton extends StatelessWidget {
       child: Container(
         height: 55,
         decoration: BoxDecoration(
-          border: Border.all(
-              color: (isActive) ? appTheme.colors.brand.blue : Colors.grey,
-              width: 1),
+          border: Border.all(color: (isActive) ? appTheme.colors.brand.blue : Colors.grey, width: 1),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
           child: Text(
             category.name,
-            style: AppTypography.semiBold14.copyWith(
-                color: (isActive) ? appTheme.colors.brand.blue : Colors.black),
+            style: AppTypography.semiBold14.copyWith(color: (isActive) ? appTheme.colors.brand.blue : Colors.black),
           ),
         ),
       ),
@@ -346,24 +339,18 @@ class _QuestionState extends State<_Question> {
                     width: 30,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: (_expanded)
-                          ? appTheme.colors.background.greyLight
-                          : appTheme.colors.brand.pale,
+                      color: (_expanded) ? appTheme.colors.background.greyLight : appTheme.colors.elements.paleBlue,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         width: 1,
-                        color: (_expanded)
-                            ? appTheme.colors.border.grey
-                            : appTheme.colors.border.blue,
+                        color: (_expanded) ? appTheme.colors.border.grey : appTheme.colors.border.blue,
                       ),
                     ),
                     child: Center(
                       child: Icon(
                         (_expanded) ? Icons.close_rounded : Icons.add_rounded,
                         size: 20,
-                        color: (_expanded)
-                            ? appTheme.colors.brand.grey
-                            : appTheme.colors.brand.blue,
+                        color: (_expanded) ? appTheme.colors.elements.grey : appTheme.colors.brand.blue,
                       ),
                     ),
                   ),

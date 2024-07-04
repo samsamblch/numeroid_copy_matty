@@ -26,7 +26,7 @@ class UnauthPlaceholder extends StatelessWidget {
             TextSpan(
               text: 'Войдите',
               style: AppTypography.semiBold16.copyWith(
-                color: appTheme.colors.active.blue,
+                color: appTheme.colors.elements.blue,
               ),
               recognizer: TapGestureRecognizer()..onTap = () => appNavigator.push(AppRouterPage.login),
               children: [

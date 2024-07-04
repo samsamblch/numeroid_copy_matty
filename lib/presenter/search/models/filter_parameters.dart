@@ -1,4 +1,4 @@
-import '../../../domain/model/bo/hotel.dart';
+import '../../../domain/model/bo/search_hotel.dart';
 
 enum FilterBudget {
   zeroFive, // 0 - 5000
@@ -55,7 +55,7 @@ class FilterParameters {
     }
   }
 
-  bool approve(Hotel hotel) {
+  bool approve(SearchHotel hotel) {
     bool approved = true;
 
     if (budget.isNotEmpty) {

@@ -34,7 +34,7 @@ class ProfileSettingsPageBanner extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundColor: appTheme.colors.brand.pale,
+                    backgroundColor: appTheme.colors.elements.paleBlue,
                     child: Image.asset(
                       iconPath,
                       color: appTheme.colors.brand.blue,

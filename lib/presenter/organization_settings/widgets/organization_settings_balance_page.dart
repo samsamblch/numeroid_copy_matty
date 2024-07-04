@@ -204,7 +204,7 @@ class BalanceCard extends StatelessWidget {
                       TextSpan(
                         text: transaction.order.orderCode,
                         style: AppTypography.semiBold14.copyWith(
-                          color: appTheme.colors.active.blue,
+                          color: appTheme.colors.elements.blue,
                         ),
                       ),
                     ],

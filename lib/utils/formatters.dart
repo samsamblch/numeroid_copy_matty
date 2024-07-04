@@ -6,7 +6,7 @@ class Formatters {
   static final _smallSpace = String.fromCharCode(0x2009);
 
   static String formatMoneyFromPrice({required Price price}) {
-    return price.price + ' ' + price.currency;
+    return '${price.price} ${price.currency}';
   }
 
   static String formatMoney({
