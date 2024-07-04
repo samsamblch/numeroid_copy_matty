@@ -39,6 +39,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Юридический адрес',
+              value: company.actualAddress,
               onChange: (value) {},
             ),
           ),
@@ -46,6 +47,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Фактический адрес',
+              value: company.legalAddress,
               onChange: (value) {},
             ),
           ),
@@ -53,6 +55,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Название банка',
+              value: company.bank,
               onChange: (value) {},
             ),
           ),
@@ -60,6 +63,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Корреспондентский счет',
+              value: company.corrAccount,
               onChange: (value) {},
             ),
           ),
@@ -67,6 +71,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Расчетный счет',
+              value: company.account,
               onChange: (value) {},
             ),
           ),
@@ -90,6 +95,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'БИК',
+              value: company.bic,
               onChange: (value) {},
             ),
           ),
@@ -97,13 +103,15 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'ОКПО',
+              value: company.okpo,
               onChange: (value) {},
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
-              title: 'ОРГН',
+              title: 'ОГРН',
+              value: company.psrn,
               onChange: (value) {},
             ),
           ),
@@ -111,6 +119,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'E-mail',
+              value: company.email,
               onChange: (value) {},
             ),
           ),
@@ -118,6 +127,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Телефон',
+              value: company.phone,
               onChange: (value) {},
             ),
           ),
@@ -125,6 +135,7 @@ class OrganizationSettingsMainPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: AppTextField(
               title: 'Факс',
+              value: company.fax,
               onChange: (value) {},
             ),
           ),
@@ -133,3 +144,9 @@ class OrganizationSettingsMainPage extends StatelessWidget {
     ));
   }
 }
+       
+//       'created_at': instance.createdAt,
+//       'deleted_at': instance.deletedAt,
+     
+//       'updated_at': instance.updatedAt,
+      
