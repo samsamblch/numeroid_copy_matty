@@ -27,7 +27,9 @@ class BaseApi {
 
     try {
       final rawData = response.data;
-      responseData = rawData == null ? null : deserialize<T, T>(rawData, T.toString(), growable: true);
+      responseData = rawData == null
+          ? null
+          : deserialize<T, T>(rawData, T.toString(), growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: response.requestOptions,
