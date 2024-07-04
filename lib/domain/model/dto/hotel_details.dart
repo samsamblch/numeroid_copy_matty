@@ -3,6 +3,7 @@ import 'package:numeroid/domain/model/dto/hotel_description.dart';
 
 import 'facility.dart';
 import 'photo.dart';
+import 'room.dart';
 
 part 'hotel_details.g.dart';
 
@@ -18,6 +19,8 @@ class HotelDetails {
   final HotelDescription? description;
   final List<Facility>? facilities;
   final List<Photo>? photos;
+  @JsonKey(name: 'rooms', includeIfNull: true, defaultValue: [])
+  final List<Room> privateRooms;
 
   HotelDetails({
     required this.id,
@@ -27,6 +30,7 @@ class HotelDetails {
     required this.description,
     required this.facilities,
     required this.photos,
+    required this.privateRooms,
   });
 
   factory HotelDetails.fromJson(Map<String, dynamic> json) => _$HotelDetailsFromJson(json);
@@ -34,4 +38,6 @@ class HotelDetails {
   Map<String, dynamic> toJson() => _$HotelDetailsToJson(this);
 
   int get rate => stars ?? 0;
+
+  List<Room> get rooms => privateRooms ?? [];
 }

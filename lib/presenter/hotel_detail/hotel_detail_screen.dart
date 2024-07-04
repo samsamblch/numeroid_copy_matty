@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/model/dto/hotel_details.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
+import 'package:numeroid/widgets/kit/buttons.dart';
 import 'package:numeroid/widgets/kit/decorations.dart';
 
 import '../../domain/repository/booking_repository.dart';
+import '../../widgets/components/containers.dart';
 import '../../widgets/kit/texts.dart';
 import 'hotel_detail_facilities_block.dart';
 import 'hotel_detail_header_block.dart';
@@ -76,12 +78,35 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                           body: KitTextMedium14(hotel!.description?.description ?? '-'),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 14),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 14),
                         child: HotelDetailSectionContainer(
-                          title: 'Наличие мест',
-                          body: KitTextMedium14('Загрузка'),
-                        ),
+                            title: 'Наличие мест',
+                            left: 0,
+                            right: 0,
+                            body: Column(
+                              children: [
+                                ...hotel!.rooms.map(
+                                  (e) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: WhiteContainer(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          children: [
+                                            Text(e.name),
+                                            KitButtonBlue(
+                                              text: 'Я бронирую',
+                                              onTap: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 14),

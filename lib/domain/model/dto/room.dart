@@ -4,6 +4,7 @@ part 'room.g.dart';
 
 @JsonSerializable()
 class Room {
+  @JsonKey(name: 'name_ru', includeIfNull: true, defaultValue: '')
   final String name;
 
   Room({
