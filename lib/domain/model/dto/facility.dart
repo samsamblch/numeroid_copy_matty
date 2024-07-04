@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'facility.g.dart';
@@ -24,8 +22,9 @@ class Facility {
   String get imagePath {
     print(category?.id);
     final path = 'assets/icons/facilities/category_${category?.id}.png';
-    print(path);
-    return File(path).existsSync() ? path : 'assets/icons/facilities/category_8.png';
+    return path;
+    // print(path);
+    // return File(path).existsSync() ? path : 'assets/icons/facilities/category_8.png';
   }
 }
 
