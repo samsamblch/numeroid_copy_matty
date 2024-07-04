@@ -2,11 +2,11 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/domain/model/dto/organization.dart';
 import 'package:numeroid/presenter/organization_settings/widgets/organization_settings_main_page.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../core/locator.dart';
 import 'widgets/organization_settings_balance_page.dart';
@@ -17,12 +17,10 @@ class OrganizationSettingsScreen extends StatefulWidget {
   const OrganizationSettingsScreen({super.key});
 
   @override
-  State<OrganizationSettingsScreen> createState() =>
-      _OrganizationSettingsScreenState();
+  State<OrganizationSettingsScreen> createState() => _OrganizationSettingsScreenState();
 }
 
-class _OrganizationSettingsScreenState
-    extends State<OrganizationSettingsScreen> {
+class _OrganizationSettingsScreenState extends State<OrganizationSettingsScreen> {
   Organization? org;
   int _page = 0;
 
@@ -56,7 +54,7 @@ class _OrganizationSettingsScreenState
               padding: EdgeInsets.only(top: 10, bottom: 16),
               child: Text(
                 'Организация',
-                style: AppTypography.bold18,
+                style: KitTextStyles.bold18,
               ),
             ),
             if (org != null) pagePicker(),

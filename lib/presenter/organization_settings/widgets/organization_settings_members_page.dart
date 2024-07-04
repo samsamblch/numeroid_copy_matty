@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/model/dto/organization_member.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/components/containers.dart';
 import 'package:numeroid/widgets/components/textfield.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../utils/dialogs.dart';
 import '../../../widgets/components/dropfield.dart';
@@ -13,12 +13,10 @@ class OrganizationSettingsMembersPage extends StatefulWidget {
   const OrganizationSettingsMembersPage({super.key});
 
   @override
-  State<OrganizationSettingsMembersPage> createState() =>
-      _OrganizationSettingsMembersPageState();
+  State<OrganizationSettingsMembersPage> createState() => _OrganizationSettingsMembersPageState();
 }
 
-class _OrganizationSettingsMembersPageState
-    extends State<OrganizationSettingsMembersPage> {
+class _OrganizationSettingsMembersPageState extends State<OrganizationSettingsMembersPage> {
   List<OrganizationMember> members = [];
 
   @override
@@ -56,12 +54,12 @@ class _OrganizationSettingsMembersPageState
           children: [
             const Text(
               'Сотрудник',
-              style: AppTypography.semiBold14,
+              style: KitTextStyles.semiBold14,
             ),
             const SizedBox(height: 4),
             Text(
               member.localeFIO ?? '',
-              style: AppTypography.medium14,
+              style: KitTextStyles.medium14,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -203,13 +201,13 @@ class DeleteDialogBody extends StatelessWidget {
               children: [
                 TextSpan(
                   text: 'Вы уверены, что хотите удалить\nсотрудника ',
-                  style: AppTypography.medium14.copyWith(
+                  style: KitTextStyles.medium14.copyWith(
                     color: appTheme.colors.text.primary,
                   ),
                 ),
                 TextSpan(
                   text: fio,
-                  style: AppTypography.semiBold14.copyWith(
+                  style: KitTextStyles.semiBold14.copyWith(
                     color: appTheme.colors.text.primary,
                   ),
                 ),
@@ -277,11 +275,11 @@ class _MemberCard extends StatelessWidget {
                             children: [
                               const Text(
                                 'Имя сотрудника',
-                                style: AppTypography.semiBold14,
+                                style: KitTextStyles.semiBold14,
                               ),
                               Text(
                                 member.localeFIO!,
-                                style: AppTypography.medium14,
+                                style: KitTextStyles.medium14,
                               ),
                             ],
                           ),
@@ -293,11 +291,11 @@ class _MemberCard extends StatelessWidget {
                           children: [
                             const Text(
                               'Роль',
-                              style: AppTypography.semiBold14,
+                              style: KitTextStyles.semiBold14,
                             ),
                             Text(
                               member.localeRole(),
-                              style: AppTypography.medium14,
+                              style: KitTextStyles.medium14,
                             ),
                           ],
                         ),
@@ -307,16 +305,16 @@ class _MemberCard extends StatelessWidget {
                         children: [
                           const Text(
                             'Контакты',
-                            style: AppTypography.semiBold14,
+                            style: KitTextStyles.semiBold14,
                           ),
                           Text(
                             member.email,
-                            style: AppTypography.medium14,
+                            style: KitTextStyles.medium14,
                           ),
                           if (member.phone != null)
                             Text(
                               member.phone!,
-                              style: AppTypography.medium14,
+                              style: KitTextStyles.medium14,
                             ),
                         ],
                       ),

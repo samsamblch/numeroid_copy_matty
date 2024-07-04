@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 
-import '../core/app_typography.dart';
+import 'kit/app_typography.dart';
 
 class AppNavbar extends StatelessWidget implements PreferredSizeWidget {
   const AppNavbar({
@@ -36,7 +36,7 @@ class AppNavbar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               Text(
                 text,
-                style: AppTypography.semiBold16,
+                style: KitTextStyles.semiBold16,
               ),
               if (hasBack)
                 const SizedBox(

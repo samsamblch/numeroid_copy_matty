@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/components/containers.dart';
+import 'package:numeroid/widgets/components/textfield.dart';
 
-import '../../../core/app_typography.dart';
+import '../../../widgets/kit/app_typography.dart';
 
 class ProfileSettingsNotifyPage extends StatelessWidget {
   const ProfileSettingsNotifyPage({super.key});
@@ -14,12 +14,12 @@ class ProfileSettingsNotifyPage extends StatelessWidget {
       children: [
         const Text(
           'Электронная рассылка',
-          style: AppTypography.bold18,
+          style: KitTextStyles.bold18,
         ),
         const SizedBox(height: 4),
         Text(
           'Укажите, какие уведомления вы\nхотите получать, а какие - нет',
-          style: AppTypography.medium14.copyWith(
+          style: KitTextStyles.medium14.copyWith(
             color: appTheme.colors.text.secondary,
           ),
           textAlign: TextAlign.center,
@@ -30,10 +30,7 @@ class ProfileSettingsNotifyPage extends StatelessWidget {
           child: WhiteContainer(
               child: Padding(
             padding: const EdgeInsets.all(16),
-            child: AppTextField(
-                title: 'Электронная почта',
-                hintText: 'Введите адрес эл.почты',
-                onChange: (value) {}),
+            child: AppTextField(title: 'Электронная почта', hintText: 'Введите адрес эл.почты', onChange: (value) {}),
           )),
         ),
       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/app_typography.dart';
 import '../../core/locator.dart';
+import 'app_typography.dart';
 
 class _KitButton extends StatelessWidget {
   const _KitButton({
@@ -55,7 +55,7 @@ class _KitButton extends StatelessWidget {
         style: outlined ? _outlineButtonStyle : _buttonStyle,
         child: Text(
           text,
-          style: AppTypography.semiBold14.copyWith(
+          style: KitTextStyles.semiBold14.copyWith(
             color: outlined ? outlinedTextColor : (enable ? textColor : appTheme.colors.elements.grey),
           ),
         ),

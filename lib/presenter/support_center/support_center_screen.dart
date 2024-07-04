@@ -8,9 +8,9 @@ import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/components/textfield.dart';
 
-import '../../core/app_typography.dart';
 import '../../domain/model/dto/faq.dart';
 import '../../utils/dialogs.dart';
+import '../../widgets/kit/app_typography.dart';
 
 @RoutePage()
 class SupportCenterScreen extends StatefulWidget {
@@ -55,7 +55,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
           children: [
             const Text(
               'Укажите номер бронирования и пин-код. Эти данные можно посмотреть вверху письма подтверждения',
-              style: AppTypography.semiBold15,
+              style: KitTextStyles.semiBold15,
             ),
             const SizedBox(height: 16),
             Padding(
@@ -87,7 +87,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               padding: EdgeInsets.symmetric(vertical: 16),
               child: Text(
                 'Повторная отправка подтверждения',
-                style: AppTypography.semiBold16,
+                style: KitTextStyles.semiBold16,
               ),
             ),
             Padding(
@@ -123,7 +123,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
                   children: [
                     const Text(
                       'Свяжитесь с нами любым удобным способом. Мы работаем круглосуточно!',
-                      style: AppTypography.medium14,
+                      style: KitTextStyles.medium14,
                     ),
                     const SizedBox(height: 24),
                     Row(
@@ -162,7 +162,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
                       children: [
                         const Text(
                           'Часто задаваемые вопросы',
-                          style: AppTypography.bold18,
+                          style: KitTextStyles.bold18,
                         ),
                         const SizedBox(height: 16),
                         Column(
@@ -244,7 +244,7 @@ class _SupportButton extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10, bottom: 14),
                 child: Text(
                   text,
-                  style: AppTypography.bold16,
+                  style: KitTextStyles.bold16,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -284,7 +284,7 @@ class _CategoryButton extends StatelessWidget {
         child: Center(
           child: Text(
             category.name,
-            style: AppTypography.semiBold14.copyWith(color: (isActive) ? appTheme.colors.brand.blue : Colors.black),
+            style: KitTextStyles.semiBold14.copyWith(color: (isActive) ? appTheme.colors.brand.blue : Colors.black),
           ),
         ),
       ),
@@ -331,7 +331,7 @@ class _QuestionState extends State<_Question> {
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
                         widget.question.question,
-                        style: AppTypography.semiBold14,
+                        style: KitTextStyles.semiBold14,
                       ),
                     ),
                   ),
@@ -362,7 +362,7 @@ class _QuestionState extends State<_Question> {
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
                   widget.question.answer,
-                  style: AppTypography.medium14,
+                  style: KitTextStyles.medium14,
                 ),
               ),
           ],

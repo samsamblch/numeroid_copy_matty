@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
 import '../../../domain/model/req/search_req.dart';
 import '../../../utils/formatters.dart';
+import '../../../widgets/kit/app_typography.dart';
 
 class RoomsDialogBody extends StatefulWidget {
   const RoomsDialogBody({
@@ -140,7 +139,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                 Expanded(
                                   child: Text(
                                     'Номер ${e.$1 + 1}',
-                                    style: AppTypography.semiBold15,
+                                    style: KitTextStyles.semiBold15,
                                   ),
                                 ),
                                 if (e.$1 > 0)
@@ -168,7 +167,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                   Expanded(
                                     child: Text(
                                       'Взрослые ',
-                                      style: AppTypography.medium14.copyWith(
+                                      style: KitTextStyles.medium14.copyWith(
                                         color: appTheme.colors.text.primary,
                                       ),
                                     ),
@@ -177,9 +176,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                     height: 36,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: appTheme.colors.border.grey),
+                                      border: Border.all(width: 1, color: appTheme.colors.border.grey),
                                       color: Colors.white,
                                     ),
                                     child: Row(
@@ -198,7 +195,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                           width: 24,
                                           child: Text(
                                             '${e.$2.adults}',
-                                            style: AppTypography.medium14,
+                                            style: KitTextStyles.medium14,
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -228,7 +225,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                   Expanded(
                                     child: Text(
                                       'Дети 0 - 17 лет ',
-                                      style: AppTypography.medium14.copyWith(
+                                      style: KitTextStyles.medium14.copyWith(
                                         color: appTheme.colors.text.primary,
                                       ),
                                     ),
@@ -237,9 +234,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                     height: 36,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: appTheme.colors.border.grey),
+                                      border: Border.all(width: 1, color: appTheme.colors.border.grey),
                                       color: Colors.white,
                                     ),
                                     child: Row(
@@ -258,7 +253,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                           width: 24,
                                           child: Text(
                                             '${e.$2.childs.length}',
-                                            style: AppTypography.medium14,
+                                            style: KitTextStyles.medium14,
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -292,7 +287,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                                 '${child.$2} года',
                                                 '${child.$2} лет',
                                               ),
-                                        style: AppTypography.medium14,
+                                        style: KitTextStyles.medium14,
                                       ),
                                       iconSize: 16,
                                       items: SearchRoom.childAges
@@ -311,8 +306,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                           )
                                           .toList(),
                                       onChanged: (value) {
-                                        if (value != null)
-                                          changeChildAge(e.$1, child.$1, value);
+                                        if (value != null) changeChildAge(e.$1, child.$1, value);
                                       },
                                     ),
                                   )

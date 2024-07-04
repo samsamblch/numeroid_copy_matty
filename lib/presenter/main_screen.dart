@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
-import 'package:numeroid/core/app_typography.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../core/locator.dart';
 import '../generated/locale_keys.g.dart';
@@ -62,8 +62,7 @@ class MainScreenState extends State<MainScreen> {
                   topLeft: Radius.circular(12),
                 ),
                 boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12, spreadRadius: 2, blurRadius: 20),
+                  BoxShadow(color: Colors.black12, spreadRadius: 2, blurRadius: 20),
                 ],
               ),
               child: ClipRRect(
@@ -79,8 +78,8 @@ class MainScreenState extends State<MainScreen> {
                     type: BottomNavigationBarType.fixed,
                     selectedItemColor: appTheme.colors.brand.blue,
                     unselectedItemColor: appTheme.colors.text.secondary,
-                    selectedLabelStyle: AppTypography.semiBold12,
-                    unselectedLabelStyle: AppTypography.semiBold12,
+                    selectedLabelStyle: KitTextStyles.semiBold12,
+                    unselectedLabelStyle: KitTextStyles.semiBold12,
                     items: [
                       BottomNavigationBarItem(
                         label: LocaleKeys.page_search.tr(),

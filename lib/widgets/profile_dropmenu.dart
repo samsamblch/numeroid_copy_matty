@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/components/containers.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 class ProfileDropMenu extends StatelessWidget {
   const ProfileDropMenu({
@@ -120,7 +120,7 @@ class _MenuItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 2),
               child: Text(
                 title,
-                style: AppTypography.medium13.copyWith(
+                style: KitTextStyles.medium13.copyWith(
                   color: appTheme.colors.text.primary,
                 ),
               ),

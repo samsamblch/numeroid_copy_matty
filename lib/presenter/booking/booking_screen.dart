@@ -1,9 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/domain/repository/booking_repository.dart';
 import 'package:numeroid/utils/formatters.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../core/locator.dart';
 import '../../domain/bloc/app/app_bloc.dart';
@@ -20,9 +20,7 @@ class BookingScreen extends StatelessWidget {
       value: appBloc,
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          return state.isLogged
-              ? const BookingContentBody()
-              : const UnauthPlaceholder();
+          return state.isLogged ? const BookingContentBody() : const UnauthPlaceholder();
         },
       ),
     );
@@ -62,7 +60,7 @@ class _BookingContentBodyState extends State<BookingContentBody> {
             padding: EdgeInsets.all(16),
             child: Text(
               'Мои бронирования',
-              style: AppTypography.bold18,
+              style: KitTextStyles.bold18,
             ),
           ),
           Expanded(
@@ -76,7 +74,7 @@ class _BookingContentBodyState extends State<BookingContentBody> {
                 const SizedBox(height: 8),
                 const Text(
                   'Упс, похоже у вас нет ещe\nни одного бронирования',
-                  style: AppTypography.semiBold16,
+                  style: KitTextStyles.semiBold16,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -108,7 +106,7 @@ class _BookingContentBodyState extends State<BookingContentBody> {
               child: Text(
                 'Найдите ваше бронирование',
                 textAlign: TextAlign.center,
-                style: AppTypography.semiBold13.copyWith(
+                style: KitTextStyles.semiBold13.copyWith(
                   color: appTheme.colors.brand.blue,
                 ),
               ),
@@ -123,7 +121,7 @@ class _BookingContentBodyState extends State<BookingContentBody> {
                   padding: EdgeInsets.all(16),
                   child: Text(
                     'Мои бронирования',
-                    style: AppTypography.bold18,
+                    style: KitTextStyles.bold18,
                   ),
                 ),
                 Column(
@@ -185,18 +183,18 @@ class _BookingOrderCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     order.hotel.name,
-                    style: AppTypography.bold16,
+                    style: KitTextStyles.bold16,
                   ),
                   Text(
                     order.hotel.city.name,
-                    style: AppTypography.semiBold13.copyWith(
+                    style: KitTextStyles.semiBold13.copyWith(
                       color: appTheme.colors.text.secondary,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '${Formatters.fromStringDateCalendar2(order.order.arrivalDate)} - ${Formatters.fromStringDateCalendar2(order.order.departureDate)}',
-                    style: AppTypography.semiBold13.copyWith(
+                    style: KitTextStyles.semiBold13.copyWith(
                       color: appTheme.colors.text.secondary,
                     ),
                   ),
@@ -205,13 +203,13 @@ class _BookingOrderCard extends StatelessWidget {
                     children: [
                       Text(
                         'Номер заказа: ',
-                        style: AppTypography.medium14.copyWith(
+                        style: KitTextStyles.medium14.copyWith(
                           color: appTheme.colors.text.secondary,
                         ),
                       ),
                       Text(
                         order.order.code,
-                        style: AppTypography.semiBold14.copyWith(
+                        style: KitTextStyles.semiBold14.copyWith(
                           color: appTheme.colors.text.primary,
                         ),
                       ),
@@ -232,7 +230,7 @@ class _BookingOrderCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       Formatters.formatMoneyFromPrice(price: order.order.price),
-                      style: AppTypography.bold16.copyWith(
+                      style: KitTextStyles.bold16.copyWith(
                         color: appTheme.colors.text.primary,
                       ),
                     ),
@@ -250,7 +248,7 @@ class _BookingOrderCard extends StatelessWidget {
                         ),
                         child: Text(
                           order.order.displayStatus(),
-                          style: AppTypography.medium13.copyWith(
+                          style: KitTextStyles.medium13.copyWith(
                             color: appTheme.colors.text.primary,
                           ),
                         ),

@@ -1,10 +1,9 @@
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../core/app_router.dart';
-import '../core/app_typography.dart';
 import '../core/locator.dart';
+import 'kit/app_typography.dart';
 
 class UnauthPlaceholder extends StatelessWidget {
   const UnauthPlaceholder({
@@ -25,14 +24,14 @@ class UnauthPlaceholder extends StatelessWidget {
           Text.rich(
             TextSpan(
               text: 'Войдите',
-              style: AppTypography.semiBold16.copyWith(
+              style: KitTextStyles.semiBold16.copyWith(
                 color: appTheme.colors.elements.blue,
               ),
               recognizer: TapGestureRecognizer()..onTap = () => appNavigator.push(AppRouterPage.login),
               children: [
                 TextSpan(
                   text: ' в систему, чтобы\nначать работать в Нумероид',
-                  style: AppTypography.semiBold16.copyWith(
+                  style: KitTextStyles.semiBold16.copyWith(
                     color: appTheme.colors.text.primary,
                   ),
                 ),

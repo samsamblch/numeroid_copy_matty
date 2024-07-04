@@ -4,7 +4,6 @@ import 'package:numeroid/domain/model/bo/search_params.dart';
 import 'package:numeroid/presenter/search/widgets/location_text_field.dart';
 import 'package:numeroid/widgets/calendar.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
 import '../../../domain/model/dto/city.dart';
 import '../../../domain/model/req/search_req.dart';
@@ -13,6 +12,7 @@ import '../../../utils/formatters.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/spacers.dart';
+import '../../../widgets/kit/app_typography.dart';
 import '../bloc/search_bloc.dart';
 import 'rooms_dialog_body.dart';
 
@@ -52,12 +52,8 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        final adults = rooms
-            .map((e) => e.adults)
-            .reduce((value, element) => value + element);
-        final childs = rooms
-            .map((e) => e.childs)
-            .reduce((value, element) => value + element);
+        final adults = rooms.map((e) => e.adults).reduce((value, element) => value + element);
+        final childs = rooms.map((e) => e.childs).reduce((value, element) => value + element);
 
         return YellowContainer(
           child: Padding(
@@ -106,7 +102,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                             Expanded(
                               child: Text(
                                 '${Formatters.fromDateCalendar(startDate)} - ${Formatters.fromDateCalendar(endDate)}',
-                                style: AppTypography.semiBold14.copyWith(
+                                style: KitTextStyles.semiBold14.copyWith(
                                   color: appTheme.colors.text.primary,
                                 ),
                               ),
@@ -149,7 +145,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                                   '$adults взрослых',
                                   '$adults взрослых',
                                 ),
-                                style: AppTypography.semiBold14,
+                                style: KitTextStyles.semiBold14,
                               ),
                             ),
                           ),
@@ -180,13 +176,10 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                               child: Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Text(
-                                    Formatters.pluralize(
-                                        childs.length,
-                                        '${childs.length} ребенок',
-                                        '${childs.length} ребенка',
-                                        '${childs.length} детей',
+                                    Formatters.pluralize(childs.length, '${childs.length} ребенок',
+                                        '${childs.length} ребенка', '${childs.length} детей',
                                         zero: 'Нет детей'),
-                                    style: AppTypography.semiBold14,
+                                    style: KitTextStyles.semiBold14,
                                   ))),
                         ),
                       ),
@@ -221,7 +214,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                                 '${rooms.length} комнаты',
                                 '${rooms.length} комнат',
                               ),
-                              style: AppTypography.semiBold14,
+                              style: KitTextStyles.semiBold14,
                             ),
                           )),
                         ),

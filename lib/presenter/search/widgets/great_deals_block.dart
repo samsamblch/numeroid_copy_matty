@@ -4,8 +4,8 @@ import 'package:numeroid/generated/locale_keys.g.dart';
 
 import '../../../core/app_router.dart';
 import '../../../core/app_router.gr.dart';
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
+import '../../../widgets/kit/app_typography.dart';
 
 class GreatDealsModel {
   const GreatDealsModel({
@@ -62,7 +62,7 @@ class GreatDealsBlock extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 'Выгодные предложения',
-                style: AppTypography.bold18,
+                style: KitTextStyles.bold18,
               ),
             ),
             const SizedBox(height: 16),
@@ -136,7 +136,7 @@ class _DealCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     item.name,
-                    style: AppTypography.bold15,
+                    style: KitTextStyles.bold15,
                   )),
             ),
           ],

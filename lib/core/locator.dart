@@ -8,7 +8,7 @@ import '../domain/network/network_service.dart';
 import '../domain/bloc/app/app_bloc.dart';
 import '../presenter/search/bloc/search_bloc.dart';
 import 'app_navigator.dart';
-import 'app_theme.dart';
+import '../widgets/kit/app_theme.dart';
 
 AppNavigator get appNavigator => locator<AppNavigator>();
 AppTheme get appTheme => locator<AppTheme>();

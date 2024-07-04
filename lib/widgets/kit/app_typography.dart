@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppTypography {
+class KitTextStyles {
   static const bold14 = TextStyle(
     debugLabel: 'bold14',
     fontSize: 14.0,

@@ -11,12 +11,12 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:numeroid/core/app_navigator.dart' as _i3;
-import 'package:numeroid/core/app_theme.dart' as _i4;
 import 'package:numeroid/core/locator.dart' as _i9;
 import 'package:numeroid/domain/bloc/app/app_bloc.dart' as _i7;
 import 'package:numeroid/domain/database/database.dart' as _i8;
 import 'package:numeroid/domain/network/network_service.dart' as _i5;
 import 'package:numeroid/presenter/search/bloc/search_bloc.dart' as _i6;
+import 'package:numeroid/widgets/kit/app_theme.dart' as _i4;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt

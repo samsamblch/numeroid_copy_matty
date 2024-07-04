@@ -2,10 +2,10 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/components/textfield.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../domain/bloc/screen/screen_bloc.dart';
 import '../../domain/repository/user_repository.dart';
@@ -69,20 +69,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 children: [
                   const Text(
                     'Забыли пароль?',
-                    style: AppTypography.semiBold16,
+                    style: KitTextStyles.semiBold16,
                   ),
                   const SizedBox(height: 8),
                   const Text(
                     'Ничего страшного! Мы отправим вам ссылку для смены пароля на почту.',
-                    style: AppTypography.medium14,
+                    style: KitTextStyles.medium14,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   AppTextField(
                     title: 'Электронная почта',
                     value: _email,
-                    errMessage:
-                        (state is ScreenErrorState) ? state.message : null,
+                    errMessage: (state is ScreenErrorState) ? state.message : null,
                     onChange: (String value) {
                       setState(() {
                         _email = value;
@@ -96,8 +95,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       text: 'Отправить ссылку для смены пароля',
                       enable: _email.isNotEmpty,
                       onTap: () {
-                        BlocProvider.of<ScreenBloc>(context)
-                            .add(ScreenLoadData());
+                        BlocProvider.of<ScreenBloc>(context).add(ScreenLoadData());
                       },
                     ),
                   ),

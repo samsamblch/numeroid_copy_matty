@@ -3,7 +3,7 @@ import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/utils/formatters.dart';
 import 'package:numeroid/widgets/kit/buttons.dart';
 
-import '../core/app_typography.dart';
+import 'kit/app_typography.dart';
 import 'month_calendar.dart';
 
 class AppCalendar extends StatefulWidget {
@@ -102,7 +102,7 @@ class _AppCalendarState extends State<AppCalendar> {
               ),
               Text(
                 Formatters.fromDateCalendar4(selectedDate),
-                style: AppTypography.semiBold15,
+                style: KitTextStyles.semiBold15,
               ),
               IconButton(
                 padding: EdgeInsets.zero,

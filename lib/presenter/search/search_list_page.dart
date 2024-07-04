@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/presenter/search/models/sort_type.dart';
 import 'package:numeroid/widgets/components/containers.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 import 'package:numeroid/widgets/kit/dropdown.dart';
 import 'package:numeroid/widgets/kit/texts.dart';
 
@@ -126,7 +126,7 @@ class _ListHeaderState extends State<_ListHeader> {
                         Expanded(
                           child: Text(
                             '${state.hotels.length} вариантов',
-                            style: AppTypography.semiBold13,
+                            style: KitTextStyles.semiBold13,
                           ),
                         ),
                         KitDropDown(
@@ -153,7 +153,7 @@ class _ListHeaderState extends State<_ListHeader> {
                                 children: [
                                   Text(
                                     _ListHeader.locale[state.sortType] ?? '-',
-                                    style: AppTypography.medium14,
+                                    style: KitTextStyles.medium14,
                                   ),
                                   const SizedBox(width: 8),
                                   const Icon(Icons.expand_more_rounded),

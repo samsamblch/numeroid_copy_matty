@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/repository/booking_repository.dart';
 import 'package:numeroid/widgets/components/containers.dart';
 import 'package:numeroid/widgets/components/spacers.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../domain/model/dto/city.dart';
 
@@ -138,8 +137,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
                         selectCity(e);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                         child: Row(
                           children: [
                             Image.asset(
@@ -151,13 +149,13 @@ class _LocationTextFieldState extends State<LocationTextField> {
                               child: RichText(
                                 text: TextSpan(
                                   text: '${e.name}, ',
-                                  style: AppTypography.medium14.copyWith(
+                                  style: KitTextStyles.medium14.copyWith(
                                     color: appTheme.colors.text.primary,
                                   ),
                                   children: [
                                     TextSpan(
                                       text: '${e.country.name}, ',
-                                      style: AppTypography.medium14.copyWith(
+                                      style: KitTextStyles.medium14.copyWith(
                                         color: appTheme.colors.text.secondary,
                                       ),
                                     ),
@@ -202,12 +200,12 @@ class _LocationTextFieldState extends State<LocationTextField> {
                       borderSide: BorderSide.none,
                     ),
                     hintText: 'Куда вы хотите поехать?',
-                    labelStyle: AppTypography.semiBold14.copyWith(
+                    labelStyle: KitTextStyles.semiBold14.copyWith(
                       color: appTheme.colors.text.secondary,
                     ),
                     contentPadding: EdgeInsets.zero,
                   ),
-                  style: AppTypography.semiBold14,
+                  style: KitTextStyles.semiBold14,
                   onChanged: onChangedText,
                 ),
               ),
@@ -221,9 +219,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
                   setState(() {});
                 },
                 child: Icon(
-                  (_focusNode.hasFocus)
-                      ? Icons.expand_less_rounded
-                      : Icons.expand_more_rounded,
+                  (_focusNode.hasFocus) ? Icons.expand_less_rounded : Icons.expand_more_rounded,
                 ),
               ),
             ],

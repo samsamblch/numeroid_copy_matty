@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:numeroid/core/app_typography.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 class KitTextBold16 extends StatelessWidget {
   const KitTextBold16(
@@ -13,7 +13,7 @@ class KitTextBold16 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.bold16,
+      style: KitTextStyles.bold16,
     );
   }
 }
@@ -30,7 +30,7 @@ class KitTextBold18 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.bold18,
+      style: KitTextStyles.bold18,
     );
   }
 }
@@ -47,7 +47,7 @@ class KitTextMedium14 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTypography.medium14,
+      style: KitTextStyles.medium14,
     );
   }
 }

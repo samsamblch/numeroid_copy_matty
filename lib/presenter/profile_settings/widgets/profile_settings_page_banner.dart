@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
+import '../../../widgets/kit/app_typography.dart';
 
 class ProfileSettingsPageBanner extends StatelessWidget {
   const ProfileSettingsPageBanner({
@@ -48,11 +48,11 @@ class ProfileSettingsPageBanner extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: AppTypography.bold16,
+                          style: KitTextStyles.bold16,
                         ),
                         Text(
                           subTitle,
-                          style: AppTypography.medium14,
+                          style: KitTextStyles.medium14,
                         ),
                       ],
                     ),

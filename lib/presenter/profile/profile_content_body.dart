@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:numeroid/core/app_router.dart';
 import 'package:numeroid/core/locator.dart';
 
-import '../../core/app_typography.dart';
 import '../../utils/dialogs.dart';
+import '../../widgets/kit/app_typography.dart';
 
 class ProfileContentBody extends StatelessWidget {
   const ProfileContentBody({
@@ -27,8 +27,7 @@ class ProfileContentBody extends StatelessWidget {
               assetPath: 'assets/icons/organization_peoples.png',
               title: 'Организация',
               description: 'Управление организацией, сотрудниками и балансом',
-              onTap: () =>
-                  appNavigator.push(AppRouterPage.organizationSettings),
+              onTap: () => appNavigator.push(AppRouterPage.organizationSettings),
             ),
             const SizedBox(height: 12),
             _MenuBanner(
@@ -147,7 +146,7 @@ class _CurrencySelectorState extends State<_CurrencySelector> {
         children: [
           const Text(
             'Валюта',
-            style: AppTypography.semiBold14,
+            style: KitTextStyles.semiBold14,
           ),
           const SizedBox(height: 6),
           Container(
@@ -176,12 +175,12 @@ class _CurrencySelectorState extends State<_CurrencySelector> {
                         children: [
                           const Text(
                             '₽',
-                            style: AppTypography.bold14,
+                            style: KitTextStyles.bold14,
                           ),
                           const SizedBox(width: 10),
                           Text(
                             value,
-                            style: AppTypography.medium14,
+                            style: KitTextStyles.medium14,
                           ),
                         ],
                       ),
@@ -230,8 +229,7 @@ class _MenuBanner extends StatelessWidget {
             ],
           ),
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 18),
+            padding: const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 18),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -259,11 +257,11 @@ class _MenuBanner extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: AppTypography.bold16,
+                        style: KitTextStyles.bold16,
                       ),
                       Text(
                         description,
-                        style: AppTypography.medium14,
+                        style: KitTextStyles.medium14,
                       ),
                     ],
                   ),
@@ -294,7 +292,7 @@ class _MenuButton extends StatelessWidget {
         onTap: callback,
         child: Text(
           title,
-          style: AppTypography.medium14.copyWith(
+          style: KitTextStyles.medium14.copyWith(
             color: appTheme.colors.text.primary,
           ),
         ),

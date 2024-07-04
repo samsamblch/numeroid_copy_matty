@@ -1,10 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import 'bloc/search_bloc.dart';
 import 'models/filter_parameters.dart';
@@ -291,7 +291,7 @@ class _FilterGroup extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
               title,
-              style: AppTypography.bold16,
+              style: KitTextStyles.bold16,
             ),
           ),
           Column(
@@ -344,12 +344,12 @@ class _FilterItem extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: AppTypography.medium14,
+              style: KitTextStyles.medium14,
             ),
           ),
           Text(
             count.toString(),
-            style: AppTypography.semiBold14,
+            style: KitTextStyles.semiBold14,
           ),
         ],
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/textfield.dart';
+import '../../../widgets/kit/app_typography.dart';
 
 class ProfileSettingsSecurePage extends StatelessWidget {
   const ProfileSettingsSecurePage({super.key});
@@ -15,12 +15,12 @@ class ProfileSettingsSecurePage extends StatelessWidget {
       children: [
         const Text(
           'Безопасность',
-          style: AppTypography.bold18,
+          style: KitTextStyles.bold18,
         ),
         const SizedBox(height: 4),
         Text(
           'Настройкте параметры\nбезопасности',
-          style: AppTypography.medium14.copyWith(
+          style: KitTextStyles.medium14.copyWith(
             color: appTheme.colors.text.secondary,
           ),
           textAlign: TextAlign.center,
@@ -39,8 +39,7 @@ class ProfileSettingsSecurePage extends StatelessWidget {
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 16),
-                  AppButtonOutlineBlue(
-                      text: 'Удалить аккаунт навсегда', onTap: () {})
+                  AppButtonOutlineBlue(text: 'Удалить аккаунт навсегда', onTap: () {})
                 ],
               ),
             ),

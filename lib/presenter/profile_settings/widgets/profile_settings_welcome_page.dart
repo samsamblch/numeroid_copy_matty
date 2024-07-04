@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
+import '../../../widgets/kit/app_typography.dart';
 import 'profile_settings_page_banner.dart';
 
 class ProfileSettingsWelcomePage extends StatelessWidget {
@@ -24,11 +24,11 @@ class ProfileSettingsWelcomePage extends StatelessWidget {
         children: [
           const Text(
             'Настройки аккаунта',
-            style: AppTypography.bold18,
+            style: KitTextStyles.bold18,
           ),
           Text(
             'Настройте Нумероид под себя',
-            style: AppTypography.semiBold16.copyWith(
+            style: KitTextStyles.semiBold16.copyWith(
               color: appTheme.colors.text.secondary,
             ),
           ),
@@ -41,8 +41,7 @@ class ProfileSettingsWelcomePage extends StatelessWidget {
           ),
           ProfileSettingsPageBanner(
             title: 'Электронная рассылка',
-            subTitle:
-                'Укажите, какие уведомления вы хотите получать, а какие - нет',
+            subTitle: 'Укажите, какие уведомления вы хотите получать, а какие - нет',
             iconPath: 'assets/icons/send.png',
             onTap: onTapNotify,
           ),

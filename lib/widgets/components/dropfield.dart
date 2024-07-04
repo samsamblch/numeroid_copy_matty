@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../core/locator.dart';
 
@@ -31,8 +31,7 @@ class _TextFieldWidgetState extends State<AppDropField> {
     super.initState();
 
     if (widget.selectedText != null) {
-      selected =
-          widget.texts.indexWhere((element) => element == widget.selectedText);
+      selected = widget.texts.indexWhere((element) => element == widget.selectedText);
     }
   }
 
@@ -63,8 +62,7 @@ class _TextFieldWidgetState extends State<AppDropField> {
         child: CompositedTransformFollower(
           link: layerLink,
           showWhenUnlinked: false,
-          offset:
-              Offset(0, size.height - 2 - ((widget.title != null) ? 26 : 0)),
+          offset: Offset(0, size.height - 2 - ((widget.title != null) ? 26 : 0)),
           child: buildOverlay(),
         ),
       ),
@@ -120,13 +118,12 @@ class _TextFieldWidgetState extends State<AppDropField> {
                   (e) => InkWell(
                     onTap: () => onTapItem(e.$1),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                       child: SizedBox(
                         width: double.infinity,
                         child: Text(
                           e.$2,
-                          style: AppTypography.medium14,
+                          style: KitTextStyles.medium14,
                         ),
                       ),
                     ),
@@ -158,22 +155,17 @@ class _TextFieldWidgetState extends State<AppDropField> {
             borderRadius: BorderRadius.circular(4),
           ),
           child: Padding(
-            padding:
-                const EdgeInsets.only(top: 6, bottom: 6, left: 12, right: 8),
+            padding: const EdgeInsets.only(top: 6, bottom: 6, left: 12, right: 8),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
-                    (selected != null)
-                        ? widget.texts.elementAtOrNull(selected!) ?? ''
-                        : '',
-                    style: AppTypography.medium14,
+                    (selected != null) ? widget.texts.elementAtOrNull(selected!) ?? '' : '',
+                    style: KitTextStyles.medium14,
                   ),
                 ),
                 Icon(
-                  (entry != null)
-                      ? Icons.expand_less_rounded
-                      : Icons.expand_more_rounded,
+                  (entry != null) ? Icons.expand_less_rounded : Icons.expand_more_rounded,
                   size: 20,
                 )
               ],
@@ -189,7 +181,7 @@ class _TextFieldWidgetState extends State<AppDropField> {
         if (widget.title != null)
           Text(
             widget.title!,
-            style: AppTypography.semiBold14,
+            style: KitTextStyles.semiBold14,
           ),
         if (widget.title != null) const SizedBox(height: 6),
         body,

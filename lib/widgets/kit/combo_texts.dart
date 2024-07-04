@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 class KitLocationText extends StatelessWidget {
   const KitLocationText(
@@ -23,7 +23,7 @@ class KitLocationText extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           text,
-          style: AppTypography.medium14.copyWith(
+          style: KitTextStyles.medium14.copyWith(
             color: appTheme.colors.elements.blue,
           ),
         ),

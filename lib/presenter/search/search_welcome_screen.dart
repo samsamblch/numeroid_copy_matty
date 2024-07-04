@@ -5,10 +5,10 @@ import 'package:numeroid/core/app_router.dart';
 import 'package:numeroid/core/app_router.gr.dart';
 import 'package:numeroid/presenter/search/bloc/search_bloc.dart';
 
-import '../../core/app_typography.dart';
 import '../../core/locator.dart';
 import '../../generated/locale_keys.g.dart';
 import '../../widgets/components/spacers.dart';
+import '../../widgets/kit/app_typography.dart';
 import 'widgets/great_deals_block.dart';
 import 'widgets/yellow_search_panel.dart';
 
@@ -29,29 +29,25 @@ class SearchWelcomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 28),
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 28),
                   child: Column(
                     children: [
                       Text(
                         LocaleKeys.welcome_text_1.tr(),
-                        style:
-                            AppTypography.bold18.copyWith(color: Colors.white),
+                        style: KitTextStyles.bold18.copyWith(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       const VerticalSpacer8(),
                       Text(
                         LocaleKeys.welcome_text_2.tr(),
-                        style: AppTypography.semiBold14
-                            .copyWith(color: Colors.white),
+                        style: KitTextStyles.semiBold14.copyWith(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: YellowSearchPanel(
                     onTapSearch: (searchParameters) {
                       if (appBloc.state.isLogged) {

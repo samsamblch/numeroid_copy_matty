@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 
-import '../../core/app_typography.dart';
+import '../kit/app_typography.dart';
 
 InputDecoration _getDecorator({
   required bool isError,
@@ -18,8 +18,7 @@ InputDecoration _getDecorator({
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color:
-            isError ? appTheme.colors.brand.red : appTheme.colors.elements.blue,
+        color: isError ? appTheme.colors.brand.red : appTheme.colors.elements.blue,
         width: 1,
       ),
     ),
@@ -39,15 +38,13 @@ InputDecoration _getDecorator({
             ),
             child: Text(
               suffix,
-              style: AppTypography.semiBold14.copyWith(
+              style: KitTextStyles.semiBold14.copyWith(
                 color: appTheme.colors.text.secondary,
               ),
             ),
           )
         : null,
-    suffixIconConstraints: (suffix != null)
-        ? const BoxConstraints(minWidth: 0, minHeight: 0)
-        : null,
+    suffixIconConstraints: (suffix != null) ? const BoxConstraints(minWidth: 0, minHeight: 0) : null,
   );
 }
 
@@ -72,7 +69,7 @@ class _BaseTextField extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: AppTypography.semiBold14,
+            style: KitTextStyles.semiBold14,
           ),
         if (title != null) const SizedBox(height: 6),
         SizedBox(
@@ -84,7 +81,7 @@ class _BaseTextField extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               errMessage!,
-              style: AppTypography.regular13.copyWith(
+              style: KitTextStyles.regular13.copyWith(
                 color: appTheme.colors.brand.red,
               ),
             ),
@@ -132,7 +129,7 @@ class _AppTextFieldState extends State<AppTextField> {
       onChange: widget.onChange,
       errMessage: widget.errMessage,
       child: TextField(
-        style: AppTypography.medium14.copyWith(
+        style: KitTextStyles.medium14.copyWith(
           color: appTheme.colors.text.primary,
         ),
         controller: controller,
@@ -150,12 +147,7 @@ class _AppTextFieldState extends State<AppTextField> {
 }
 
 class AppSecureTextField extends StatefulWidget {
-  const AppSecureTextField(
-      {super.key,
-      required this.title,
-      required this.onChange,
-      this.errMessage,
-      this.hintText});
+  const AppSecureTextField({super.key, required this.title, required this.onChange, this.errMessage, this.hintText});
 
   final String title;
   final ValueChanged<String> onChange;
@@ -176,7 +168,7 @@ class _AppSecureTextFieldState extends State<AppSecureTextField> {
       onChange: widget.onChange,
       errMessage: widget.errMessage,
       child: TextField(
-        style: AppTypography.medium14.copyWith(
+        style: KitTextStyles.medium14.copyWith(
           color: appTheme.colors.text.primary,
         ),
         cursorHeight: 16,
@@ -193,9 +185,7 @@ class _AppSecureTextFieldState extends State<AppSecureTextField> {
             },
             icon: ImageIcon(
               AssetImage(
-                _isObscure
-                    ? 'assets/icons/eye_slash.png'
-                    : 'assets/icons/eye.png',
+                _isObscure ? 'assets/icons/eye_slash.png' : 'assets/icons/eye.png',
               ),
               size: 20,
             ),

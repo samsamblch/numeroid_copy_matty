@@ -1,9 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import 'widgets/auth_disclaimer.dart';
 
@@ -26,11 +26,11 @@ class ForgotPasswordFinishScreen extends StatelessWidget {
           children: [
             const Text(
               'Проверьте папку "Входящие"',
-              style: AppTypography.semiBold16,
+              style: KitTextStyles.semiBold16,
             ),
             Text(
               'Мы отправили инструкцию по смене пароля на $email. Письмо должно придти через несколько минут.',
-              style: AppTypography.medium14,
+              style: KitTextStyles.medium14,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),

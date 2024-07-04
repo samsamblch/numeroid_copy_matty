@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../core/locator.dart';
-import '../../../widgets/components/textfield.dart';
 import '../../../widgets/components/containers.dart';
+import '../../../widgets/components/textfield.dart';
 
 class ProfileSettingsPersonPage extends StatelessWidget {
   const ProfileSettingsPersonPage({super.key});
@@ -14,12 +14,12 @@ class ProfileSettingsPersonPage extends StatelessWidget {
       children: [
         const Text(
           'Персональные данные',
-          style: AppTypography.bold18,
+          style: KitTextStyles.bold18,
         ),
         const SizedBox(height: 4),
         Text(
           'Заполните свои данные',
-          style: AppTypography.medium14.copyWith(
+          style: KitTextStyles.medium14.copyWith(
             color: appTheme.colors.text.secondary,
           ),
           textAlign: TextAlign.center,

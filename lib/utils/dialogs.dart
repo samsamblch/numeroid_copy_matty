@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 import 'package:numeroid/widgets/kit/common.dart';
 import 'package:numeroid/widgets/kit/decorations.dart';
 
@@ -45,7 +45,7 @@ class Dialogs {
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(
                                   title,
-                                  style: AppTypography.semiBold16.copyWith(
+                                  style: KitTextStyles.semiBold16.copyWith(
                                     color: appTheme.colors.text.primary,
                                   ),
                                   textAlign: TextAlign.center,

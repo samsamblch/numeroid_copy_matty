@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/app_typography.dart';
 import '../../../core/locator.dart';
 import '../../../domain/model/bo/search_hotel.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/spacers.dart';
+import '../../../widgets/kit/app_typography.dart';
 import '../../../widgets/kit/stars_rate_view.dart';
 
 class HotelCard extends StatelessWidget {
@@ -59,11 +59,10 @@ class HotelCard extends StatelessWidget {
                         children: [
                           Text(
                             hotel.info.name ?? '',
-                            style: AppTypography.bold15,
+                            style: KitTextStyles.bold15,
                           ),
                           const SizedBox(height: 8),
                           StarsRateView(rate: hotel.info.stars ?? 0),
-                          
                         ],
                       ),
                     ),
@@ -80,7 +79,7 @@ class HotelCard extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
                     hotel.offers.first.rooms.first.name,
-                    style: AppTypography.semiBold13.copyWith(
+                    style: KitTextStyles.semiBold13.copyWith(
                       color: appTheme.colors.text.primary,
                     ),
                   ),
@@ -94,19 +93,19 @@ class HotelCard extends StatelessWidget {
                         children: [
                           Text(
                             '$days ночей, $adult взрослых',
-                            style: AppTypography.medium13.copyWith(
+                            style: KitTextStyles.medium13.copyWith(
                               color: appTheme.colors.text.primary,
                             ),
                           ),
                           Text(
                             '${hotel.price.price} руб.',
-                            style: AppTypography.bold14.copyWith(
+                            style: KitTextStyles.bold14.copyWith(
                               color: appTheme.colors.text.primary,
                             ),
                           ),
                           Text(
                             'Включая налоги и сборы',
-                            style: AppTypography.medium12.copyWith(
+                            style: KitTextStyles.medium12.copyWith(
                               color: appTheme.colors.text.secondary,
                             ),
                           ),
@@ -127,7 +126,7 @@ class HotelCard extends StatelessWidget {
                               SizedBox(width: 4),
                               Text(
                                 'Бесплатная отмена',
-                                style: AppTypography.medium12.copyWith(
+                                style: KitTextStyles.medium12.copyWith(
                                   color: appTheme.colors.brand.greenDarky,
                                 ),
                               ),
@@ -144,7 +143,7 @@ class HotelCard extends StatelessWidget {
                               SizedBox(width: 4),
                               Text(
                                 'Завтрак включен',
-                                style: AppTypography.medium12.copyWith(
+                                style: KitTextStyles.medium12.copyWith(
                                   color: appTheme.colors.brand.greenDarky,
                                 ),
                               ),

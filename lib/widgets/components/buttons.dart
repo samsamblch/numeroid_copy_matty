@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_typography.dart';
 import 'package:numeroid/core/locator.dart';
+import 'package:numeroid/widgets/kit/app_typography.dart';
 
 class AppButtonOrange extends StatelessWidget {
   const AppButtonOrange({
@@ -26,8 +26,7 @@ class AppButtonOrange extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTypography.semiBold14
-            .copyWith(color: appTheme.colors.text.primary),
+        style: KitTextStyles.semiBold14.copyWith(color: appTheme.colors.text.primary),
       ),
     );
   }
@@ -52,9 +51,7 @@ class AppButtonBlue extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
-          backgroundColor: enable
-              ? appTheme.colors.elements.blue
-              : appTheme.colors.border.grey,
+          backgroundColor: enable ? appTheme.colors.elements.blue : appTheme.colors.border.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),
@@ -63,7 +60,7 @@ class AppButtonBlue extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppTypography.semiBold14.copyWith(
+          style: KitTextStyles.semiBold14.copyWith(
             color: enable ? Colors.white : appTheme.colors.elements.grey,
           ),
         ),
@@ -89,8 +86,7 @@ class AppButtonRed extends StatelessWidget {
     return OutlinedButton(
       onPressed: onTap,
       style: OutlinedButton.styleFrom(
-        backgroundColor:
-            enable ? appTheme.colors.brand.red : appTheme.colors.border.grey,
+        backgroundColor: enable ? appTheme.colors.brand.red : appTheme.colors.border.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
@@ -99,7 +95,7 @@ class AppButtonRed extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTypography.semiBold14.copyWith(
+        style: KitTextStyles.semiBold14.copyWith(
           color: enable ? Colors.white : appTheme.colors.elements.grey,
         ),
       ),
@@ -137,8 +133,7 @@ class AppButtonOutlineBlue extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppTypography.semiBold14
-              .copyWith(color: appTheme.colors.brand.blue),
+          style: KitTextStyles.semiBold14.copyWith(color: appTheme.colors.brand.blue),
         ),
       ),
     );
@@ -173,8 +168,7 @@ class AppButtonOutlineBlack extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTypography.semiBold14
-            .copyWith(color: appTheme.colors.text.primary),
+        style: KitTextStyles.semiBold14.copyWith(color: appTheme.colors.text.primary),
       ),
     );
   }
