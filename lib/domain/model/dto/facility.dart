@@ -15,7 +15,8 @@ class Facility {
     required this.category,
   });
 
-  factory Facility.fromJson(Map<String, dynamic> json) => _$FacilityFromJson(json);
+  factory Facility.fromJson(Map<String, dynamic> json) =>
+      _$FacilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$FacilityToJson(this);
 
@@ -39,9 +40,8 @@ class FacilityCategory {
     required this.name,
   });
 
-  factory FacilityCategory.fromJson(Map<String, dynamic> json) => _$FacilityCategoryFromJson(json);
+  factory FacilityCategory.fromJson(Map<String, dynamic> json) =>
+      _$FacilityCategoryFromJson(json);
 
   Map<String, dynamic> toJson() => _$FacilityCategoryToJson(this);
-
-  static const Map<int, String> _assets = {13: 'wifi.png'};
 }
