@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
 import 'package:numeroid/core/locator.dart';
-import 'package:numeroid/presenter/search/bloc/search_bloc.dart';
-import 'package:numeroid/presenter/search/search_list_page.dart';
-import 'package:numeroid/presenter/search/search_map_page.dart';
+import 'package:numeroid/domain/bloc/search/search_bloc.dart';
 import 'package:numeroid/utils/formatters.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
@@ -13,7 +11,10 @@ import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../domain/model/dto/city.dart';
 import '../../utils/dialogs.dart';
-import 'widgets/location_text_field.dart';
+import '../../widgets/location_text_field.dart';
+import 'bloc/search_screen_bloc.dart';
+import 'search_list_page.dart';
+import 'search_map_page.dart';
 import 'widgets/rooms_dialog_body.dart';
 
 @RoutePage()
@@ -32,9 +33,11 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      child: BlocProvider.value(
-        value: locator<SearchBloc>(),
-        child: BlocBuilder<SearchBloc, SearchState>(
+      child: BlocProvider(
+        create: (context) => SearchScreenBloc(
+          searchBloc: locator<SearchBloc>(),
+        ),
+        child: BlocBuilder<SearchScreenBloc, SearchScreenState>(
           builder: (context, state) {
             return Column(
               children: [
@@ -60,7 +63,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                               Expanded(
                                 child: _FilterLocation(
-                                  city: context.read<SearchBloc>().searchParameters.city,
+                                  city: locator<SearchBloc>().state.search.city,
                                 ),
                               ),
                             ],
@@ -76,14 +79,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                           child: SizedBox(
                             width: double.infinity,
-                            child: (state is SearchFinish)
+                            child: (!state.loading)
                                 ? AppButtonBlue(
                                     text: 'Найти',
                                     onTap: () {
                                       locator<SearchBloc>().add(
-                                        StartSearch(
-                                          searchParameters: state.search,
-                                        ),
+                                        SearchStart(),
                                       );
                                     },
                                   )
@@ -149,16 +150,17 @@ class _FilterMore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final globalState = locator<SearchBloc>().state;
     return SizedBox(
       height: 36,
-      child: BlocBuilder<SearchBloc, SearchState>(
+      child: BlocBuilder<SearchScreenBloc, SearchScreenState>(
         builder: (context, state) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 flex: 4,
-                child: (state is SearchFinish)
+                child: (!state.loading)
                     ? Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -169,7 +171,7 @@ class _FilterMore extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            '${Formatters.fromDateCalendar2(state.search.startDate)} - ${Formatters.fromDateCalendar2(state.search.endDate)}',
+                            '${Formatters.fromDateCalendar2(globalState.search.startDate)} - ${Formatters.fromDateCalendar2(globalState.search.endDate)}',
                             style: KitTextStyles.medium13.copyWith(
                               color: appTheme.colors.text.primary,
                             ),
@@ -187,17 +189,17 @@ class _FilterMore extends StatelessWidget {
               const SizedBox(width: 6),
               Expanded(
                 flex: 2,
-                child: (state is SearchFinish)
+                child: (!state.loading)
                     ? GestureDetector(
                         onTap: () {
                           Dialogs.showAppDialog(
                             context: context,
                             title: 'Гости и номера',
                             body: RoomsDialogBody(
-                              rooms: state.search.rooms,
+                              rooms: globalState.search.rooms,
                               onApply: (value) {
                                 context.read<SearchBloc>().add(
-                                      ChangeRooms(rooms: value),
+                                      SearchChangeRoom(rooms: value),
                                     );
                               },
                             ),
@@ -213,7 +215,7 @@ class _FilterMore extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              '${state.search.allAdult()} гость',
+                              '${globalState.search.adults} гость',
                               style: KitTextStyles.medium13.copyWith(
                                 color: appTheme.colors.text.primary,
                               ),
@@ -232,7 +234,7 @@ class _FilterMore extends StatelessWidget {
               const SizedBox(width: 6),
               Expanded(
                 flex: 3,
-                child: (state is SearchFinish)
+                child: (!state.loading)
                     ? Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -289,9 +291,9 @@ class _FilterLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(
+    return BlocBuilder<SearchScreenBloc, SearchScreenState>(
       builder: (context, state) {
-        return (state is SearchFinish)
+        return (!state.loading)
             ? LocationTextField(city: city, enableBorder: true, onChange: (value) {})
             : Container(
                 decoration: BoxDecoration(

@@ -1,20 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:numeroid/domain/model/dto/city.dart';
 import 'package:numeroid/generated/locale_keys.g.dart';
 
 import '../../../core/app_router.dart';
 import '../../../core/app_router.gr.dart';
 import '../../../core/locator.dart';
+import '../../../domain/bloc/search/search_bloc.dart';
 import '../../../widgets/kit/app_typography.dart';
 
 class GreatDealsModel {
   const GreatDealsModel({
     required this.name,
     required this.assetPath,
+    required this.cityId,
   });
 
   final String name;
   final String assetPath;
+  final int cityId;
 }
 
 class GreatDealsBlock extends StatelessWidget {
@@ -26,26 +30,32 @@ class GreatDealsBlock extends StatelessWidget {
     GreatDealsModel(
       name: LocaleKeys.promo_moscow.tr(),
       assetPath: 'assets/images/promo/moscow.jpg',
+      cityId: 2,
     ),
     GreatDealsModel(
       name: LocaleKeys.promo_petersburg.tr(),
       assetPath: 'assets/images/promo/petersburg.jpg',
+      cityId: 3,
     ),
     GreatDealsModel(
       name: LocaleKeys.promo_sochi.tr(),
       assetPath: 'assets/images/promo/sochi.jpg',
+      cityId: 84,
     ),
     GreatDealsModel(
       name: LocaleKeys.promo_kaliningrad.tr(),
       assetPath: 'assets/images/promo/kaliningrad.jpg',
+      cityId: 20,
     ),
     GreatDealsModel(
       name: LocaleKeys.promo_nizhny.tr(),
       assetPath: 'assets/images/promo/nizhny.jpg',
+      cityId: 36,
     ),
     GreatDealsModel(
       name: LocaleKeys.promo_kazan.tr(),
       assetPath: 'assets/images/promo/kazan.jpg',
+      cityId: 4,
     ),
   ];
 
@@ -77,6 +87,14 @@ class GreatDealsBlock extends StatelessWidget {
                   return InkWell(
                       onTap: () {
                         if (appBloc.state.isLogged) {
+                          locator<SearchBloc>().add(
+                            SearchChangeCity(
+                              city: City(id: item.cityId, name: item.name),
+                            ),
+                          );
+                          final searchBloc = locator<SearchBloc>();
+                          searchBloc.add(SearchStart());
+
                           appNavigator.pushRoute(const SearchRoute());
                         } else {
                           appNavigator.push(AppRouterPage.login);

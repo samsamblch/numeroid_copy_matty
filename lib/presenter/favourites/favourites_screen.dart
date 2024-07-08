@@ -142,7 +142,7 @@ class _BookingOrderCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      order.hotel.photo.url ?? '',
+                      order.hotel.photo?.url ?? '',
                       height: 140,
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
@@ -154,7 +154,7 @@ class _BookingOrderCard extends StatelessWidget {
                     style: KitTextStyles.bold16,
                   ),
                   Text(
-                    order.hotel.city.name,
+                    order.hotel.city?.name ?? '',
                     style: KitTextStyles.semiBold13.copyWith(
                       color: appTheme.colors.text.secondary,
                     ),

@@ -1,28 +1,7 @@
-import '../../../domain/model/bo/search_hotel.dart';
-
-enum FilterBudget {
-  zeroFive, // 0 - 5000
-  fiveTen, // 5000 - 10000
-  tenFifteen, // 10000-15000
-  fifteenTwenty, // 15000-20000
-  twentyMore, // 20000+
-}
-
-enum FilterStars {
-  zero, // 0
-  one, // 1
-  two, // 2
-  three, // 3
-  four, // 4
-  five, // 5
-}
-
-enum FilterDistance {
-  one, // < 1
-  three, // < 3
-  fiveLess, // < 5
-  fiveMore, // > 5
-}
+import 'filter_budget.dart';
+import 'filter_distance.dart';
+import 'filter_stars.dart';
+import 'hotel_short.dart';
 
 class FilterParameters {
   final List<FilterBudget> budget = [];
@@ -55,7 +34,7 @@ class FilterParameters {
     }
   }
 
-  bool approve(SearchHotel hotel) {
+  bool approve(HotelShort hotel) {
     bool approved = true;
 
     if (budget.isNotEmpty) {
@@ -80,8 +59,7 @@ class FilterParameters {
           case FilterBudget.tenFifteen:
             bool result = false;
             for (var element in hotel.offers) {
-              if (element.price.value >= 10000 &&
-                  element.price.value <= 15000) {
+              if (element.price.value >= 10000 && element.price.value <= 15000) {
                 result = true;
               }
             }
@@ -89,8 +67,7 @@ class FilterParameters {
           case FilterBudget.fifteenTwenty:
             bool result = false;
             for (var element in hotel.offers) {
-              if (element.price.value >= 15000 &&
-                  element.price.value <= 20000) {
+              if (element.price.value >= 15000 && element.price.value <= 20000) {
                 result = true;
               }
             }
@@ -114,22 +91,17 @@ class FilterParameters {
       final result = stars.where((element) {
         switch (element) {
           case FilterStars.zero:
-            return hotel.info.stars == 0;
-
+            return hotel.info.rate == 0;
           case FilterStars.one:
-            return hotel.info.stars == 1;
-
+            return hotel.info.rate == 1;
           case FilterStars.two:
-            return hotel.info.stars == 2;
-
+            return hotel.info.rate == 2;
           case FilterStars.three:
-            return hotel.info.stars == 3;
-
+            return hotel.info.rate == 3;
           case FilterStars.four:
-            return hotel.info.stars == 4;
-
+            return hotel.info.rate == 4;
           case FilterStars.five:
-            return hotel.info.stars == 5;
+            return hotel.info.rate == 5;
         }
       });
 

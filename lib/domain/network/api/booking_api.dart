@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:numeroid/domain/model/dto/hotel_details.dart';
+import 'package:numeroid/domain/model/dto/hotel_info_full.dart';
 import 'package:numeroid/domain/model/ro/hotel_offers_ro.dart';
 import 'package:numeroid/domain/model/ro/locations_ro.dart';
 import 'package:numeroid/domain/model/ro/search_ref_ro.dart';
@@ -21,29 +21,43 @@ class BookingApi extends BaseApi {
     );
   }
 
-  Future<Response<SearchRefRo>> hotelsSearch({
-    required int cityId,
-    required String arrivalDate,
-    required String departureDate,
-    required List<SearchRoom> rooms,
+  Future<Response<SearchRefRo>> search({
+    required SearchReq req,
   }) async {
-    final rms = rooms
-        .map((e) => {
-              'adults': e.adults,
-              'child_ages': e.childs,
-            })
-        .toList();
-
     return await post<SearchRefRo>(
       path: '/search',
-      data: jsonEncode(SearchReq(
-        city_id: cityId,
-        hotel_id: null, //hotel_id,
-        arrival_date: arrivalDate,
-        departure_date: departureDate,
-        rooms: rooms,
-      )),
+      data: jsonEncode(req),
     );
+  }
+
+  Future<Response<HotelOffersRo>> hotelsOffersGet({
+    required SearchRefRo ref,
+  }) async {
+    final result = await get<HotelOffersRo>(path: '/search/${ref.hash}', query: {
+      'currency': 'RUB',
+      'session': ref.session,
+    });
+
+    if (result.data?.isOver != true) {
+      return hotelsOffersGet(ref: ref);
+    } else {
+      return result;
+    }
+  }
+
+  Future<Response<HotelOffersRo>> hotelOffersGet({
+    required int hotelId,
+    required SearchRefRo ref,
+  }) async {
+    final result = await get<HotelOffersRo>(path: '/search/${ref.hash}/hotel/$hotelId', query: {
+      'currency': 'RUB',
+    });
+
+    if (result.data?.isOver != true) {
+      return hotelOffersGet(hotelId: hotelId, ref: ref);
+    } else {
+      return result;
+    }
   }
 
   Future<Response<HotelInfoRo>> hotelsInfoGet({
@@ -54,29 +68,14 @@ class BookingApi extends BaseApi {
     );
   }
 
-  Future<Response<HotelOffersRo>> hotelsDetailsGet({
-    required SearchRefRo ref,
-  }) async {
-    final result = await get<HotelOffersRo>(path: '/search/${ref.hash}', query: {
-      'currency': 'RUB',
-      'session': ref.session,
-    });
-
-    if (result.data?.isOver != true) {
-      return hotelsDetailsGet(ref: ref);
-    } else {
-      return result;
-    }
-  }
-
   Future<Response<BookingOrdersListRo>> myOrdersGet() async {
     return get<BookingOrdersListRo>(path: '/cabinet/orders');
   }
 
-  Future<Response<HotelDetails>> hotelDetailsGet({
+  Future<Response<HotelInfoFull>> hotelInfoFullGet({
     required int hotelId,
   }) async {
-    return await get<HotelDetails>(
+    return await get<HotelInfoFull>(
       path: '/hotels/$hotelId',
     );
   }

@@ -1,13 +1,13 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'photo.g.dart';
 
 @JsonSerializable()
 class Photo {
-  final String? url;
+  @JsonKey(includeIfNull: true, defaultValue: '')
+  final String url;
 
-  Photo({
+  const Photo({
     required this.url,
   });
 

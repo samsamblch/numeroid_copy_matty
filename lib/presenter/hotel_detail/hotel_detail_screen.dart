@@ -1,11 +1,12 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
-import 'package:numeroid/domain/model/dto/hotel_details.dart';
+import 'package:numeroid/domain/model/bo/search_parameters.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/kit/buttons.dart';
 import 'package:numeroid/widgets/kit/decorations.dart';
 
+import '../../domain/model/bo/hotel.dart';
 import '../../domain/repository/booking_repository.dart';
 import '../../widgets/components/containers.dart';
 import '../../widgets/kit/texts.dart';
@@ -19,16 +20,18 @@ class HotelDetailScreen extends StatefulWidget {
   const HotelDetailScreen({
     super.key,
     required this.hotelId,
+    required this.searchParams,
   });
 
   final int hotelId;
+  final SearchParameters searchParams;
 
   @override
   State<HotelDetailScreen> createState() => _HotelDetailScreenState();
 }
 
 class _HotelDetailScreenState extends State<HotelDetailScreen> {
-  HotelDetails? hotel;
+  Hotel? hotel;
 
   @override
   void initState() {
@@ -38,7 +41,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
   }
 
   Future<void> load() async {
-    final result = await BookingRepository().loadHotelDetails(hotelId: widget.hotelId);
+    final result = await BookingRepository().loadHotel(hotelId: widget.hotelId, searchParameters: widget.searchParams);
 
     setState(() {
       hotel = result;
@@ -59,23 +62,23 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                   child: Column(
                     children: [
                       HolelDetailHeaderBlock(hotel: hotel!),
-                      if (hotel?.photos != null)
+                      if (hotel!.info.photos != null)
                         Padding(
                           padding: const EdgeInsets.only(bottom: 14),
                           child: HotelDetailImagesBlock(
-                            photos: hotel!.photos!,
+                            photos: hotel!.info.photos!,
                           ),
                         ),
-                      if (hotel?.facilities != null)
+                      if (hotel?.info.facilities != null)
                         Padding(
                           padding: const EdgeInsets.only(bottom: 14),
-                          child: HotelDetailFacilitiesBlock(hotel!.facilities!),
+                          child: HotelDetailFacilitiesBlock(hotel!.info.facilities),
                         ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 14),
                         child: HotelDetailSectionContainer(
                           title: 'Описание отеля',
-                          body: KitTextMedium14(hotel!.description?.description ?? '-'),
+                          body: KitTextMedium14(hotel!.info.description?.description ?? '-'),
                         ),
                       ),
                       Padding(
@@ -86,7 +89,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                             right: 0,
                             body: Column(
                               children: [
-                                ...hotel!.rooms.map(
+                                ...hotel!.info.rooms.map(
                                   (e) => Padding(
                                     padding: const EdgeInsets.only(bottom: 12),
                                     child: WhiteContainer(
@@ -120,7 +123,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                                 child: KitTextMedium14(
-                                  'Отель ${hotel!.name ?? '-'} принимает особые пожелания - добавьте их на следующем шаге',
+                                  'Отель ${hotel!.info.name ?? '-'} принимает особые пожелания - добавьте их на следующем шаге',
                                 ),
                               ),
                               Container(
@@ -215,7 +218,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                               child: KitTextBold16('Карты для оплаты в отеле'),
                                             ),
                                             KitTextMedium14(
-                                              'Отель ${hotel!.name ?? '-'} принимает эти карты и оставляет за собой право предварительного бокирования средств на карте до вашего приезда',
+                                              'Отель ${hotel!.info.name} принимает эти карты и оставляет за собой право предварительного бокирования средств на карте до вашего приезда',
                                             ),
                                           ],
                                         ),

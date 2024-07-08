@@ -15,18 +15,11 @@ class Facility {
     required this.category,
   });
 
-  factory Facility.fromJson(Map<String, dynamic> json) =>
-      _$FacilityFromJson(json);
+  factory Facility.fromJson(Map<String, dynamic> json) => _$FacilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$FacilityToJson(this);
 
-  String get imagePath {
-    print(category?.id);
-    final path = 'assets/icons/facilities/category_${category?.id}.png';
-    return path;
-    // print(path);
-    // return File(path).existsSync() ? path : 'assets/icons/facilities/category_8.png';
-  }
+  String get imagePath => 'assets/icons/facilities/category_${category?.id}.png';
 }
 
 @JsonSerializable()
@@ -40,8 +33,7 @@ class FacilityCategory {
     required this.name,
   });
 
-  factory FacilityCategory.fromJson(Map<String, dynamic> json) =>
-      _$FacilityCategoryFromJson(json);
+  factory FacilityCategory.fromJson(Map<String, dynamic> json) => _$FacilityCategoryFromJson(json);
 
   Map<String, dynamic> toJson() => _$FacilityCategoryToJson(this);
 }

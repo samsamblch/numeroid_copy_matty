@@ -7,7 +7,7 @@ import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../core/locator.dart';
 import '../generated/locale_keys.g.dart';
-import 'search/bloc/search_bloc.dart';
+import '../domain/bloc/search/search_bloc.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {

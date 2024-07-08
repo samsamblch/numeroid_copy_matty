@@ -42,7 +42,7 @@ class _HotelDetailImagesBlockState extends State<HotelDetailImagesBlock> {
                   .map(
                     (e) => CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: e.url!,
+                      imageUrl: e.url,
                       progressIndicatorBuilder: (context, url, downloadProgress) =>
                           Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
                       errorWidget: (context, url, error) => const Icon(Icons.error),

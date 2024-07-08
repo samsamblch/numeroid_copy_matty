@@ -6,7 +6,7 @@ import 'package:numeroid/domain/network/server_api.dart';
 
 import '../domain/network/network_service.dart';
 import '../domain/bloc/app/app_bloc.dart';
-import '../presenter/search/bloc/search_bloc.dart';
+import '../domain/bloc/search/search_bloc.dart';
 import 'app_navigator.dart';
 import '../widgets/kit/app_theme.dart';
 

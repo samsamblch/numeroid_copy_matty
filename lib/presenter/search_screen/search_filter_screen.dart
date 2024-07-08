@@ -6,8 +6,11 @@ import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
-import 'bloc/search_bloc.dart';
-import 'models/filter_parameters.dart';
+import '../../domain/bloc/search/search_bloc.dart';
+import '../../domain/model/bo/filter_budget.dart';
+import '../../domain/model/bo/filter_distance.dart';
+import '../../domain/model/bo/filter_parameters.dart';
+import '../../domain/model/bo/filter_stars.dart';
 
 @RoutePage()
 class SearchFilterScreen extends StatefulWidget {
@@ -26,7 +29,7 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
 
   @override
   void initState() {
-    params = locator<SearchBloc>().filterParameters;
+    // params = locator<SearchBloc>().filterParameters;
 
     super.initState();
   }
@@ -47,11 +50,11 @@ class _SearchFilterScreenState extends State<SearchFilterScreen> {
                   child: AppButtonBlue(
                       text: 'Применить',
                       onTap: () {
-                        locator<SearchBloc>().add(
-                          ChangeFilterParameters(
-                            filterParameters: params,
-                          ),
-                        );
+                        // context.read<SearchBloc>().add(
+                        //   ChangeFilterParameters(
+                        //     filterParameters: params,
+                        //   ),
+                        // );
                         appNavigator.pop();
                       }),
                 ),

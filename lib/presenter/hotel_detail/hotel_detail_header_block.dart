@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/locator.dart';
-import '../../domain/model/dto/hotel_details.dart';
+import '../../domain/model/bo/hotel.dart';
 import '../../widgets/kit/buttons.dart';
 import '../../widgets/kit/combo_texts.dart';
 import '../../widgets/kit/common.dart';
@@ -15,7 +15,7 @@ class HolelDetailHeaderBlock extends StatelessWidget {
     required this.hotel,
   });
 
-  final HotelDetails hotel;
+  final Hotel hotel;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class HolelDetailHeaderBlock extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-          child: KitTextBold18(hotel.name ?? '<name>'),
+          child: KitTextBold18(hotel.info.name),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 12),
@@ -32,7 +32,7 @@ class HolelDetailHeaderBlock extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 14),
-          child: KitLocationText(hotel.address ?? '<address>'),
+          child: KitLocationText(hotel.info.address),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, bottom: 14),

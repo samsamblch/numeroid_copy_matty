@@ -5,7 +5,7 @@ import 'package:numeroid/widgets/components/containers.dart';
 import 'package:numeroid/widgets/components/spacers.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
-import '../../../domain/model/dto/city.dart';
+import '../domain/model/dto/city.dart';
 
 class LocationTextField extends StatefulWidget {
   const LocationTextField({
@@ -39,17 +39,6 @@ class _LocationTextFieldState extends State<LocationTextField> {
   }
 
   void refreshOverlay() {
-    // final text = _controller.text;
-    // if (text.isEmpty) {
-    //   _filtered = List.from(_cities);
-    // } else {
-    // _filtered = List.from(
-    //   _cities.where(
-    //     (element) => element.name.contains(text),
-    //   ),
-    // );
-    // }
-
     if (_focusNode.hasFocus) {
       hideOverlay();
       showOverlay();
@@ -63,7 +52,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
   }
 
   void selectCity(City city) {
-    _controller.text = '${city.name}, ${city.country.name}';
+    _controller.text = '${city.name}, ${city.country?.name}';
     _focusNode.unfocus();
     widget.onChange(city);
   }
@@ -74,7 +63,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
 
     final city = widget.city;
     if (city != null) {
-      _controller.text = '${city.name}, ${city.country.name}';
+      _controller.text = '${city.name}, ${city.country?.name}';
     } else {
       loadLocations();
     }
@@ -154,7 +143,7 @@ class _LocationTextFieldState extends State<LocationTextField> {
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: '${e.country.name}, ',
+                                      text: '${e.country?.name}, ',
                                       style: KitTextStyles.medium14.copyWith(
                                         color: appTheme.colors.text.secondary,
                                       ),

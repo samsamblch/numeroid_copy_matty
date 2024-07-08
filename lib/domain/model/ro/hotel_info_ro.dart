@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../dto/facility.dart';
-import '../dto/hotel_info.dart';
+import '../dto/hotel_info_short.dart';
 
 part 'hotel_info_ro.g.dart';
 
 @JsonSerializable()
 class HotelInfoRo {
-  final List<HotelInfo>? hotels;
+  final List<HotelInfoShort>? hotels;
   final List<Facility>? facilities;
 
   HotelInfoRo({

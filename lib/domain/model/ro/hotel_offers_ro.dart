@@ -8,7 +8,6 @@ part 'hotel_offers_ro.g.dart';
 class HotelOffersRo {
   @JsonKey(name: 'results')
   final List<HotelOffer>? offers;
-
   @JsonKey(name: 'is_over')
   final bool isOver;
 

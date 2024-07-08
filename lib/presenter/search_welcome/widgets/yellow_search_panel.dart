@@ -1,60 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/domain/model/bo/search_params.dart';
-import 'package:numeroid/presenter/search/widgets/location_text_field.dart';
+import 'package:numeroid/domain/bloc/search/search_bloc.dart';
+import 'package:numeroid/domain/model/req/search_room_req.dart';
+import 'package:numeroid/presenter/search_welcome/bloc/search_welcome_screen_bloc.dart';
 import 'package:numeroid/widgets/calendar.dart';
+import 'package:numeroid/widgets/location_text_field.dart';
 
 import '../../../core/locator.dart';
-import '../../../domain/model/dto/city.dart';
-import '../../../domain/model/req/search_req.dart';
 import '../../../utils/dialogs.dart';
 import '../../../utils/formatters.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/spacers.dart';
 import '../../../widgets/kit/app_typography.dart';
-import '../bloc/search_bloc.dart';
-import 'rooms_dialog_body.dart';
+import '../../search_screen/widgets/rooms_dialog_body.dart';
 
 class YellowSearchPanel extends StatefulWidget {
   const YellowSearchPanel({
     super.key,
-    required this.onTapSearch,
   });
 
-  final ValueSetter<SearchParams> onTapSearch;
-
   @override
-  State<YellowSearchPanel> createState() => _OrangeSearchPanelState();
+  State<YellowSearchPanel> createState() => _YellowSearchPanelState();
 }
 
-class _OrangeSearchPanelState extends State<YellowSearchPanel> {
-  City? city;
-  DateTime startDate = DateTime.now();
-  DateTime endDate = DateTime.now().add(
-    const Duration(days: 7),
-  );
-  List<SearchRoom> rooms = [
-    SearchRoom.create(),
-  ];
-
+class _YellowSearchPanelState extends State<YellowSearchPanel> {
   void onTapSearch() {
-    final filter = SearchParams(
-      city: city,
-      startDate: startDate,
-      endDate: endDate,
-      rooms: rooms,
+    final bloc = context.read<SearchWelcomeScreenBloc>();
+    bloc.add(SearchWelcomeTapSearch());
+  }
+
+  void showRoomsDialog(BuildContext context, SearchWelcomeScreenState state) {
+    return Dialogs.showAppDialog(
+      context: context,
+      title: 'Гости и номера',
+      body: RoomsDialogBody(
+        rooms: state.searchState.search.rooms,
+        onApply: (List<SearchRoomReq> value) {
+          context.read<SearchWelcomeScreenBloc>().searchBloc.add(SearchChangeRoom(rooms: value));
+        },
+      ),
     );
-    widget.onTapSearch(filter);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(
+    return BlocBuilder<SearchWelcomeScreenBloc, SearchWelcomeScreenState>(
       builder: (context, state) {
-        final adults = rooms.map((e) => e.adults).reduce((value, element) => value + element);
-        final childs = rooms.map((e) => e.childs).reduce((value, element) => value + element);
-
         return YellowContainer(
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -63,9 +55,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                 SizedBox(
                   height: 40,
                   child: LocationTextField(onChange: (value) {
-                    setState(() {
-                      city = value;
-                    });
+                    context.read<SearchBloc>().add(SearchChangeCity(city: value));
                   }),
                 ),
                 const VerticalSpacer8(),
@@ -79,14 +69,12 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                         title: 'Выбор дат',
                         autoScroll: false,
                         body: AppCalendar(
-                          beginPeriod: startDate,
-                          endPeriod: endDate,
+                          beginPeriod: state.searchState.search.startDate,
+                          endPeriod: state.searchState.search.endDate,
                           onApplyPeriod: ((DateTime, DateTime) value) {
-                            setState(() {
-                              startDate = value.$1;
-                              endDate = value.$2;
-                            });
-
+                            context.read<SearchBloc>().add(
+                                  SearchChangeDate(start: value.$1, end: value.$2),
+                                );
                             appNavigator.pop();
                           },
                         ),
@@ -101,7 +89,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                             const HorizontalSpacer8(),
                             Expanded(
                               child: Text(
-                                '${Formatters.fromDateCalendar(startDate)} - ${Formatters.fromDateCalendar(endDate)}',
+                                '${Formatters.fromDateCalendar(state.searchState.search.startDate)} - ${Formatters.fromDateCalendar(state.searchState.search.endDate)}',
                                 style: KitTextStyles.semiBold14.copyWith(
                                   color: appTheme.colors.text.primary,
                                 ),
@@ -120,18 +108,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                       flex: 10,
                       child: InkWell(
                         onTap: () {
-                          Dialogs.showAppDialog(
-                            context: context,
-                            title: 'Гости и номера',
-                            body: RoomsDialogBody(
-                              rooms: rooms,
-                              onApply: (List<SearchRoom> value) {
-                                setState(() {
-                                  rooms = value;
-                                });
-                              },
-                            ),
-                          );
+                          showRoomsDialog(context, state);
                         },
                         child: SizedBox(
                           height: 40,
@@ -139,12 +116,14 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                             child: Padding(
                               padding: const EdgeInsets.all(10),
                               child: Text(
-                                Formatters.pluralize(
-                                  adults,
-                                  '$adults взрослый',
-                                  '$adults взрослых',
-                                  '$adults взрослых',
-                                ),
+                                ((int count) {
+                                  return Formatters.pluralize(
+                                    count,
+                                    '$count взрослый',
+                                    '$count взрослых',
+                                    '$count взрослых',
+                                  );
+                                })(state.searchState.search.adults),
                                 style: KitTextStyles.semiBold14,
                               ),
                             ),
@@ -157,30 +136,29 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                       flex: 9,
                       child: InkWell(
                         onTap: () {
-                          Dialogs.showAppDialog(
-                            context: context,
-                            title: 'Гости и номера',
-                            body: RoomsDialogBody(
-                              rooms: rooms,
-                              onApply: (List<SearchRoom> value) {
-                                setState(() {
-                                  rooms = value;
-                                });
-                              },
-                            ),
-                          );
+                          showRoomsDialog(context, state);
                         },
                         child: SizedBox(
                           height: 40,
                           child: WhiteContainer(
-                              child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    Formatters.pluralize(childs.length, '${childs.length} ребенок',
-                                        '${childs.length} ребенка', '${childs.length} детей',
-                                        zero: 'Нет детей'),
-                                    style: KitTextStyles.semiBold14,
-                                  ))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                ((int count) {
+                                  return Formatters.pluralize(
+                                    count,
+                                    '$count ребенок',
+                                    '$count ребенка',
+                                    '$count детей',
+                                    zero: 'Нет детей',
+                                  );
+                                })(
+                                  state.searchState.search.childs.length,
+                                ),
+                                style: KitTextStyles.semiBold14,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -189,18 +167,7 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                       flex: 8,
                       child: InkWell(
                         onTap: () {
-                          Dialogs.showAppDialog(
-                            context: context,
-                            title: 'Гости и номера',
-                            body: RoomsDialogBody(
-                              rooms: rooms,
-                              onApply: (value) {
-                                setState(() {
-                                  rooms = value;
-                                });
-                              },
-                            ),
-                          );
+                          showRoomsDialog(context, state);
                         },
                         child: SizedBox(
                           height: 40,
@@ -209,10 +176,10 @@ class _OrangeSearchPanelState extends State<YellowSearchPanel> {
                             padding: const EdgeInsets.all(10),
                             child: Text(
                               Formatters.pluralize(
-                                rooms.length,
-                                '${rooms.length} комната',
-                                '${rooms.length} комнаты',
-                                '${rooms.length} комнат',
+                                state.searchState.search.rooms.length,
+                                '${state.searchState.search.rooms.length} комната',
+                                '${state.searchState.search.rooms.length} комнаты',
+                                '${state.searchState.search.rooms.length} комнат',
                               ),
                               style: KitTextStyles.semiBold14,
                             ),

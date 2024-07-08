@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 
 import '../../../core/locator.dart';
-import '../../../domain/model/req/search_req.dart';
+import '../../../domain/model/bo/search_parameters.dart';
+import '../../../domain/model/req/search_room_req.dart';
 import '../../../utils/formatters.dart';
 import '../../../widgets/kit/app_typography.dart';
 
@@ -13,15 +14,15 @@ class RoomsDialogBody extends StatefulWidget {
     required this.onApply,
   });
 
-  final List<SearchRoom> rooms;
-  final ValueSetter<List<SearchRoom>> onApply;
+  final List<SearchRoomReq> rooms;
+  final ValueSetter<List<SearchRoomReq>> onApply;
 
   @override
   State<RoomsDialogBody> createState() => _RoomsDialogBodyState();
 }
 
 class _RoomsDialogBodyState extends State<RoomsDialogBody> {
-  List<SearchRoom> rooms = [];
+  List<SearchRoomReq> rooms = [];
 
   @override
   void initState() {
@@ -32,7 +33,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
 
   void addRoom() {
     setState(() {
-      rooms.add(SearchRoom.create());
+      rooms.add(SearchRoomReq(adults: 1, childs: []));
     });
   }
 
@@ -48,7 +49,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
     setState(() {
       rooms.insert(
         roomIndex,
-        SearchRoom(
+        SearchRoomReq(
           adults: room.adults + 1,
           childs: room.childs,
         ),
@@ -66,7 +67,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
     setState(() {
       rooms.insert(
         roomIndex,
-        SearchRoom(
+        SearchRoomReq(
           adults: room.adults - 1,
           childs: room.childs,
         ),
@@ -80,7 +81,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
     setState(() {
       rooms.insert(
         roomIndex,
-        SearchRoom(
+        SearchRoomReq(
           adults: room.adults,
           childs: room.childs..add(0),
         ),
@@ -98,7 +99,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
     setState(() {
       rooms.insert(
         roomIndex,
-        SearchRoom(
+        SearchRoomReq(
           adults: room.adults,
           childs: room.childs..removeLast(),
         ),
@@ -143,7 +144,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                   ),
                                 ),
                                 if (e.$1 > 0)
-                                  Container(
+                                  SizedBox(
                                     height: 20,
                                     width: 16,
                                     child: IconButton(
@@ -290,7 +291,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
                                         style: KitTextStyles.medium14,
                                       ),
                                       iconSize: 16,
-                                      items: SearchRoom.childAges
+                                      items: SearchParameters.childAges
                                           .map(
                                             (age) => DropdownMenuItem<int>(
                                               value: age,

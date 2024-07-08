@@ -7,12 +7,11 @@ class Country {
   @JsonKey(name: 'name_ru')
   final String name;
 
-  Country({
+  const Country({
     required this.name,
   });
 
-  factory Country.fromJson(Map<String, dynamic> json) =>
-      _$CountryFromJson(json);
+  factory Country.fromJson(Map<String, dynamic> json) => _$CountryFromJson(json);
 
   Map<String, dynamic> toJson() => _$CountryToJson(this);
 }

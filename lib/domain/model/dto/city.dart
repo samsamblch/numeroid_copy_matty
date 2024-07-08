@@ -4,17 +4,17 @@ import 'country.dart';
 
 part 'city.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: true)
 class City {
   final int id;
-  @JsonKey(name: 'name_ru')
+  @JsonKey(name: 'name_ru', defaultValue: '')
   final String name;
-  final Country country;
+  final Country? country;
 
   City({
     required this.id,
     required this.name,
-    required this.country,
+    this.country,
   });
 
   factory City.fromJson(Map<String, dynamic> json) => _$CityFromJson(json);

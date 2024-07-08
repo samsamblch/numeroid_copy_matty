@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i17;
 import 'package:flutter/material.dart' as _i18;
+import 'package:numeroid/domain/model/bo/search_parameters.dart' as _i19;
 import 'package:numeroid/presenter/auth/forgot_password_finish_screen.dart'
     as _i3;
 import 'package:numeroid/presenter/auth/forgot_password_screen.dart' as _i4;
@@ -25,9 +26,11 @@ import 'package:numeroid/presenter/organization_settings/organization_settings_s
 import 'package:numeroid/presenter/profile/profile_screen.dart' as _i10;
 import 'package:numeroid/presenter/profile_settings/profile_settings_screen.dart'
     as _i11;
-import 'package:numeroid/presenter/search/search_filter_screen.dart' as _i12;
-import 'package:numeroid/presenter/search/search_screen.dart' as _i13;
-import 'package:numeroid/presenter/search/search_welcome_screen.dart' as _i14;
+import 'package:numeroid/presenter/search_screen/search_filter_screen.dart'
+    as _i12;
+import 'package:numeroid/presenter/search_screen/search_screen.dart' as _i13;
+import 'package:numeroid/presenter/search_welcome/search_welcome_screen.dart'
+    as _i14;
 import 'package:numeroid/presenter/splash_screen.dart' as _i15;
 import 'package:numeroid/presenter/support_center/support_center_screen.dart'
     as _i16;
@@ -76,6 +79,7 @@ abstract class $AppRouter extends _i17.RootStackRouter {
         child: _i5.HotelDetailScreen(
           key: args.key,
           hotelId: args.hotelId,
+          searchParams: args.searchParams,
         ),
       );
     },
@@ -263,12 +267,14 @@ class HotelDetailRoute extends _i17.PageRouteInfo<HotelDetailRouteArgs> {
   HotelDetailRoute({
     _i18.Key? key,
     required int hotelId,
+    required _i19.SearchParameters searchParams,
     List<_i17.PageRouteInfo>? children,
   }) : super(
           HotelDetailRoute.name,
           args: HotelDetailRouteArgs(
             key: key,
             hotelId: hotelId,
+            searchParams: searchParams,
           ),
           initialChildren: children,
         );
@@ -283,15 +289,18 @@ class HotelDetailRouteArgs {
   const HotelDetailRouteArgs({
     this.key,
     required this.hotelId,
+    required this.searchParams,
   });
 
   final _i18.Key? key;
 
   final int hotelId;
 
+  final _i19.SearchParameters searchParams;
+
   @override
   String toString() {
-    return 'HotelDetailRouteArgs{key: $key, hotelId: $hotelId}';
+    return 'HotelDetailRouteArgs{key: $key, hotelId: $hotelId, searchParams: $searchParams}';
   }
 }
 

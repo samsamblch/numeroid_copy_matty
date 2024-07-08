@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'hotel_info_short.dart';
 import 'order.dart';
-import 'hotel_short.dart';
 
 part 'booking_order.g.dart';
 
 @JsonSerializable()
 class BookingOrder {
   final Order order;
-  final HotelShort hotel;
+  final HotelInfoShort hotel;
 
   BookingOrder({
     required this.order,

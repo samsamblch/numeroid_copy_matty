@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
 import 'package:numeroid/core/locator.dart';
-import 'package:numeroid/presenter/search/models/sort_type.dart';
+import 'package:numeroid/presenter/search_screen/bloc/search_screen_bloc.dart';
 import 'package:numeroid/widgets/components/containers.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 import 'package:numeroid/widgets/kit/dropdown.dart';
 import 'package:numeroid/widgets/kit/texts.dart';
 
-import 'bloc/search_bloc.dart';
+import '../../domain/bloc/search/search_bloc.dart';
+import '../../domain/model/bo/sort_type.dart';
 import 'widgets/hotel_card.dart';
 
 class SearchListPage extends StatelessWidget {
@@ -16,22 +17,27 @@ class SearchListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
+    return BlocBuilder<SearchScreenBloc, SearchScreenState>(builder: (context, state) {
       return Column(
         children: [
           const _ListHeader(),
-          if (state is SearchFinish)
+          if (!state.loading)
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                itemCount: state.hotels.length,
+                itemCount: state.searchState.hotels.length,
                 itemBuilder: (context, index) {
                   return HotelCard(
-                    hotel: state.hotels[index],
-                    days: state.search.daysCount(),
-                    adult: state.search.allAdult(),
+                    hotel: state.searchState.hotels[index],
+                    days: state.searchState.search.days,
+                    adult: state.searchState.search.adults,
                     onTap: () {
-                      appNavigator.pushRoute(HotelDetailRoute(hotelId: state.hotels[index].info.id));
+                      appNavigator.pushRoute(
+                        HotelDetailRoute(
+                          hotelId: state.searchState.hotels[index].info.id,
+                          searchParams: state.searchState.search,
+                        ),
+                      );
                     },
                   );
                 },
@@ -108,9 +114,9 @@ class _ListHeaderState extends State<_ListHeader> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: BlocBuilder<SearchBloc, SearchState>(
+      child: BlocBuilder<SearchScreenBloc, SearchScreenState>(
         builder: (context, state) {
-          if (state is SearchFinish) {
+          if (!state.loading) {
             return Container(
               color: Colors.white,
               child: Column(
@@ -125,7 +131,7 @@ class _ListHeaderState extends State<_ListHeader> {
                       children: [
                         Expanded(
                           child: Text(
-                            '${state.hotels.length} вариантов',
+                            '${state.searchState.hotels.length} вариантов',
                             style: KitTextStyles.semiBold13,
                           ),
                         ),
@@ -136,7 +142,9 @@ class _ListHeaderState extends State<_ListHeader> {
                           overlay: _SortMenu(
                             onTap: (SortType value) {
                               controller.close();
-                              context.read<SearchBloc>().add(ChangeSortType(sortType: value));
+                              context.read<SearchScreenBloc>().searchBloc.add(
+                                    SearchChangeSort(sort: value),
+                                  );
                             },
                           ),
                           child: Container(
@@ -152,7 +160,7 @@ class _ListHeaderState extends State<_ListHeader> {
                               child: Row(
                                 children: [
                                   Text(
-                                    _ListHeader.locale[state.sortType] ?? '-',
+                                    _ListHeader.locale[state.searchState.sort] ?? '-',
                                     style: KitTextStyles.medium14,
                                   ),
                                   const SizedBox(width: 8),

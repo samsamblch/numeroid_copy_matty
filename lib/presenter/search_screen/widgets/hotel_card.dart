@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/locator.dart';
-import '../../../domain/model/bo/search_hotel.dart';
+import '../../../domain/model/bo/hotel_short.dart';
 import '../../../widgets/components/buttons.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/components/spacers.dart';
@@ -17,7 +17,7 @@ class HotelCard extends StatelessWidget {
     required this.onTap,
   });
 
-  final SearchHotel hotel;
+  final HotelShort hotel;
   final int days;
   final int adult;
   final VoidCallback onTap;
@@ -46,7 +46,7 @@ class HotelCard extends StatelessWidget {
                         height: 116,
                         child: (hotel.info.photo?.url != null)
                             ? Image.network(
-                                hotel.info.photo!.url!,
+                                hotel.info.photo!.url,
                                 fit: BoxFit.fill,
                               )
                             : null,
@@ -58,11 +58,11 @@ class HotelCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            hotel.info.name ?? '',
+                            hotel.info.name,
                             style: KitTextStyles.bold15,
                           ),
                           const SizedBox(height: 8),
-                          StarsRateView(rate: hotel.info.stars ?? 0),
+                          StarsRateView(rate: hotel.info.rate),
                         ],
                       ),
                     ),
@@ -123,7 +123,7 @@ class HotelCard extends StatelessWidget {
                                 size: 16,
                                 color: appTheme.colors.brand.greenDarky,
                               ),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               Text(
                                 'Бесплатная отмена',
                                 style: KitTextStyles.medium12.copyWith(
@@ -140,7 +140,7 @@ class HotelCard extends StatelessWidget {
                                 size: 16,
                                 color: appTheme.colors.brand.greenDarky,
                               ),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               Text(
                                 'Завтрак включен',
                                 style: KitTextStyles.medium12.copyWith(

@@ -1,4 +1,4 @@
-import 'package:numeroid/domain/model/dto/hotel_details.dart';
+import 'package:numeroid/domain/model/dto/hotel_info_full.dart';
 import 'package:numeroid/domain/model/dto/organization.dart';
 import 'package:numeroid/domain/model/ro/booking_orders_list_ro.dart';
 import 'package:numeroid/domain/model/ro/organization_members_list_ro.dart';
@@ -44,8 +44,8 @@ ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType, {
       return Organization.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'OrganizationMembersListRo':
       return OrganizationMembersListRo.fromJson(value as Map<String, dynamic>) as ReturnType;
-    case 'HotelDetails':
-      return HotelDetails.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'HotelInfoFull':
+      return HotelInfoFull.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'OrganizationTransactionListRo':
       return OrganizationTransactionListRo.fromJson(value as Map<String, dynamic>) as ReturnType;
 
