@@ -131,7 +131,7 @@ class _ListHeaderState extends State<_ListHeader> {
                       children: [
                         Expanded(
                           child: Text(
-                            '${state.searchState.hotels.length} вариантов',
+                            state.searchState.loading ? 'Загрузка' : '${state.searchState.hotels.length} вариантов',
                             style: KitTextStyles.semiBold13,
                           ),
                         ),

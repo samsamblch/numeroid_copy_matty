@@ -69,6 +69,10 @@ class _AppCalendarState extends State<AppCalendar> {
   }
 
   void _selectDate(DateTime selectedDate) {
+    final now = DateTime.now();
+    if (selectedDate.day < now.day && selectedDate.month <= now.month) {
+      return;
+    }
     setState(() {
       if (selectedBeginPeriod == null || selectedEndPeriod != null) {
         selectedBeginPeriod = selectedDate;
@@ -116,7 +120,7 @@ class _AppCalendarState extends State<AppCalendar> {
           ),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             minHeight: 100,
             maxHeight: 400, //MediaQuery.of(context).size.height - 40 - 160 - 100,
           ),

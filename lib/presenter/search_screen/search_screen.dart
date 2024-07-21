@@ -9,7 +9,6 @@ import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
-import '../../domain/model/dto/city.dart';
 import '../../utils/dialogs.dart';
 import '../../widgets/location_text_field.dart';
 import 'bloc/search_screen_bloc.dart';
@@ -61,10 +60,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                   appNavigator.pop();
                                 },
                               ),
-                              Expanded(
-                                child: _FilterLocation(
-                                  city: locator<SearchBloc>().state.search.city,
-                                ),
+                              const Expanded(
+                                child: _FilterLocation(),
                               ),
                             ],
                           ),
@@ -285,16 +282,21 @@ class _FilterMore extends StatelessWidget {
 }
 
 class _FilterLocation extends StatelessWidget {
-  const _FilterLocation({this.city});
+  const _FilterLocation();
 
-  final City? city;
+  // final City? city;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchScreenBloc, SearchScreenState>(
       builder: (context, state) {
         return (!state.loading)
-            ? LocationTextField(city: city, enableBorder: true, onChange: (value) {})
+            ? LocationTextField(
+                city: state.searchState.search.city,
+                enableBorder: true,
+                onChange: (value) {
+                  context.read<SearchScreenBloc>().searchBloc.add(SearchChangeCity(city: value));
+                })
             : Container(
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,

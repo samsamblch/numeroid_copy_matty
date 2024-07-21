@@ -32,6 +32,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
   }
 
   void addRoom() {
+    if (rooms.length > 4) return;
     setState(() {
       rooms.add(SearchRoomReq(adults: 1, childs: []));
     });
@@ -326,20 +327,21 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
               )
               .toList(),
         ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 12,
-            left: 12,
-            right: 12,
-          ),
-          child: SizedBox(
-            width: double.infinity,
-            child: AppButtonOutlineBlue(
-              text: 'Добавить номер',
-              onTap: addRoom,
+        if (rooms.length < 4)
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 12,
+              left: 12,
+              right: 12,
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              child: AppButtonOutlineBlue(
+                text: 'Добавить номер',
+                onTap: addRoom,
+              ),
             ),
           ),
-        ),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
           child: SizedBox(

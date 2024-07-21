@@ -34,6 +34,7 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
   ) async {
     emit(
       state.copyWith(
+        loading: searchBloc.state.loading,
         searchState: searchBloc.state,
       ),
     );
@@ -45,6 +46,7 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
   ) async {
     emit(
       state.copyWith(
+        loading: searchBloc.state.loading,
         searchState: event.searchState,
       ),
     );

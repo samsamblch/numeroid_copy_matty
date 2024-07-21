@@ -56,7 +56,7 @@ class _YellowSearchPanelState extends State<YellowSearchPanel> {
                 SizedBox(
                   height: 40,
                   child: LocationTextField(onChange: (value) {
-                    context.read<SearchBloc>().add(SearchChangeCity(city: value));
+                    context.read<SearchWelcomeScreenBloc>().searchBloc.add(SearchChangeCity(city: value));
                   }),
                 ),
                 const VerticalSpacer8(),
