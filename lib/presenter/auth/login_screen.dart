@@ -4,8 +4,8 @@ import 'package:numeroid/core/app_router.gr.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
+import 'package:numeroid/widgets/kit/kit_textfield.dart';
 
-import '../../widgets/components/textfield.dart';
 import 'widgets/auth_disclaimer.dart';
 
 @RoutePage()
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             children: [
-              AppTextField(
+              KitTextField(
                 title: 'Электронная почта',
                 onChange: (value) {
                   setState(() {

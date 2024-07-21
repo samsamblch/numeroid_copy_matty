@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/components/containers.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 
 import '../../../widgets/kit/app_typography.dart';
+import '../../../widgets/kit/kit_textfield.dart';
 
 class ProfileSettingsNotifyPage extends StatelessWidget {
   const ProfileSettingsNotifyPage({super.key});
@@ -30,7 +30,11 @@ class ProfileSettingsNotifyPage extends StatelessWidget {
           child: WhiteContainer(
               child: Padding(
             padding: const EdgeInsets.all(16),
-            child: AppTextField(title: 'Электронная почта', hintText: 'Введите адрес эл.почты', onChange: (value) {}),
+            child: KitTextField(
+              title: 'Электронная почта',
+              hintText: 'Введите адрес эл.почты',
+              onChange: (value) {},
+            ),
           )),
         ),
       ],

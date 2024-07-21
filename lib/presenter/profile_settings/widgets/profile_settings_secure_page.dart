@@ -3,8 +3,8 @@ import 'package:numeroid/widgets/components/buttons.dart';
 
 import '../../../core/locator.dart';
 import '../../../widgets/components/containers.dart';
-import '../../../widgets/components/textfield.dart';
 import '../../../widgets/kit/app_typography.dart';
+import '../../../widgets/kit/kit_textfield.dart';
 
 class ProfileSettingsSecurePage extends StatelessWidget {
   const ProfileSettingsSecurePage({super.key});
@@ -33,7 +33,7 @@ class ProfileSettingsSecurePage extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  AppSecureTextField(
+                  KitSecureTextField(
                     title: 'Пароль',
                     hintText: 'Введите ваш пароль',
                     onChange: (value) {},

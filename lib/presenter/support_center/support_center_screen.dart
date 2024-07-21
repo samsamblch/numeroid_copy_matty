@@ -6,11 +6,11 @@ import 'package:numeroid/domain/model/dto/faq_question.dart';
 import 'package:numeroid/domain/repository/support_repository.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 
 import '../../domain/model/dto/faq.dart';
 import '../../utils/dialogs.dart';
 import '../../widgets/kit/app_typography.dart';
+import '../../widgets/kit/kit_textfield.dart';
 
 @RoutePage()
 class SupportCenterScreen extends StatefulWidget {
@@ -60,21 +60,21 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (v) {},
                 title: 'Введите номер бронирования',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (v) {},
                 title: 'Введите пин-код',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (v) {},
                 title: 'Ваш вопрос в свободной форме',
               ),
@@ -92,7 +92,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (v) {},
                 title: 'Электронная почта',
               ),

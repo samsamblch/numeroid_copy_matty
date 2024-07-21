@@ -34,6 +34,7 @@ class _YellowSearchPanelState extends State<YellowSearchPanel> {
     return Dialogs.showAppDialog(
       context: context,
       title: 'Гости и номера',
+      horizontalMargin: 34,
       body: RoomsDialogBody(
         rooms: state.searchState.search.rooms,
         onApply: (List<SearchRoomReq> value) {

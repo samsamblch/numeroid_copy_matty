@@ -6,11 +6,11 @@ import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/bloc/app/app_bloc.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../domain/bloc/screen/screen_bloc.dart';
 import '../../domain/repository/user_repository.dart';
+import '../../widgets/kit/kit_textfield.dart';
 import 'widgets/auth_disclaimer.dart';
 
 @RoutePage()
@@ -79,7 +79,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    AppSecureTextField(
+                    KitSecureTextField(
                       title: 'Пароль',
                       errMessage: (state is ScreenErrorState) ? state.message : null,
                       onChange: (String value) {

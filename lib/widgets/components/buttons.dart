@@ -49,7 +49,7 @@ class AppButtonBlue extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton(
-        onPressed: onTap,
+        onPressed: enable ? onTap : null,
         style: OutlinedButton.styleFrom(
           backgroundColor: enable ? appTheme.colors.elements.blue : appTheme.colors.border.grey,
           shape: RoundedRectangleBorder(

@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/app_router.gr.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../domain/bloc/screen/screen_bloc.dart';
 import '../../domain/repository/user_repository.dart';
 import '../../widgets/app_scaffold.dart';
+import '../../widgets/kit/kit_textfield.dart';
 import 'widgets/auth_disclaimer.dart';
 
 @RoutePage()
@@ -78,7 +78,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
-                  AppTextField(
+                  KitTextField(
                     title: 'Электронная почта',
                     value: _email,
                     errMessage: (state is ScreenErrorState) ? state.message : null,

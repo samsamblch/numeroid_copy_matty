@@ -11,27 +11,21 @@ class Dialogs {
     required BuildContext context,
     required String title,
     required Widget body,
+    double horizontalMargin = 10,
     bool autoScroll = true,
   }) {
     showDialog(
         context: context,
         builder: (context) {
           return Scaffold(
-            // elevation: 0,
             backgroundColor: Colors.transparent,
-            // shape: const RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.all(
-            //     Radius.circular(12),
-            //   ),
-            // ),
-            // insetPadding: const EdgeInsets.all(10),
             body: Column(
               children: [
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: horizontalMargin),
                   child: Container(
-                    decoration: KitDecorations.whiteRBoxWithBorder(radius: 12).copyWith(
+                    decoration: KitDecorations.whiteRBoxWithBorder(radius: 6).copyWith(
                       color: appTheme.colors.background.primary,
                     ),
                     child: Column(

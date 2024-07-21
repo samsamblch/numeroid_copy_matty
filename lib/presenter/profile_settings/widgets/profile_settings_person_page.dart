@@ -3,7 +3,7 @@ import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../core/locator.dart';
 import '../../../widgets/components/containers.dart';
-import '../../../widgets/components/textfield.dart';
+import '../../../widgets/kit/kit_textfield.dart';
 
 class ProfileSettingsPersonPage extends StatelessWidget {
   const ProfileSettingsPersonPage({super.key});
@@ -32,37 +32,37 @@ class ProfileSettingsPersonPage extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  AppTextField(
+                  KitTextField(
                     title: 'Имя',
                     hintText: 'Введите ваше имя',
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 12),
-                  AppTextField(
+                  KitTextField(
                     title: 'Телефон',
                     hintText: 'Введите номер телефона',
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 12),
-                  AppTextField(
+                  KitTextField(
                     title: 'Электронная почта',
                     hintText: 'Введите адрес эл.почты',
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 12),
-                  AppTextField(
+                  KitTextField(
                     title: 'Дата рождения',
                     hintText: 'ДД ММ ГГ',
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 12),
-                  AppTextField(
+                  KitTextField(
                     title: 'Гражданство',
                     hintText: 'Выберите страну/регион',
                     onChange: (value) {},
                   ),
                   const SizedBox(height: 12),
-                  AppTextField(
+                  KitTextField(
                     title: 'Пол',
                     hintText: 'Мужской/Женский',
                     onChange: (value) {},

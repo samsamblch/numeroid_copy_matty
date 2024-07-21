@@ -3,11 +3,11 @@ import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/model/dto/organization_member.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/components/containers.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../utils/dialogs.dart';
 import '../../../widgets/components/dropfield.dart';
+import '../../../widgets/kit/kit_textfield.dart';
 
 class OrganizationSettingsMembersPage extends StatefulWidget {
   const OrganizationSettingsMembersPage({super.key});
@@ -91,42 +91,42 @@ class _OrganizationSettingsMembersPageState extends State<OrganizationSettingsMe
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Имя',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Фамилия',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Отчество',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Телефон',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Почта',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AppTextField(
+              child: KitTextField(
                 onChange: (value) {},
                 title: 'Роль',
               ),

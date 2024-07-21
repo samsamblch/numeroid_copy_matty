@@ -9,10 +9,10 @@ InputDecoration _getDecorator({
   String? suffix,
 }) {
   return InputDecoration(
-    contentPadding: const EdgeInsets.symmetric(
-      vertical: 0,
-      horizontal: 12,
-    ),
+    // contentPadding: const EdgeInsets.symmetric(
+    //   vertical: 0,
+    //   horizontal: 12,
+    // ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
     ),
@@ -30,26 +30,26 @@ InputDecoration _getDecorator({
     ),
     fillColor: Colors.white,
     hintText: hintText,
-    suffixIcon: (suffix != null)
-        ? Padding(
-            padding: const EdgeInsets.only(
-              bottom: 2,
-              right: 10,
-            ),
-            child: Text(
-              suffix,
-              style: KitTextStyles.semiBold14.copyWith(
-                color: appTheme.colors.text.secondary,
-              ),
-            ),
-          )
-        : null,
-    suffixIconConstraints: (suffix != null) ? const BoxConstraints(minWidth: 0, minHeight: 0) : null,
+    // suffixIcon: (suffix != null)
+    //     ? Padding(
+    //         padding: const EdgeInsets.only(
+    //           bottom: 2,
+    //           right: 10,
+    //         ),
+    //         child: Text(
+    //           suffix,
+    //           style: KitTextStyles.semiBold14.copyWith(
+    //             color: appTheme.colors.text.secondary,
+    //           ),
+    //         ),
+    //       )
+    //     : null,
+    // suffixIconConstraints: (suffix != null) ? const BoxConstraints(minWidth: 0, minHeight: 0) : null,
   );
 }
 
-class _BaseTextField extends StatelessWidget {
-  const _BaseTextField({
+class _KitBaseTextField extends StatelessWidget {
+  const _KitBaseTextField({
     this.title,
     required this.onChange,
     required this.child,
@@ -91,8 +91,8 @@ class _BaseTextField extends StatelessWidget {
   }
 }
 
-class AppTextField extends StatefulWidget {
-  const AppTextField({
+class KitTextField extends StatefulWidget {
+  const KitTextField({
     super.key,
     this.title,
     required this.onChange,
@@ -110,10 +110,10 @@ class AppTextField extends StatefulWidget {
   final String? suffix;
 
   @override
-  State<AppTextField> createState() => _AppTextFieldState();
+  State<KitTextField> createState() => _AppTextFieldState();
 }
 
-class _AppTextFieldState extends State<AppTextField> {
+class _AppTextFieldState extends State<KitTextField> {
   late TextEditingController controller;
 
   @override
@@ -124,7 +124,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return _BaseTextField(
+    return _KitBaseTextField(
       title: widget.title,
       onChange: widget.onChange,
       errMessage: widget.errMessage,
@@ -132,8 +132,9 @@ class _AppTextFieldState extends State<AppTextField> {
         style: KitTextStyles.medium14.copyWith(
           color: appTheme.colors.text.primary,
         ),
+        textAlignVertical: TextAlignVertical.top,
         controller: controller,
-        cursorHeight: 16,
+        // cursorHeight: 16,
         cursorColor: appTheme.colors.elements.blue,
         decoration: _getDecorator(
           isError: widget.errMessage != null,
@@ -146,8 +147,14 @@ class _AppTextFieldState extends State<AppTextField> {
   }
 }
 
-class AppSecureTextField extends StatefulWidget {
-  const AppSecureTextField({super.key, required this.title, required this.onChange, this.errMessage, this.hintText});
+class KitSecureTextField extends StatefulWidget {
+  const KitSecureTextField({
+    super.key,
+    required this.title,
+    required this.onChange,
+    this.errMessage,
+    this.hintText,
+  });
 
   final String title;
   final ValueChanged<String> onChange;
@@ -155,15 +162,15 @@ class AppSecureTextField extends StatefulWidget {
   final String? hintText;
 
   @override
-  State<AppSecureTextField> createState() => _AppSecureTextFieldState();
+  State<KitSecureTextField> createState() => _AppSecureTextFieldState();
 }
 
-class _AppSecureTextFieldState extends State<AppSecureTextField> {
+class _AppSecureTextFieldState extends State<KitSecureTextField> {
   bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
-    return _BaseTextField(
+    return _KitBaseTextField(
       title: widget.title,
       onChange: widget.onChange,
       errMessage: widget.errMessage,
@@ -171,7 +178,8 @@ class _AppSecureTextFieldState extends State<AppSecureTextField> {
         style: KitTextStyles.medium14.copyWith(
           color: appTheme.colors.text.primary,
         ),
-        cursorHeight: 16,
+        // cursorHeight: 16,
+        textAlignVertical: TextAlignVertical.top,
         cursorColor: appTheme.colors.elements.blue,
         decoration: _getDecorator(
           isError: widget.errMessage != null,

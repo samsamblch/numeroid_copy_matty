@@ -7,10 +7,10 @@ import 'package:numeroid/domain/model/dto/organization_transaction.dart';
 import 'package:numeroid/utils/formatters.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/components/containers.dart';
-import 'package:numeroid/widgets/components/textfield.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../utils/dialogs.dart';
+import '../../../widgets/kit/kit_textfield.dart';
 
 class OrganizationSettingsBalancePage extends StatefulWidget {
   const OrganizationSettingsBalancePage({super.key, required this.org});
@@ -48,7 +48,7 @@ class _OrganizationSettingsBalancePageState extends State<OrganizationSettingsBa
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: AppTextField(
+            child: KitTextField(
               title: '',
               onChange: (value) {},
               suffix: 'руб.',
