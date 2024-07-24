@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/domain/model/ro/login_ro.dart';
 import 'package:numeroid/domain/network/network_service.dart';
 import 'package:numeroid/domain/repository/user_repository.dart';
 
-import '../../../core/app_router.dart';
 import '../../../core/locator.dart';
 import '../../model/dto/organization_short.dart';
 import '../../model/dto/user.dart';
@@ -26,7 +26,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     add(AppStart());
   }
 
+  // ignore: unused_field
   User? _user;
+  // ignore: unused_field
   OrganizationShort? _organization;
 
   Future<void> onStart(
@@ -40,7 +42,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } else {
       emit(const AppRunningUnauth());
     }
-    appNavigator.present(AppRouterPage.main);
+    AppRoute.router.go(AppRoutes.searchWelcome);
   }
 
   void onAuthLogin(

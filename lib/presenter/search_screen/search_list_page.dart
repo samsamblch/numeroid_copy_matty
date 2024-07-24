@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_router.gr.dart';
+import 'package:go_router/go_router.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/presenter/search_screen/bloc/search_screen_bloc.dart';
 import 'package:numeroid/widgets/components/containers.dart';
@@ -32,12 +33,7 @@ class SearchListPage extends StatelessWidget {
                     days: state.searchState.search.days,
                     adult: state.searchState.search.adults,
                     onTap: () {
-                      appNavigator.pushRoute(
-                        HotelDetailRoute(
-                          hotelId: state.searchState.hotels[index].info.id,
-                          searchParams: state.searchState.search,
-                        ),
-                      );
+                      context.push(AppRoutes.hotelDetail, extra: state.searchState.hotels[index].info.id);
                     },
                   );
                 },

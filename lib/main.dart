@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'core/app_router.dart';
-import 'widgets/kit/app_theme.dart';
 import 'core/init.dart';
 import 'core/locator.dart';
 import 'domain/bloc/app/app_bloc.dart';
 import 'widgets/blue_header.dart';
+import 'widgets/kit/app_theme.dart';
 import 'widgets/menu_banner.dart';
 import 'widgets/profile_dropmenu.dart';
 
@@ -27,11 +27,6 @@ Future<void> main() async {
       child: const MainApp(),
     ),
   );
-
-  // TODO: заменить потом на логику асинк запуска конфигов и других зависимостей
-  // Timer(const Duration(seconds: 1), () {
-  //   appNavigator.present(AppRouterPage.main);
-  // });
 }
 
 class MainApp extends StatelessWidget {
@@ -51,7 +46,7 @@ class MainApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
       ),
-      routerConfig: appNavigator.config,
+      routerConfig: AppRoute.router,
       builder: (context, child) => BlocProvider.value(
         value: appBloc,
         child: BlocBuilder<AppBloc, AppState>(
@@ -124,7 +119,7 @@ class _AppShellState extends State<_AppShell> {
                         },
                         onTapSupport: () {
                           setState(() => _showMenu = false);
-                          appNavigator.push(AppRouterPage.supportCenter);
+                          AppRoute.router.push(AppRoutes.supportCenter);
                         },
                       ),
                     ],
@@ -137,19 +132,19 @@ class _AppShellState extends State<_AppShell> {
           ProfileDropMenu(
             onTapSettings: () {
               setState(() => _showProfile = false);
-              appNavigator.openTab(3);
+              AppRoute.router.go(AppRoutes.profile);
             },
             onTapOrganization: () {
               setState(() => _showProfile = false);
-              appNavigator.openTab(3);
+              AppRoute.router.go(AppRoutes.profile);
             },
             onTapBooking: () {
               setState(() => _showProfile = false);
-              appNavigator.openTab(2);
+              AppRoute.router.go(AppRoutes.booking);
             },
             onTapFavourite: () {
               setState(() => _showProfile = false);
-              appNavigator.openTab(1);
+              AppRoute.router.go(AppRoutes.favourites);
             },
             onTapLogout: () {
               setState(() => _showProfile = false);

@@ -5,6 +5,7 @@ import '../../widgets/kit/texts.dart';
 
 class HotelDetailSectionContainer extends StatelessWidget {
   const HotelDetailSectionContainer({
+    super.key,
     required this.title,
     required this.body,
     this.bottom = 16,

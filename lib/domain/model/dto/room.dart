@@ -5,16 +5,9 @@ part 'room.g.dart';
 
 @JsonSerializable(includeIfNull: true)
 class Room {
-  @JsonKey(name: 'name_ru', defaultValue: '')
-  final String name;
-
-  @JsonKey(defaultValue: [])
-  final List<Photo> photo;
-  @JsonKey(defaultValue: 0)
-  final int area;
-
   Room({
-    required this.name,
+    required this.name1,
+    required this.name2,
     required this.photo,
     required this.area,
   });
@@ -22,4 +15,16 @@ class Room {
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 
   Map<String, dynamic> toJson() => _$RoomToJson(this);
+
+  @JsonKey(name: 'name')
+  final String? name1;
+  @JsonKey(name: 'name_ru')
+  final String? name2;
+  // @JsonKey(defaultValue: [])
+  final Photo? photo;
+  @JsonKey(defaultValue: 0)
+  final int area;
+
+  String get name => name1 ?? name2 ?? '';
+  // List<Photo> get photo => [];
 }

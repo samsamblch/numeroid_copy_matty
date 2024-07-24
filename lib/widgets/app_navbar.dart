@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/locator.dart';
+import 'package:go_router/go_router.dart';
 
 import 'kit/app_typography.dart';
 
@@ -26,7 +26,7 @@ class AppNavbar extends StatelessWidget implements PreferredSizeWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
-                    onTap: () => appNavigator.pop(),
+                    onTap: () => context.pop(),
                     child: Image.asset(
                       'assets/icons/arrow_back.png',
                       height: 18,

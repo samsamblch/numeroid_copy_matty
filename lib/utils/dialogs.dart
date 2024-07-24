@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 import 'package:numeroid/widgets/kit/common.dart';
@@ -55,7 +56,7 @@ class Dialogs {
                                   size: 24,
                                 ),
                                 onPressed: () {
-                                  appNavigator.pop();
+                                  context.pop();
                                 },
                               ),
                             ),

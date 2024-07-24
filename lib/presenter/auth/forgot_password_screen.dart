@@ -1,18 +1,16 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_router.gr.dart';
-import 'package:numeroid/core/locator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
+import '../../core/app_route.dart';
 import '../../domain/bloc/screen/screen_bloc.dart';
 import '../../domain/repository/user_repository.dart';
 import '../../widgets/app_scaffold.dart';
 import '../../widgets/kit/kit_textfield.dart';
 import 'widgets/auth_disclaimer.dart';
 
-@RoutePage()
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({
     super.key,
@@ -38,7 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     final result = UserRepository().recoveryPassword(email: _email);
     result.then((value) {
       if (value) {
-        appNavigator.pushRoute(ForgotPasswordFinishRoute(email: _email));
+        context.push(AppRoutes.forgotPasswordFinish, extra: _email);
       } else {
         bloc.add(
           ScreenLoadDataError(

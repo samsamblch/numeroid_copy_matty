@@ -8,13 +8,11 @@ class AppScaffold extends StatelessWidget {
     required this.child,
     this.title,
     this.hasBack = true,
-    // this.hasAppbar = true,
   });
 
   final Widget child;
   final String? title;
   final bool hasBack;
-  // final bool hasAppbar;
 
   @override
   Widget build(BuildContext context) {

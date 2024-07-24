@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/core/locator.dart';
@@ -10,7 +9,6 @@ import '../../utils/formatters.dart';
 import '../../widgets/kit/app_typography.dart';
 import '../../widgets/unauth_placeholder.dart';
 
-@RoutePage()
 class FavouritesScreen extends StatelessWidget {
   const FavouritesScreen({super.key});
 
@@ -54,33 +52,36 @@ class _BookingContentBodyState extends State<BookingContentBody> {
   @override
   Widget build(BuildContext context) {
     if (orders.isEmpty) {
-      return Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              'Сохраненное',
-              style: KitTextStyles.bold18,
+      return SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'Сохраненное',
+                style: KitTextStyles.bold18,
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo_info.png',
-                  width: 44,
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Упс, похоже у вас нет ещe\nни одного сохраненного отеля',
-                  style: KitTextStyles.semiBold16,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/logo_info.png',
+                    width: 44,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Упс, похоже у вас нет ещe\nни одного сохраненного отеля',
+                    style: KitTextStyles.semiBold16,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
     return Column(

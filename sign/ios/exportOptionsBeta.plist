@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>teamID</key>
+	<string>GJL3XCUNGU</string>
+	<key>method</key>
+	<string>ad-hoc</string>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>signingCertificate</key>
+	<string>Apple Distribution: Mikhail Matveev (GJL3XCUNGU)</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.example.numeroid</key>
+		<string>GJL3XCUNGU.com.example.numeroid</string>
+	</dict>
+</dict>
+</plist>

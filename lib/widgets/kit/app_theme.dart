@@ -36,11 +36,11 @@ class ElementsColors {
   final Color yellow = const Color(0xFFFCB429);
   final Color grey = const Color(0xFF909090);
   final Color paleBlue = const Color(0xFFF6FAFF);
+  final Color green = const Color(0xFF02961A);
 }
 
 class BrandColors {
   final Color blue = const Color(0xFF003B95);
   final Color peachy = const Color(0xFFFF9500);
-  final Color greenDarky = const Color(0xFF02961A);
   final Color red = const Color(0xFFE11E1E);
 }

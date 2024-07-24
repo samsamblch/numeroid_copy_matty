@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,7 +11,6 @@ import '../../core/locator.dart';
 import 'widgets/organization_settings_balance_page.dart';
 import 'widgets/organization_settings_members_page.dart';
 
-@RoutePage()
 class OrganizationSettingsScreen extends StatefulWidget {
   const OrganizationSettingsScreen({super.key});
 

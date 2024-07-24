@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 
-import '../core/app_router.dart';
 import '../core/locator.dart';
 import '../domain/bloc/app/app_bloc.dart';
 
 class BlueHeader extends StatefulWidget {
-  BlueHeader({
+  const BlueHeader({
     super.key,
     required this.showMenu,
     required this.onTapSupport,
@@ -69,7 +69,7 @@ class _BlueHeaderState extends State<BlueHeader> {
                       AppButtonOrange(
                         text: 'Войти',
                         onTap: () {
-                          appNavigator.push(AppRouterPage.login);
+                          AppRoute.router.push(AppRoutes.login);
                         },
                       ),
                     IconButton(

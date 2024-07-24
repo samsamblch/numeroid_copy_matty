@@ -40,7 +40,8 @@ class SearchBloc extends Bloc<_SearchEvent, SearchState> {
     Emitter<SearchState> emit,
   ) async {
     _hotels = [];
-    emit(state.copyWith(loading: true, hotels: _hotels));
+
+    emit(state.copyWith(loading: true, hotels: _hotels, filter: FilterParameters()));
     final result = await BookingRepository().loadHotels(searchParameters: state.search);
     _hotels = result;
     emitFilteredResult();

@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/domain/bloc/search/search_bloc.dart';
 
-import '../../../core/app_router.dart';
-import '../../../core/app_router.gr.dart';
 import '../../../core/locator.dart';
 
 part 'search_welcome_screen_bloc.freezed.dart';
@@ -29,9 +28,11 @@ class SearchWelcomeScreenBloc extends Bloc<_SearchWelcomeScreenEvent, SearchWelc
   final SearchBloc searchBloc;
   late StreamSubscription subscription;
 
-  void _handleSearchBloc(SearchState searchState) => add(
-        SearchWelcomeScreenUpdate(searchState: searchState),
-      );
+  void _handleSearchBloc(SearchState searchState) {
+    if (!isClosed) {
+      add(SearchWelcomeScreenUpdate(searchState: searchState));
+    }
+  }
 
   Future<void> _onSearchWelcomeScreenInit(
     SearchWelcomeScreenInit event,
@@ -40,6 +41,7 @@ class SearchWelcomeScreenBloc extends Bloc<_SearchWelcomeScreenEvent, SearchWelc
     emit(
       state.copyWith(
         searchState: searchBloc.state,
+        errorMsg: null,
       ),
     );
   }
@@ -51,6 +53,7 @@ class SearchWelcomeScreenBloc extends Bloc<_SearchWelcomeScreenEvent, SearchWelc
     emit(
       state.copyWith(
         searchState: event.searchState,
+        errorMsg: null,
       ),
     );
   }
@@ -60,10 +63,15 @@ class SearchWelcomeScreenBloc extends Bloc<_SearchWelcomeScreenEvent, SearchWelc
     Emitter<SearchWelcomeScreenState> emit,
   ) async {
     if (appBloc.state.isLogged) {
-      searchBloc.add(SearchStart());
-      appNavigator.pushRoute(const SearchRoute());
+      if (searchBloc.state.search.city != null) {
+        searchBloc.add(SearchStart());
+        AppRoute.router.push(AppRoutes.search);
+      } else {
+        emit(state.copyWith(errorMsg: 'Не выбрана локация'));
+        emit(state.copyWith(errorMsg: null));
+      }
     } else {
-      appNavigator.push(AppRouterPage.login);
+      AppRoute.router.push(AppRoutes.login);
     }
   }
 
@@ -72,10 +80,15 @@ class SearchWelcomeScreenBloc extends Bloc<_SearchWelcomeScreenEvent, SearchWelc
     Emitter<SearchWelcomeScreenState> emit,
   ) async {
     if (appBloc.state.isLogged) {
-      searchBloc.add(SearchStart());
-      appNavigator.pushRoute(const SearchRoute());
+      if (searchBloc.state.search.city != null) {
+        searchBloc.add(SearchStart());
+        AppRoute.router.push(AppRoutes.search);
+      } else {
+        emit(state.copyWith(errorMsg: 'Не выбрана локация'));
+        emit(state.copyWith(errorMsg: null));
+      }
     } else {
-      appNavigator.push(AppRouterPage.login);
+      AppRoute.router.push(AppRoutes.login);
     }
   }
 }

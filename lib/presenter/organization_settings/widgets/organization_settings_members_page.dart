@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/model/dto/organization_member.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
@@ -72,7 +73,7 @@ class _OrganizationSettingsMembersPageState extends State<OrganizationSettingsMe
             AppButtonBlue(
               text: 'Сохранить',
               onTap: () {
-                appNavigator.pop();
+                context.pop();
               },
             ),
           ],
@@ -220,7 +221,7 @@ class DeleteDialogBody extends StatelessWidget {
             child: AppButtonOutlineBlack(
               text: 'Отменить',
               onTap: () {
-                appNavigator.pop();
+                context.pop();
               },
             ),
           ),

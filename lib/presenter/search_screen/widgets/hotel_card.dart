@@ -121,13 +121,13 @@ class HotelCard extends StatelessWidget {
                               Icon(
                                 Icons.check,
                                 size: 16,
-                                color: appTheme.colors.brand.greenDarky,
+                                color: appTheme.colors.elements.green,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 'Бесплатная отмена',
                                 style: KitTextStyles.medium12.copyWith(
-                                  color: appTheme.colors.brand.greenDarky,
+                                  color: appTheme.colors.elements.green,
                                 ),
                               ),
                             ],
@@ -138,13 +138,13 @@ class HotelCard extends StatelessWidget {
                               Icon(
                                 Icons.check,
                                 size: 16,
-                                color: appTheme.colors.brand.greenDarky,
+                                color: appTheme.colors.elements.green,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 'Завтрак включен',
                                 style: KitTextStyles.medium12.copyWith(
-                                  color: appTheme.colors.brand.greenDarky,
+                                  color: appTheme.colors.elements.green,
                                 ),
                               ),
                             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/domain/bloc/search/search_bloc.dart';
 import 'package:numeroid/domain/model/req/search_room_req.dart';
 import 'package:numeroid/presenter/search_welcome/bloc/search_welcome_screen_bloc.dart';
@@ -73,10 +74,10 @@ class _YellowSearchPanelState extends State<YellowSearchPanel> {
                           beginPeriod: state.searchState.search.startDate,
                           endPeriod: state.searchState.search.endDate,
                           onApplyPeriod: ((DateTime, DateTime) value) {
-                            context.read<SearchBloc>().add(
+                            context.read<SearchWelcomeScreenBloc>().searchBloc.add(
                                   SearchChangeDate(start: value.$1, end: value.$2),
                                 );
-                            appNavigator.pop();
+                            context.pop();
                           },
                         ),
                       );

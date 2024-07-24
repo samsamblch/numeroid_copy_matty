@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 
 import '../../../core/locator.dart';
@@ -350,7 +351,7 @@ class _RoomsDialogBodyState extends State<RoomsDialogBody> {
               text: 'Применить',
               onTap: () {
                 widget.onApply(rooms);
-                appNavigator.pop();
+                context.pop();
               },
             ),
           ),

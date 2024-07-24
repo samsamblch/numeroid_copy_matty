@@ -5,7 +5,6 @@ import 'app_typography.dart';
 
 class _KitButton extends StatelessWidget {
   const _KitButton({
-    super.key,
     required this.onTap,
     required this.text,
     required this.color,

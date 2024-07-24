@@ -7,7 +7,10 @@ import '../../widgets/kit/texts.dart';
 import 'hotel_detail_section_container.dart';
 
 class HotelDetailFacilitiesBlock extends StatelessWidget {
-  const HotelDetailFacilitiesBlock(this.facilities);
+  const HotelDetailFacilitiesBlock({
+    super.key,
+    required this.facilities,
+  });
 
   final List<Facility> facilities;
 
@@ -22,17 +25,15 @@ class HotelDetailFacilitiesBlock extends StatelessWidget {
               ...facilities.map(
                 (e) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          e.imagePath,
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 6),
-                        Flexible(child: KitTextMedium14(e.name ?? '')),
-                      ]),
+                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Image.asset(
+                      e.imagePath,
+                      width: 24,
+                      height: 24,
+                    ),
+                    const SizedBox(width: 6),
+                    Flexible(child: KitTextMedium14(e.name ?? '')),
+                  ]),
                 ),
               ),
             ],
@@ -42,8 +43,7 @@ class HotelDetailFacilitiesBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final faci =
-        (facilities.length > 5) ? facilities.sublist(0, 5) : facilities;
+    final faci = (facilities.length > 5) ? facilities.sublist(0, 5) : facilities;
     return HotelDetailSectionContainer(
       title: 'Самые популярные удобства и услуги',
       body: Column(

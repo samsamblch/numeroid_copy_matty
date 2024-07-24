@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/model/dto/faq_category.dart';
@@ -12,7 +11,6 @@ import '../../utils/dialogs.dart';
 import '../../widgets/kit/app_typography.dart';
 import '../../widgets/kit/kit_textfield.dart';
 
-@RoutePage()
 class SupportCenterScreen extends StatefulWidget {
   const SupportCenterScreen({super.key});
 

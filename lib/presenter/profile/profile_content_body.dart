@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/core/locator.dart';
 
 import '../../utils/dialogs.dart';
@@ -27,14 +28,14 @@ class ProfileContentBody extends StatelessWidget {
               assetPath: 'assets/icons/organization_peoples.png',
               title: 'Организация',
               description: 'Управление организацией, сотрудниками и балансом',
-              onTap: () => appNavigator.push(AppRouterPage.organizationSettings),
+              onTap: () => context.push(AppRoutes.organizationSettings),
             ),
             const SizedBox(height: 12),
             _MenuBanner(
               assetPath: 'assets/icons/settings_gear.png',
               title: 'Настройка аккаунта',
               description: 'Настройте Нумероид под себя',
-              onTap: () => appNavigator.push(AppRouterPage.profileSettings),
+              onTap: () => context.push(AppRoutes.profileSettings),
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -81,9 +82,7 @@ class ProfileContentBody extends StatelessWidget {
                     ),
                     _MenuButton(
                       title: 'Центр поддержки',
-                      callback: () => appNavigator.push(
-                        AppRouterPage.supportCenter,
-                      ),
+                      callback: () => context.push(AppRoutes.supportCenter),
                     ),
                     _MenuButton(
                       title: 'Контакты',

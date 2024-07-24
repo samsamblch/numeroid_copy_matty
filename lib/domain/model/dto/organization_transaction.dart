@@ -45,7 +45,7 @@ class OrganizationTransaction {
   double get balanceSum => double.parse(balance);
 
   Color get statusColor => switch (status) {
-        'accepted' => appTheme.colors.brand.greenDarky,
+        'accepted' => appTheme.colors.elements.green,
         'declined' => appTheme.colors.brand.red,
         String() => appTheme.colors.elements.grey,
       };

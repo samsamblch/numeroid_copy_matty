@@ -179,7 +179,7 @@ class BalanceCard extends StatelessWidget {
                     currency: 'rub',
                   ),
                   style: KitTextStyles.bold16.copyWith(
-                    color: transaction.balanceSum < 0 ? appTheme.colors.brand.red : appTheme.colors.brand.greenDarky,
+                    color: transaction.balanceSum < 0 ? appTheme.colors.brand.red : appTheme.colors.elements.green,
                   ),
                 ),
                 const SizedBox(height: 8),

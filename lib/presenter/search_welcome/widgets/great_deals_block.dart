@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/domain/model/dto/city.dart';
 import 'package:numeroid/generated/locale_keys.g.dart';
 
-import '../../../core/app_router.dart';
-import '../../../core/app_router.gr.dart';
 import '../../../core/locator.dart';
 import '../../../domain/bloc/search/search_bloc.dart';
 import '../../../widgets/kit/app_typography.dart';
@@ -94,10 +94,9 @@ class GreatDealsBlock extends StatelessWidget {
                           );
                           final searchBloc = locator<SearchBloc>();
                           searchBloc.add(SearchStart());
-
-                          appNavigator.pushRoute(const SearchRoute());
+                          context.push(AppRoutes.search);
                         } else {
-                          appNavigator.push(AppRouterPage.login);
+                          context.push(AppRoutes.login);
                         }
                       },
                       child: _DealCard(item: item));

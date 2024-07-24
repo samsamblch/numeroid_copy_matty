@@ -35,19 +35,42 @@ class KitTextBold18 extends StatelessWidget {
   }
 }
 
-class KitTextMedium14 extends StatelessWidget {
-  const KitTextMedium14(
-    this.text, {
-    super.key,
-  });
+class KitTextSemibold13 extends StatelessWidget {
+  const KitTextSemibold13(this.text, {super.key, this.color});
 
   final String text;
+  final Color? color;
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: KitTextStyles.medium14,
-    );
-  }
+  Widget build(BuildContext context) => Text(text, style: KitTextStyles.semiBold13.copyWith(color: color));
+}
+
+class KitTextSemibold14 extends StatelessWidget {
+  const KitTextSemibold14(this.text, {super.key, this.color});
+
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) => Text(text, style: KitTextStyles.semiBold14.copyWith(color: color));
+}
+
+class KitTextMedium13 extends StatelessWidget {
+  const KitTextMedium13(this.text, {super.key, this.color});
+
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) => Text(text, style: KitTextStyles.medium13.copyWith(color: color));
+}
+
+class KitTextMedium14 extends StatelessWidget {
+  const KitTextMedium14(this.text, {super.key, this.color});
+
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) => Text(text, style: KitTextStyles.medium14.copyWith(color: color));
 }

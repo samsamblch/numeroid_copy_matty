@@ -25,7 +25,9 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
   late StreamSubscription subscription;
 
   void _handleSearchBloc(SearchState searchState) {
-    add(SearchScreenUpdate(searchState: searchState));
+    if (!isClosed) {
+      add(SearchScreenUpdate(searchState: searchState));
+    }
   }
 
   Future<void> _onSearchScreenInit(

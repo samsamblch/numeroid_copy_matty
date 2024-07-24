@@ -1,19 +1,18 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_router.gr.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/bloc/app/app_bloc.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
+import '../../core/app_route.dart';
 import '../../domain/bloc/screen/screen_bloc.dart';
 import '../../domain/repository/user_repository.dart';
 import '../../widgets/kit/kit_textfield.dart';
 import 'widgets/auth_disclaimer.dart';
 
-@RoutePage()
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({
     super.key,
@@ -42,7 +41,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
       }
 
       appBloc.add(AuthLogin(response: value));
-      appNavigator.popRoot();
+      AppRoute.popUntilRoot();
     }).catchError((error) {
       bloc.add(
         ScreenLoadDataError(
@@ -103,11 +102,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        appNavigator.pushRoute(
-                          ForgotPasswordRoute(
-                            email: widget.email,
-                          ),
-                        );
+                        context.push(AppRoutes.forgotPassword, extra: widget.email);
                       },
                       child: Text(
                         'Забыли пароль?',

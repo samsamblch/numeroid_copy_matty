@@ -20,7 +20,9 @@ class HotelInfoFull {
 
   @JsonKey(defaultValue: [])
   final List<Facility> facilities;
-  final List<Photo>? photos;
+
+  @JsonKey(defaultValue: [])
+  final List<Photo> photos;
 
   @JsonKey(defaultValue: [])
   final List<Room> rooms;

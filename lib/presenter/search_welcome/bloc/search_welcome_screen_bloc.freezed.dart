@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchWelcomeScreenState {
   SearchState get searchState => throw _privateConstructorUsedError;
+  String? get errorMsg => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchWelcomeScreenStateCopyWith<SearchWelcomeScreenState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $SearchWelcomeScreenStateCopyWith<$Res> {
           $Res Function(SearchWelcomeScreenState) then) =
       _$SearchWelcomeScreenStateCopyWithImpl<$Res, SearchWelcomeScreenState>;
   @useResult
-  $Res call({SearchState searchState});
+  $Res call({SearchState searchState, String? errorMsg});
 
   $SearchStateCopyWith<$Res> get searchState;
 }
@@ -49,12 +50,17 @@ class _$SearchWelcomeScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? searchState = null,
+    Object? errorMsg = freezed,
   }) {
     return _then(_value.copyWith(
       searchState: null == searchState
           ? _value.searchState
           : searchState // ignore: cast_nullable_to_non_nullable
               as SearchState,
+      errorMsg: freezed == errorMsg
+          ? _value.errorMsg
+          : errorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -76,7 +82,7 @@ abstract class _$$SearchWelcomeScreenStateImplCopyWith<$Res>
       __$$SearchWelcomeScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SearchState searchState});
+  $Res call({SearchState searchState, String? errorMsg});
 
   @override
   $SearchStateCopyWith<$Res> get searchState;
@@ -96,12 +102,17 @@ class __$$SearchWelcomeScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchState = null,
+    Object? errorMsg = freezed,
   }) {
     return _then(_$SearchWelcomeScreenStateImpl(
       searchState: null == searchState
           ? _value.searchState
           : searchState // ignore: cast_nullable_to_non_nullable
               as SearchState,
+      errorMsg: freezed == errorMsg
+          ? _value.errorMsg
+          : errorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -109,14 +120,17 @@ class __$$SearchWelcomeScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchWelcomeScreenStateImpl extends _SearchWelcomeScreenState {
-  _$SearchWelcomeScreenStateImpl({required this.searchState}) : super._();
+  _$SearchWelcomeScreenStateImpl({required this.searchState, this.errorMsg})
+      : super._();
 
   @override
   final SearchState searchState;
+  @override
+  final String? errorMsg;
 
   @override
   String toString() {
-    return 'SearchWelcomeScreenState(searchState: $searchState)';
+    return 'SearchWelcomeScreenState(searchState: $searchState, errorMsg: $errorMsg)';
   }
 
   @override
@@ -125,11 +139,13 @@ class _$SearchWelcomeScreenStateImpl extends _SearchWelcomeScreenState {
         (other.runtimeType == runtimeType &&
             other is _$SearchWelcomeScreenStateImpl &&
             (identical(other.searchState, searchState) ||
-                other.searchState == searchState));
+                other.searchState == searchState) &&
+            (identical(other.errorMsg, errorMsg) ||
+                other.errorMsg == errorMsg));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchState);
+  int get hashCode => Object.hash(runtimeType, searchState, errorMsg);
 
   @JsonKey(ignore: true)
   @override
@@ -140,12 +156,15 @@ class _$SearchWelcomeScreenStateImpl extends _SearchWelcomeScreenState {
 }
 
 abstract class _SearchWelcomeScreenState extends SearchWelcomeScreenState {
-  factory _SearchWelcomeScreenState({required final SearchState searchState}) =
-      _$SearchWelcomeScreenStateImpl;
+  factory _SearchWelcomeScreenState(
+      {required final SearchState searchState,
+      final String? errorMsg}) = _$SearchWelcomeScreenStateImpl;
   _SearchWelcomeScreenState._() : super._();
 
   @override
   SearchState get searchState;
+  @override
+  String? get errorMsg;
   @override
   @JsonKey(ignore: true)
   _$$SearchWelcomeScreenStateImplCopyWith<_$SearchWelcomeScreenStateImpl>

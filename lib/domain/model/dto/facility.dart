@@ -2,16 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'facility.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: true)
 class Facility {
-  final int id;
-  @JsonKey(name: 'name_ru')
-  final String? name;
-  final FacilityCategory? category;
-
   Facility({
     required this.id,
-    required this.name,
+    required this.name1,
+    required this.name2,
     required this.category,
   });
 
@@ -19,10 +15,18 @@ class Facility {
 
   Map<String, dynamic> toJson() => _$FacilityToJson(this);
 
+  final int id;
+  @JsonKey(name: 'name_ru')
+  final String? name1;
+  @JsonKey(name: 'name')
+  final String? name2;
+  final FacilityCategory? category;
+
   String get imagePath => 'assets/icons/facilities/category_${category?.id}.png';
+  String get name => name1 ?? name2 ?? '';
 }
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: true)
 class FacilityCategory {
   final int id;
   @JsonKey(name: 'name_ru')

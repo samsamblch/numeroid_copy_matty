@@ -1,14 +1,12 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/app_router.gr.dart';
-import 'package:numeroid/core/locator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/kit_textfield.dart';
 
+import '../../core/app_route.dart';
 import 'widgets/auth_disclaimer.dart';
 
-@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -43,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Продолжить через электронную почту',
                   enable: _email.isNotEmpty,
                   onTap: () {
-                    appNavigator.pushRoute(PasswordRoute(email: _email));
+                    context.push(AppRoutes.password, extra: _email);
                   },
                 ),
               ),

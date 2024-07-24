@@ -38,8 +38,11 @@ class MonthCalendar extends StatelessWidget {
     if (endRangeDate == null) {
       return date.isAtSameMomentAs(startRangeDate!);
     }
-    return date.isAfter(startRangeDate!.subtract(const Duration(days: 1))) &&
-        date.isBefore(endRangeDate!.add(const Duration(days: 1)));
+
+    final bool1 = date.isAfter(startRangeDate!.subtract(const Duration(days: 1)));
+    final bool2 = date.isBefore(endRangeDate!);
+
+    return bool1 && bool2;
   }
 
   @override
@@ -47,7 +50,6 @@ class MonthCalendar extends StatelessWidget {
     final DateTime firstDayOfMonth = DateTime(month.year, month.month, 1);
     final int daysInMonth = DateTime(month.year, month.month + 1, 0).day;
     final int weekDayOfFirstDay = (firstDayOfMonth.weekday + 6) % 7;
-    // final int previousMonthDays = weekDayOfFirstDay;
     final int daysFromPreviousMonth = weekDayOfFirstDay;
     final int daysFromNextMonth = (7 - ((daysInMonth + daysFromPreviousMonth) % 7)) % 7;
     final totalDays = daysFromPreviousMonth + daysInMonth + daysFromNextMonth;

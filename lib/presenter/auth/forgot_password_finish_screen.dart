@@ -1,13 +1,11 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:numeroid/core/locator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import 'widgets/auth_disclaimer.dart';
 
-@RoutePage()
 class ForgotPasswordFinishScreen extends StatelessWidget {
   const ForgotPasswordFinishScreen({
     super.key,
@@ -39,7 +37,7 @@ class ForgotPasswordFinishScreen extends StatelessWidget {
               child: AppButtonBlue(
                 text: 'Вернуться на страницу входа',
                 onTap: () {
-                  appNavigator.popRoot();
+                  context.pop();
                 },
               ),
             ),

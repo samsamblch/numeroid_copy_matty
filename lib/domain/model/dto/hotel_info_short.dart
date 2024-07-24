@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:numeroid/domain/model/dto/city.dart';
-import 'package:numeroid/domain/model/dto/country.dart';
 import 'package:numeroid/domain/model/dto/photo.dart';
 
 part 'hotel_info_short.g.dart';

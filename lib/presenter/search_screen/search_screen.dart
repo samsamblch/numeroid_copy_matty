@@ -1,7 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numeroid/core/app_router.gr.dart';
+import 'package:go_router/go_router.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/bloc/search/search_bloc.dart';
 import 'package:numeroid/utils/formatters.dart';
@@ -10,13 +10,13 @@ import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../utils/dialogs.dart';
+import '../../widgets/calendar.dart';
 import '../../widgets/location_text_field.dart';
 import 'bloc/search_screen_bloc.dart';
 import 'search_list_page.dart';
 import 'search_map_page.dart';
 import 'widgets/rooms_dialog_body.dart';
 
-@RoutePage()
 class SearchScreen extends StatefulWidget {
   const SearchScreen({
     super.key,
@@ -57,7 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   color: Colors.grey.shade500,
                                 ),
                                 onPressed: () {
-                                  appNavigator.pop();
+                                  context.pop();
                                 },
                               ),
                               const Expanded(
@@ -158,21 +158,40 @@ class _FilterMore extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: (!state.loading)
-                    ? Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '${Formatters.fromDateCalendar2(globalState.search.startDate)} - ${Formatters.fromDateCalendar2(globalState.search.endDate)}',
-                            style: KitTextStyles.medium13.copyWith(
-                              color: appTheme.colors.text.primary,
+                    ? InkWell(
+                        onTap: () {
+                          Dialogs.showAppDialog(
+                            context: context,
+                            title: 'Выбор дат',
+                            autoScroll: false,
+                            body: AppCalendar(
+                              beginPeriod: globalState.search.startDate,
+                              endPeriod: globalState.search.endDate,
+                              onApplyPeriod: ((DateTime, DateTime) value) {
+                                context.read<SearchBloc>().add(
+                                      SearchChangeDate(start: value.$1, end: value.$2),
+                                    );
+                                context.pop();
+                              },
                             ),
-                            textAlign: TextAlign.center,
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${Formatters.fromDateCalendar2(globalState.search.startDate)} - ${Formatters.fromDateCalendar2(globalState.search.endDate)}',
+                              style: KitTextStyles.medium13.copyWith(
+                                color: appTheme.colors.text.primary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       )
@@ -242,9 +261,7 @@ class _FilterMore extends StatelessWidget {
                         ),
                         child: InkWell(
                           onTap: () {
-                            appNavigator.pushRoute(
-                              const SearchFilterRoute(),
-                            );
+                            context.push(AppRoutes.searchFilter);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
