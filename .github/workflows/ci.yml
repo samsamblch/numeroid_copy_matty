@@ -16,7 +16,7 @@ jobs:
     runs-on: flutter-runner
 
     outputs:
-      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
+      ENV_VERSION: ${{ steps.set-env-output.outputs.ENV_VERSION }}
 
     steps:
       - name: Checkout code
@@ -29,15 +29,19 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "::set-output name=ENV_VERSION::prod"
+            echo "ENV_VERSION=prod" >> $GITHUB_ENV
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "::set-output name=ENV_VERSION::dev"
+            echo "ENV_VERSION=dev" >> $GITHUB_ENV
           else
-            echo "::set-output name=ENV_VERSION::unknown"
-          fi
-    
-      - name: Set execute permissions for scripts
-        run: chmod +x ci/scripts/*.sh
+            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+
+      - name: Set ENV_VERSION as output
+        id: set-env-output
+        run: |
+          echo "ENV_VERSION=${{ env.ENV_VERSION }}" >> $GITHUB_ENV
+
+      - name: Set execute permissions for build_common.sh
+        run: chmod +x ci/scripts/build_common.sh
 
       - name: Run common build script
         run: |
@@ -151,5 +155,5 @@ jobs:
           CHAT_ID="-1002093809569"
           THREAD_ID="2823"  # Замените на ID темы группы
           FILE_PATHS="${{ env.APK_NAME }},${{ env.IPA_NAME }}"
-          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ env.ENV_VERSION }}-${{ github.run_number }}"
+          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ needs.common.outputs.ENV_VERSION }}-${{ github.run_number }}"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
