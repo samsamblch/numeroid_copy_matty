@@ -57,19 +57,18 @@ jobs:
           path: ./lib/
 
       - name: Build Android APK
-        id: build_apk
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
           APK_NAME="${REPO_NAME}-${VERSION_NAME}-beta.apk"
           ci/scripts/build_android.sh -n $REPO_NAME -v $VERSION_NAME
-          echo "apk_name=${APK_NAME}" >> $GITHUB_ENV
+          echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
 
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.build_apk.outputs.apk_name }}
-          path: build/artifacts/android/${{ steps.build_apk.outputs.apk_name }}
+          name: ${{ env.APK_NAME }}
+          path: build/artifacts/android/${{ env.APK_NAME }}
 
   build-ios:
     name: Build iOS IPA
@@ -90,16 +89,15 @@ jobs:
           path: ./lib/
 
       - name: Build iOS IPA
-        id: build_ipa
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
           IPA_NAME="${REPO_NAME}-${VERSION_NAME}-beta.ipa"
           ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
-          echo "ipa_name=${IPA_NAME}" >> $GITHUB_ENV
+          echo "IPA_NAME=${IPA_NAME}" >> $GITHUB_ENV
 
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.build_ipa.outputs.ipa_name }}
-          path: build/artifacts/ios/${{ steps.build_ipa.outputs.ipa_name }}
+          name: ${{ env.IPA_NAME }}
+          path: build/artifacts/ios/${{ env.IPA_NAME }}
