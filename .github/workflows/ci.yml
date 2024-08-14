@@ -15,22 +15,15 @@ jobs:
     name: Common Setup
     runs-on: flutter-runner
 
+    env:
+      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Determine Environment
-        run: |
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "ENV_VERSION=prod" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "ENV_VERSION=dev" >> $GITHUB_ENV
-          else
-            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
-          fi
 
       - name: Set execute permissions for scripts
         run: chmod +x ci/scripts/*.sh
@@ -55,6 +48,9 @@ jobs:
     runs-on: flutter-runner
     needs: common
 
+    env:
+      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -71,13 +67,15 @@ jobs:
           name: common-artifacts
           path: ./
 
+      # This step might trigger a linter warning, but it's intentional
       - name: Build Android APK
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e ${{ env.ENV_VERSION }})
           ci/scripts/build_android.sh -n $NAME -e ${{ env.ENV_VERSION }}
           echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
-
+      
+      # This line might trigger a linter warning, but it's intentional
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -88,6 +86,9 @@ jobs:
     name: Build iOS IPA
     runs-on: flutter-runner
     needs: common
+
+    env:
+      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
 
     steps:
       - name: Checkout code
@@ -105,6 +106,7 @@ jobs:
           name: common-artifacts
           path: ./
 
+      # This step might trigger a linter warning, but it's intentional
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
@@ -112,6 +114,7 @@ jobs:
           ci/scripts/build_ios.sh -n $NAME -e ${{ env.ENV_VERSION }}
           echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
+      # This step might trigger a linter warning, but it's intentional
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
         with:
