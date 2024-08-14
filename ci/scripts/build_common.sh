@@ -19,6 +19,10 @@ if [ -z "$BUILD_NUMBER" ] || [ -z "$REPO_NAME" ]; then
     exit 1
 fi
 
+# Запуск команд генерации
+make gen
+make gen:locale
+
 # Настройка версии в pubspec.yaml
 VERSION=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2 | cut -d '+' -f 1)
 sed -i.bak "s/^version: .*/version: $VERSION+$BUILD_NUMBER/" pubspec.yaml
