@@ -1,16 +1,18 @@
 #!/bin/bash
 
-# Инициализация переменных
-NAME=""
-PLATFORM="android"
-ENV_VERSION=""
+# Инициализация переменных, задаваемых извне
+ENV_VERSION=""  # Окружение (dev/prod)
+NAME=""  # Название проекта
+
+# Инициализация постоянных переменных
+PLATFORM="android"  # Платформа (в данном случае Android)
 
 # Обработка аргументов с флагами
 while getopts n:e: flag
 do
     case "${flag}" in
-        n) NAME=${OPTARG};;
-        e) ENV_VERSION=${OPTARG};;
+        n) NAME=${OPTARG};;  # Название проекта (используется для формирования имени файла)
+        e) ENV_VERSION=${OPTARG};;  # Окружение (dev/prod)
     esac
 done
 
@@ -20,14 +22,27 @@ if [ -z "$NAME" ] || [ -z "$ENV_VERSION" ]; then
     exit 1
 fi
 
-# Формирование имени файла с использованием gen_filename.sh
+# Очистка старых артефактов и кэша
+echo "Cleaning old build artifacts and cache"
+# Удаление предыдущих сборок, если они существуют
+rm -rf build/app/outputs/flutter-apk/*
+
+# Сборка APK с использованием Flutter
+echo "Building APK"
+flutter build apk --release --flavor $ENV_VERSION  # Сборка APK для заданного окружения
+
+# Формирование имени APK файла с использованием генерированного имени
+echo "Generating APK filename"
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 
-# Сборка APK
-flutter build apk
+# Переименование и перемещение APK файла
+echo "Renaming and moving APK file"
+mv build/app/outputs/flutter-apk/app-$ENV_VERSION-release.apk build/artifacts/$PLATFORM/${FILENAME}.apk
 
-# Подготовка директории для артефакта
-mkdir -p build/artifacts/$PLATFORM
-
-# Переименование и перемещение APK
-mv build/app/outputs/flutter-apk/app-release.apk build/artifacts/$PLATFORM/${FILENAME}.apk
+# Проверка на успешное перемещение
+if [ $? -eq 0 ]; then
+    echo "APK successfully built and moved to build/artifacts/$PLATFORM/${FILENAME}.apk"
+else
+    echo "Failed to move APK file"
+    exit 1
+fi
