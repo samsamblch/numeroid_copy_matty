@@ -18,8 +18,10 @@ if [ -z "$REPO_NAME" ]; then
     exit 1
 fi
 
-# Извлечение версии из pubspec.yaml
+# Извлечение версии и номера сборки из pubspec.yaml
 VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+# Заменяем + на -
+VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
 
 # Сборка APK
 flutter build apk

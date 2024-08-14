@@ -33,6 +33,8 @@ jobs:
 
           # Извлечение версии с номером сборки из pubspec.yaml и сохранение в переменной окружения
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          # Заменяем + на -
+          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
           echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
 
       - name: Save generated files as artifact
@@ -66,8 +68,7 @@ jobs:
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_android.sh -n $REPO_NAME
-          # Извлечение версии из pubspec.yaml
-          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          # Извлечение и изменение версии из pubspec.yaml
           APK_NAME="${REPO_NAME}-android-${VERSION_NAME}-beta.apk"
           echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
 
