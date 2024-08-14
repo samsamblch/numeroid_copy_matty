@@ -31,7 +31,7 @@ jobs:
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
 
-          # Извлечем версию из pubspec.yaml и сохраним в переменной окружения
+          # Извлечение версии с номером сборки из pubspec.yaml и сохранение в переменной окружения
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
           echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
 
@@ -59,13 +59,15 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifacts  # Здесь правильное имя артефакта
+          name: common-artifacts
           path: ./
 
       - name: Build Android APK
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_android.sh -n $REPO_NAME
+          # Извлечение версии из pubspec.yaml
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
           APK_NAME="${REPO_NAME}-android-${VERSION_NAME}-beta.apk"
           echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
 
@@ -90,7 +92,7 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifacts  # Здесь правильное имя артефакта
+          name: common-artifacts
           path: ./
 
       - name: Build iOS IPA
