@@ -87,16 +87,26 @@ security set-key-partition-list -S apple-tool:,apple: -s -k $MY_KEYCHAIN_PASSWOR
 # Cборка iOS проекта базовая
 flutter build ipa --export-options-plist="$EXPORT_OPTIONS_PLIST"
 
+## Очистка keychain после сборки
+# Удаление временного keychain после завершения сборки
+security delete-keychain "$MY_KEYCHAIN"
+
 # Генерация имени файла для IPA
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 # Копирование сгенерированного IPA в директорию артефактов
 
-cd build/ios/ipa/
+# Создание директории для артефактов, если она не существует
+echo "Creating directory for artifacts if it doesn't exist"
+mkdir -p build/artifacts/$PLATFORM
 
-ls
+# Переименование и перемещение IPA файла
+echo "Renaming and moving IPA file"
+mv build/ios/ipa/$NAME.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa  
 
-mv build/ios/ipa/$NAME.ipa build/artifacts/${FILENAME}.ipa  
-
-## Очистка keychain после сборки
-# Удаление временного keychain после завершения сборки
-security delete-keychain "$MY_KEYCHAIN"
+# Проверка на успешное перемещение
+if [ $? -eq 0 ]; then
+    echo "IPA successfully built and moved to build/artifacts/$PLATFORM/${FILENAME}.ipa"
+else
+    echo "Failed to move ipa file"
+    exit 1
+fi
