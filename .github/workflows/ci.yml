@@ -62,6 +62,9 @@ jobs:
       - name: Set execute permissions for build_android.sh
         run: chmod +x ci/scripts/build_android.sh
 
+      - name: Set execute permissions for gen_filename.sh
+        run: chmod +x ci/scripts/gen_filename.sh
+
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
@@ -92,6 +95,9 @@ jobs:
 
       - name: Set execute permissions for build_ios.sh
         run: chmod +x ci/scripts/build_ios.sh
+
+      - name: Set execute permissions for gen_filename.sh
+        run: chmod +x ci/scripts/gen_filename.sh
 
       - name: Download generated files
         uses: actions/download-artifact@v4
