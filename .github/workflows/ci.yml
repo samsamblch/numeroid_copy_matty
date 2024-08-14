@@ -56,6 +56,12 @@ jobs:
           name: common-generates-${{ github.run_number }}
           path: ./
 
+      - name: Print /
+        run: ls
+
+      - name: Print /lib
+        run: ls /lib
+      
       - name: Build Android APK
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
@@ -68,32 +74,32 @@ jobs:
           name: android-apk
           path: build/artifacts/android/*.apk
 
-  build-ios:
-    name: Build iOS IPA
-    runs-on: flutter-runner
-    needs: common
+  # build-ios:
+  #   name: Build iOS IPA
+  #   runs-on: flutter-runner
+  #   needs: common
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Set execute permissions for build_ios.sh
-        run: chmod +x ci/scripts/build_ios.sh
+  #     - name: Set execute permissions for build_ios.sh
+  #       run: chmod +x ci/scripts/build_ios.sh
 
-      - name: Download generated files
-        uses: actions/download-artifact@v3
-        with:
-          name: common-generates-${{ github.run_number }}
-          path: ./
+  #     - name: Download generated files
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: common-generates-${{ github.run_number }}
+  #         path: ./
 
-      - name: Build iOS IPA
-        run: |
-          REPO_NAME=$(basename $GITHUB_REPOSITORY)
-          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
-          ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
+  #     - name: Build iOS IPA
+  #       run: |
+  #         REPO_NAME=$(basename $GITHUB_REPOSITORY)
+  #         VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+  #         ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
 
-      - name: Upload IPA as Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ios-ipa
-          path: build/artifacts/ios/*.ipa
+  #     - name: Upload IPA as Artifact
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: ios-ipa
+  #         path: build/artifacts/ios/*.ipa
