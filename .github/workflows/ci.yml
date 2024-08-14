@@ -15,15 +15,22 @@ jobs:
     name: Common Setup
     runs-on: flutter-runner
 
-    env:
-      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Determine Environment
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "ENV_VERSION=prod" >> $GITHUB_ENV
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            echo "ENV_VERSION=dev" >> $GITHUB_ENV
+          else
+            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+          fi
 
       - name: Set execute permissions for scripts
         run: chmod +x ci/scripts/*.sh
@@ -48,9 +55,6 @@ jobs:
     runs-on: flutter-runner
     needs: common
 
-    env:
-      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,16 +62,12 @@ jobs:
       - name: Set execute permissions for build_android.sh
         run: chmod +x ci/scripts/build_android.sh
 
-      - name: Set execute permissions for gen_filename.sh
-        run: chmod +x ci/scripts/gen_filename.sh
-
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
           name: common-artifacts
           path: ./
 
-      # This step might trigger a linter warning, but it's intentional
       - name: Build Android APK
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
@@ -75,7 +75,6 @@ jobs:
           ci/scripts/build_android.sh -n $NAME -e ${{ env.ENV_VERSION }}
           echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
       
-      # This line might trigger a linter warning, but it's intentional
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -87,9 +86,6 @@ jobs:
     runs-on: flutter-runner
     needs: common
 
-    env:
-      ENV_VERSION: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -97,16 +93,12 @@ jobs:
       - name: Set execute permissions for build_ios.sh
         run: chmod +x ci/scripts/build_ios.sh
 
-      - name: Set execute permissions for gen_filename.sh
-        run: chmod +x ci/scripts/gen_filename.sh
-
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
           name: common-artifacts
           path: ./
 
-      # This step might trigger a linter warning, but it's intentional
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
@@ -114,9 +106,38 @@ jobs:
           ci/scripts/build_ios.sh -n $NAME -e ${{ env.ENV_VERSION }}
           echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
-      # This step might trigger a linter warning, but it's intentional
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.IPA_NAME }}
           path: build/artifacts/ios/${{ env.IPA_NAME }}
+
+  send-telegram:
+    name: Send Build to Telegram
+    runs-on: flutter-runner
+    needs: [build-android, build-ios]
+
+    steps:
+      - name: Set execute permissions for send_to_telegram.sh
+        run: chmod +x ci/scripts/send_to_telegram.sh
+
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.APK_NAME }}
+          path: ./
+
+      - name: Download IPA artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.IPA_NAME }}
+          path: ./
+
+      - name: Send APK and IPA to Telegram
+        run: |
+          BOT_TOKEN="7172340571:AAHRykv8vTA_6fk9lvjaH1beOHd4TIPeGeA"
+          CHAT_ID="-1002093809569"
+          THREAD_ID="2823"  # Замените на ID темы группы
+          FILE_PATHS="${{ env.APK_NAME }},${{ env.IPA_NAME }}"
+          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ env.ENV_VERSION }} ${{ github.run_number }}"
+          ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
