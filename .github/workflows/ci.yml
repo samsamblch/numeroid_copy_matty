@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Set execute permissions for scripts
-        run: chmod +x ci/scripts/*.sh
+      - name: Set execute permissions for build_common.sh
+        run: chmod +x ci/scripts/build_common.sh
 
       - name: Run common build script
         run: |
@@ -46,6 +46,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set execute permissions for build_android.sh
+        run: chmod +x ci/scripts/build_android.sh
 
       - name: Download generated files
         uses: actions/download-artifact@v3
@@ -73,6 +76,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set execute permissions for build_ios.sh
+        run: chmod +x ci/scripts/build_ios.sh
 
       - name: Download generated files
         uses: actions/download-artifact@v3
