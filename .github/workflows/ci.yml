@@ -31,6 +31,11 @@ jobs:
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
 
+      - name: Print /lib/domain/model/dto
+        run: |
+          cd lib/domain/model/dto
+          ls
+
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v3
         with:
