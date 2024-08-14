@@ -1,27 +1,27 @@
 #!/bin/bash
 
 # Инициализация переменных
-REPO_NAME=""
+NAME=""
 PLATFORM="ios"
+ENV_VERSION=""
 
 # Обработка аргументов с флагами
-while getopts n: flag
+while getopts n:e: flag
 do
     case "${flag}" in
-        n) REPO_NAME=${OPTARG};;
+        n) NAME=${OPTARG};;
+        e) ENV_VERSION=${OPTARG};;
     esac
 done
 
 # Проверка обязательных параметров
-if [ -z "$REPO_NAME" ]; then
-    echo "Usage: $0 -n REPO_NAME"
+if [ -z "$NAME" ] || [ -z "$ENV_VERSION" ]; then
+    echo "Usage: $0 -n NAME -e ENV_VERSION"
     exit 1
 fi
 
-# Извлечение версии и номера сборки из pubspec.yaml
-VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
-# Заменяем + на -
-VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
+# Формирование имени файла с использованием gen_filename.sh
+FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 
 # Сборка IPA
 flutter build ipa --export-options-plist=sign/ios/exportOptionsBeta.plist
@@ -30,4 +30,4 @@ flutter build ipa --export-options-plist=sign/ios/exportOptionsBeta.plist
 mkdir -p build/artifacts/$PLATFORM
 
 # Переименование и перемещение IPA
-mv build/ios/ipa/App.ipa build/artifacts/$PLATFORM/${REPO_NAME}-${PLATFORM}-${VERSION_NAME}-beta.ipa
+mv build/ios/ipa/App.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa

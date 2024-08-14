@@ -22,20 +22,24 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Set execute permissions for build_common.sh
-        run: chmod +x ci/scripts/build_common.sh
+      - name: Determine Environment
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "ENV_VERSION=prod" >> $GITHUB_ENV
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            echo "ENV_VERSION=dev" >> $GITHUB_ENV
+          else
+            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+          fi
+
+      - name: Set execute permissions for scripts
+        run: chmod +x ci/scripts/*.sh
 
       - name: Run common build script
         run: |
           BUILD_NUMBER=${{ github.run_number }}
-          REPO_NAME=$(basename $GITHUB_REPOSITORY)
-          ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
-
-          # Извлечение версии с номером сборки из pubspec.yaml и сохранение в переменной окружения
-          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
-          # Заменяем + на -
-          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
-          echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
+          NAME=$(basename $GITHUB_REPOSITORY)
+          ci/scripts/build_common.sh -b $BUILD_NUMBER -n $NAME
 
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
@@ -66,14 +70,10 @@ jobs:
 
       - name: Build Android APK
         run: |
-          REPO_NAME=$(basename $GITHUB_REPOSITORY)
-          # Извлечение версии из pubspec.yaml
-          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
-          # Заменяем + на -
-          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
-          ci/scripts/build_android.sh -n $REPO_NAME
-          APK_NAME="${REPO_NAME}-android-${VERSION_NAME}-beta.apk"
-          echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
+          NAME=$(basename $GITHUB_REPOSITORY)
+          FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e ${{ env.ENV_VERSION }})
+          ci/scripts/build_android.sh -n $NAME -e ${{ env.ENV_VERSION }}
+          echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
 
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
@@ -101,14 +101,10 @@ jobs:
 
       - name: Build iOS IPA
         run: |
-          REPO_NAME=$(basename $GITHUB_REPOSITORY)
-          # Извлечение версии из pubspec.yaml
-          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
-          # Заменяем + на -
-          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
-          IPA_NAME="${REPO_NAME}-ios-${VERSION_NAME}-beta.ipa"
-          ci/scripts/build_ios.sh -n $REPO_NAME
-          echo "IPA_NAME=${IPA_NAME}" >> $GITHUB_ENV
+          NAME=$(basename $GITHUB_REPOSITORY)
+          FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e ${{ env.ENV_VERSION }})
+          ci/scripts/build_ios.sh -n $NAME -e ${{ env.ENV_VERSION }}
+          echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
