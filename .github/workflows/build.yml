@@ -27,6 +27,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Set version in pubspec.yaml
+        run: |
+          BUILD_NUMBER=$(echo $GITHUB_RUN_NUMBER)
+          VERSION=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2 | cut -d '+' -f 1)
+          sed -i.bak "s/^version: .*/version: $VERSION+$BUILD_NUMBER/" pubspec.yaml
+          cat pubspec.yaml
+
       - name: Build APK
         run: flutter build apk
 
@@ -52,6 +59,13 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Set version in pubspec.yaml
+        run: |
+          BUILD_NUMBER=$(echo $GITHUB_RUN_NUMBER)
+          VERSION=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2 | cut -d '+' -f 1)
+          sed -i.bak "s/^version: .*/version: $VERSION+$BUILD_NUMBER/" pubspec.yaml
+          cat pubspec.yaml
 
       - name: Build IPA
         run: flutter build ipa --export-options-plist=sign/ios/exportOptionsBeta.plist
