@@ -67,8 +67,11 @@ jobs:
       - name: Build Android APK
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          # Извлечение версии из pubspec.yaml
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          # Заменяем + на -
+          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
           ci/scripts/build_android.sh -n $REPO_NAME
-          # Извлечение и изменение версии из pubspec.yaml
           APK_NAME="${REPO_NAME}-android-${VERSION_NAME}-beta.apk"
           echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
 
@@ -99,6 +102,10 @@ jobs:
       - name: Build iOS IPA
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          # Извлечение версии из pubspec.yaml
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          # Заменяем + на -
+          VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
           IPA_NAME="${REPO_NAME}-ios-${VERSION_NAME}-beta.ipa"
           ci/scripts/build_ios.sh -n $REPO_NAME
           echo "IPA_NAME=${IPA_NAME}" >> $GITHUB_ENV
