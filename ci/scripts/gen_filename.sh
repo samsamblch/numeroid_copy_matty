@@ -27,7 +27,7 @@ VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
 VERSION_NAME=$(echo $VERSION_NAME | sed 's/+/-/')
 
 # Формируем имя файла
-FILENAME="${NAME}-${PLATFORM}-${VERSION_NAME}-${ENV_VERSION}"ф
+FILENAME="${NAME}-${PLATFORM}-${VERSION_NAME}-${ENV_VERSION}"
 
 # Вывод имени файла
 echo $FILENAME

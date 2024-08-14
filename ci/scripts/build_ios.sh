@@ -20,6 +20,12 @@ if [ -z "$NAME" ] || [ -z "$ENV_VERSION" ]; then
     exit 1
 fi
 
+# Установка сертификатов и профилей подписания
+echo "Installing certificates and provisioning profiles..."
+security import sign/ios/cert_dist_12345678.p12 -P "" -T /usr/bin/codesign
+mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+cp sign/ios/GJL3XCUNGUcomexamplenumeroid.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
 # Формирование имени файла с использованием gen_filename.sh
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 
