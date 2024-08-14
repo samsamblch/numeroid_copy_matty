@@ -95,7 +95,7 @@ cd build/ios/ipa/
 
 ls
 
-mv build/ios/ipa/$NAME.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa  
+mv build/ios/ipa/$NAME.ipa build/artifacts/${FILENAME}.ipa  
 
 ## Очистка keychain после сборки
 # Удаление временного keychain после завершения сборки
