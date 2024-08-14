@@ -1,14 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/domain/model/ro/login_ro.dart';
 import 'package:numeroid/domain/network/network_service.dart';
 import 'package:numeroid/domain/repository/user_repository.dart';
 
 import '../../../core/locator.dart';
-import '../../model/dto/organization_short.dart';
 import '../../model/dto/user.dart';
 
 part 'app_event.dart';
@@ -26,19 +24,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     add(AppStart());
   }
 
-  // ignore: unused_field
-  User? _user;
-  // ignore: unused_field
-  OrganizationShort? _organization;
-
   Future<void> onStart(
     AppStart event,
     Emitter<AppState> emit,
   ) async {
-    final savedToken = await UserRepository().loadToken();
-    if (savedToken != null) {
-      locator<AuthNetworkService>().token = savedToken.replaceAll('"', '');
-      emit(const AppRunningAuth());
+    final data = await UserRepository().loadAuthData();
+
+    if (data != null) {
+      locator<AuthNetworkService>().token = data.token;
+      emit(AppRunningAuth(user: data.user));
     } else {
       emit(const AppRunningUnauth());
     }
@@ -50,12 +44,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     Emitter<AppState> emit,
   ) {
     locator<AuthNetworkService>().token = event.response.token;
-    _user = event.response.user;
-    // _organization = event.response.org;
-    String jsonToken = jsonEncode(event.response.token);
-    UserRepository().saveToken(jsonToken);
-
-    emit(const AppRunningAuth());
+    UserRepository().saveAuthData(event.response);
+    emit(AppRunningAuth(user: event.response.user));
   }
 
   void onAuthLogout(
@@ -63,9 +53,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     Emitter<AppState> emit,
   ) {
     locator<AuthNetworkService>().token = '';
-
-    _user = null;
-    _organization = null;
     emit(const AppRunningUnauth());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:numeroid/core/locator.dart';
 
 import '../kit/app_typography.dart';
@@ -8,44 +9,44 @@ InputDecoration _getDecorator({
   String? hintText,
   String? suffix,
 }) {
-  return InputDecoration(
-    // contentPadding: const EdgeInsets.symmetric(
-    //   vertical: 0,
-    //   horizontal: 12,
-    // ),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(4),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: isError ? appTheme.colors.brand.red : appTheme.colors.elements.blue,
-        width: 1,
-      ),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: appTheme.colors.border.grey,
-        width: 1,
-      ),
-    ),
-    fillColor: Colors.white,
-    hintText: hintText,
-    // suffixIcon: (suffix != null)
-    //     ? Padding(
-    //         padding: const EdgeInsets.only(
-    //           bottom: 2,
-    //           right: 10,
-    //         ),
-    //         child: Text(
-    //           suffix,
-    //           style: KitTextStyles.semiBold14.copyWith(
-    //             color: appTheme.colors.text.secondary,
-    //           ),
-    //         ),
-    //       )
-    //     : null,
-    // suffixIconConstraints: (suffix != null) ? const BoxConstraints(minWidth: 0, minHeight: 0) : null,
-  );
+  return const InputDecoration(
+      // contentPadding: const EdgeInsets.symmetric(
+      //   vertical: 0,
+      //   horizontal: 12,
+      // ),
+      // border: OutlineInputBorder(
+      //   borderRadius: BorderRadius.circular(4),
+      // ),
+      // focusedBorder: OutlineInputBorder(
+      //   borderSide: BorderSide(
+      //     color: isError ? appTheme.colors.brand.red : appTheme.colors.elements.blue,
+      //     width: 1,
+      //   ),
+      // ),
+      // enabledBorder: OutlineInputBorder(
+      //   borderSide: BorderSide(
+      //     color: appTheme.colors.border.grey,
+      //     width: 1,
+      //   ),
+      // ),
+      // fillColor: Colors.white,
+      // hintText: hintText,
+      // suffixIcon: (suffix != null)
+      //     ? Padding(
+      //         padding: const EdgeInsets.only(
+      //           bottom: 2,
+      //           right: 10,
+      //         ),
+      //         child: Text(
+      //           suffix,
+      //           style: KitTextStyles.semiBold14.copyWith(
+      //             color: appTheme.colors.text.secondary,
+      //           ),
+      //         ),
+      //       )
+      //     : null,
+      // suffixIconConstraints: (suffix != null) ? const BoxConstraints(minWidth: 0, minHeight: 0) : null,
+      );
 }
 
 class _KitBaseTextField extends StatelessWidget {
@@ -72,10 +73,7 @@ class _KitBaseTextField extends StatelessWidget {
             style: KitTextStyles.semiBold14,
           ),
         if (title != null) const SizedBox(height: 6),
-        SizedBox(
-          height: 36,
-          child: child,
-        ),
+        child,
         if (errMessage != null)
           Padding(
             padding: const EdgeInsets.only(top: 8),
@@ -100,6 +98,7 @@ class KitTextField extends StatefulWidget {
     this.value,
     this.hintText,
     this.suffix,
+    this.maxLenght,
   });
 
   final String? title;
@@ -108,12 +107,13 @@ class KitTextField extends StatefulWidget {
   final String? value;
   final String? hintText;
   final String? suffix;
+  final int? maxLenght;
 
   @override
-  State<KitTextField> createState() => _AppTextFieldState();
+  State<KitTextField> createState() => _KitTextFieldState();
 }
 
-class _AppTextFieldState extends State<KitTextField> {
+class _KitTextFieldState extends State<KitTextField> {
   late TextEditingController controller;
 
   @override
@@ -128,20 +128,30 @@ class _AppTextFieldState extends State<KitTextField> {
       title: widget.title,
       onChange: widget.onChange,
       errMessage: widget.errMessage,
-      child: TextField(
-        style: KitTextStyles.medium14.copyWith(
-          color: appTheme.colors.text.primary,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: appTheme.colors.border.grey),
         ),
-        textAlignVertical: TextAlignVertical.top,
-        controller: controller,
-        // cursorHeight: 16,
-        cursorColor: appTheme.colors.elements.blue,
-        decoration: _getDecorator(
-          isError: widget.errMessage != null,
-          hintText: widget.hintText,
-          suffix: widget.suffix,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: TextField(
+            style: KitTextStyles.medium14.copyWith(
+              color: appTheme.colors.text.primary,
+            ),
+            controller: controller,
+            inputFormatters: [
+              if (widget.maxLenght != null) LengthLimitingTextInputFormatter(widget.maxLenght),
+            ],
+            cursorColor: appTheme.colors.elements.blue,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+              isDense: true,
+            ),
+            onChanged: widget.onChange,
+          ),
         ),
-        onChanged: widget.onChange,
       ),
     );
   }
@@ -162,10 +172,10 @@ class KitSecureTextField extends StatefulWidget {
   final String? hintText;
 
   @override
-  State<KitSecureTextField> createState() => _AppSecureTextFieldState();
+  State<KitSecureTextField> createState() => _KitSecureTextFieldState();
 }
 
-class _AppSecureTextFieldState extends State<KitSecureTextField> {
+class _KitSecureTextFieldState extends State<KitSecureTextField> {
   bool _isObscure = true;
 
   @override
@@ -174,35 +184,50 @@ class _AppSecureTextFieldState extends State<KitSecureTextField> {
       title: widget.title,
       onChange: widget.onChange,
       errMessage: widget.errMessage,
-      child: TextField(
-        style: KitTextStyles.medium14.copyWith(
-          color: appTheme.colors.text.primary,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: appTheme.colors.border.grey),
         ),
-        // cursorHeight: 16,
-        textAlignVertical: TextAlignVertical.top,
-        cursorColor: appTheme.colors.elements.blue,
-        decoration: _getDecorator(
-          isError: widget.errMessage != null,
-          hintText: widget.hintText,
-        ).copyWith(
-          suffixIcon: IconButton(
-            onPressed: () {
-              setState(() {
-                _isObscure = !_isObscure;
-              });
-            },
-            icon: ImageIcon(
-              AssetImage(
-                _isObscure ? 'assets/icons/eye_slash.png' : 'assets/icons/eye.png',
-              ),
-              size: 20,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: TextField(
+            style: KitTextStyles.medium14.copyWith(
+              color: appTheme.colors.text.primary,
             ),
+            cursorColor: appTheme.colors.elements.blue,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+              isDense: true,
+              // suffixIcon: Image.asset(
+              //   _isObscure ? 'assets/icons/eye_slash.png' : 'assets/icons/eye.png',
+              //   height: 10,
+              // ),
+
+              // IconButton(
+              //   padding: EdgeInsets.zero,
+
+              //   onPressed: () {
+              //     setState(() {
+              //       _isObscure = !_isObscure;
+              //     });
+              //   },
+              //   icon: ImageIcon(
+
+              //     AssetImage(
+              //       _isObscure ? 'assets/icons/eye_slash.png' : 'assets/icons/eye.png',
+              //     ),
+              //     size: 20,
+              //   ),
+              // ),
+            ),
+            onChanged: widget.onChange,
+            obscureText: _isObscure,
+            enableSuggestions: false,
+            autocorrect: false,
           ),
         ),
-        onChanged: widget.onChange,
-        obscureText: _isObscure,
-        enableSuggestions: false,
-        autocorrect: false,
       ),
     );
   }

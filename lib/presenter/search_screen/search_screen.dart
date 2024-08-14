@@ -8,6 +8,7 @@ import 'package:numeroid/utils/formatters.dart';
 import 'package:numeroid/widgets/app_scaffold.dart';
 import 'package:numeroid/widgets/components/buttons.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
+import 'package:numeroid/widgets/kit/texts.dart';
 
 import '../../utils/dialogs.dart';
 import '../../widgets/calendar.dart';
@@ -109,10 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.grey.shade400,
-                              ),
+                              border: Border.all(width: 1, color: appTheme.colors.border.grey),
                             ),
                             child: InkWell(
                               onTap: () {
@@ -122,8 +120,20 @@ class _SearchScreenState extends State<SearchScreen> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(10),
-                                child: Text(
-                                  (_isMap) ? 'Список' : 'Карта',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/${_isMap ? 'list' : 'map'}_indicator.png',
+                                      width: 18,
+                                      height: 18,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    KitTextMedium14(
+                                      (_isMap) ? 'Список' : 'Карта',
+                                      color: appTheme.colors.text.primary,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

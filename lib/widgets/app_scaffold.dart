@@ -16,8 +16,8 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
+    return Scaffold(
+      body: Container(
         color: appTheme.colors.background.primary,
         child: Column(
           children: [

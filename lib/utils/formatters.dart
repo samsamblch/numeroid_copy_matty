@@ -15,9 +15,7 @@ class Formatters {
   }) {
     final formatter = NumberFormat.decimalPattern('RU-ru');
 
-    final sumText = formatter
-        .format(sum)
-        .replaceAll(formatter.symbols.GROUP_SEP, _smallSpace);
+    final sumText = formatter.format(sum).replaceAll(formatter.symbols.GROUP_SEP, _smallSpace);
 
     return '$sumText$_smallSpace${currencySymbol()}';
   }
@@ -32,15 +30,13 @@ class Formatters {
       value = sum * -1;
     }
 
-    final sumText = formatter
-        .format(value)
-        .replaceAll(formatter.symbols.GROUP_SEP, _smallSpace);
+    final sumText = formatter.format(value).replaceAll(formatter.symbols.GROUP_SEP, _smallSpace);
 
     return '${sum < 0 ? '- ' : '+ '}$sumText$_smallSpace${currencySymbol()}';
   }
 
   static String currencySymbol() {
-    return '₽';
+    return 'руб.'; //'₽';
   }
 
   static String fromDateCalendar(DateTime date) {

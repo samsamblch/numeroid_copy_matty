@@ -61,6 +61,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               child: KitTextField(
                 onChange: (v) {},
                 title: 'Введите номер бронирования',
+                maxLenght: 50,
               ),
             ),
             Padding(
@@ -68,6 +69,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               child: KitTextField(
                 onChange: (v) {},
                 title: 'Введите пин-код',
+                maxLenght: 10,
               ),
             ),
             Padding(
@@ -75,7 +77,9 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               child: KitTextField(
                 onChange: (v) {},
                 title: 'Ваш вопрос в свободной форме',
+                maxLenght: 100,
               ),
+             
             ),
             Container(
               height: 1,
@@ -93,6 +97,7 @@ class _SupportCenterScreenState extends State<SupportCenterScreen> {
               child: KitTextField(
                 onChange: (v) {},
                 title: 'Электронная почта',
+                maxLenght: 20,
               ),
             ),
             AppButtonBlue(

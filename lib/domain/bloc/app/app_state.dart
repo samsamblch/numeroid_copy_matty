@@ -16,5 +16,9 @@ final class AppRunningUnauth extends AppState {
 }
 
 final class AppRunningAuth extends AppState {
-  const AppRunningAuth();
+  const AppRunningAuth({
+    required this.user,
+  });
+
+  final User user;
 }

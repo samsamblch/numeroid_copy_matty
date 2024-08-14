@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:numeroid/domain/database/database.dart';
 import 'package:numeroid/domain/model/req/login_req.dart';
 import 'package:numeroid/domain/model/ro/login_ro.dart';
@@ -5,12 +7,25 @@ import 'package:numeroid/domain/model/ro/login_ro.dart';
 import '../../core/locator.dart';
 
 class UserRepository {
-  void saveToken(String token) {
-    locator<DataBase>().secureSave(key: 'token', value: token);
+  // void saveToken(String token) {
+  //   locator<DataBase>().secureSave(key: 'token', value: token);
+  // }
+
+  // Future<String?> loadToken() async {
+  //   return await locator<DataBase>().secureRead(key: 'token');
+  // }
+
+  void saveAuthData(LoginRo authData) {
+    locator<DataBase>().secureSave(key: 'auth_data', value: jsonEncode(authData.toJson()));
   }
 
-  Future<String?> loadToken() async {
-    return await locator<DataBase>().secureRead(key: 'token');
+  Future<LoginRo?> loadAuthData() async {
+    final json = await locator<DataBase>().secureRead(key: 'auth_data');
+    if (json != null) {
+      return LoginRo.fromJson(jsonDecode(json));
+    } else {
+      return null;
+    }
   }
 
   Future<LoginRo> sendCredentials({
@@ -53,7 +68,7 @@ class UserRepository {
     return;
   }
 
-    void loadOrgMembers() {
+  void loadOrgMembers() {
     return;
   }
 }

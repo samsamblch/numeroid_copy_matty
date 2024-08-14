@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeroid/widgets/kit/app_typography.dart';
 
 import '../../../core/locator.dart';
+import '../../../domain/bloc/app/app_bloc.dart';
 import '../../../widgets/components/containers.dart';
 import '../../../widgets/kit/kit_textfield.dart';
 
@@ -25,52 +27,44 @@ class ProfileSettingsPersonPage extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: WhiteContainer(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  KitTextField(
-                    title: 'Имя',
-                    hintText: 'Введите ваше имя',
-                    onChange: (value) {},
+        BlocBuilder<AppBloc, AppState>(
+          builder: (context, state) {
+            if (state is AppRunningAuth) {
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: WhiteContainer(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        KitTextField(
+                          title: 'Имя',
+                          hintText: 'Введите ваше имя',
+                          value: '${state.user.firstName} ${state.user.lastName}',
+                          onChange: (value) {},
+                        ),
+                        const SizedBox(height: 12),
+                        KitTextField(
+                          title: 'Телефон',
+                          hintText: 'Введите номер телефона',
+                          value: state.user.phone,
+                          onChange: (value) {},
+                        ),
+                        const SizedBox(height: 12),
+                        KitTextField(
+                          title: 'Электронная почта',
+                          hintText: 'Введите адрес эл.почты',
+                          value: state.user.email,
+                          onChange: (value) {},
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 12),
-                  KitTextField(
-                    title: 'Телефон',
-                    hintText: 'Введите номер телефона',
-                    onChange: (value) {},
-                  ),
-                  const SizedBox(height: 12),
-                  KitTextField(
-                    title: 'Электронная почта',
-                    hintText: 'Введите адрес эл.почты',
-                    onChange: (value) {},
-                  ),
-                  const SizedBox(height: 12),
-                  KitTextField(
-                    title: 'Дата рождения',
-                    hintText: 'ДД ММ ГГ',
-                    onChange: (value) {},
-                  ),
-                  const SizedBox(height: 12),
-                  KitTextField(
-                    title: 'Гражданство',
-                    hintText: 'Выберите страну/регион',
-                    onChange: (value) {},
-                  ),
-                  const SizedBox(height: 12),
-                  KitTextField(
-                    title: 'Пол',
-                    hintText: 'Мужской/Женский',
-                    onChange: (value) {},
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
+              );
+            }
+            return const SizedBox();
+          },
         ),
       ],
     );
