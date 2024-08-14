@@ -90,7 +90,12 @@ flutter build ipa --export-options-plist="$EXPORT_OPTIONS_PLIST"
 # Генерация имени файла для IPA
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 # Копирование сгенерированного IPA в директорию артефактов
-cp build/ios/ipa/$NAME.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa  
+
+cd build/ios/ipa/
+
+ls
+
+mv build/ios/ipa/$NAME.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa  
 
 ## Очистка keychain после сборки
 # Удаление временного keychain после завершения сборки
