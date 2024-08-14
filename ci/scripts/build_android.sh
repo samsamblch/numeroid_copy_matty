@@ -29,13 +29,19 @@ rm -rf build/app/outputs/flutter-apk/*
 
 # Сборка APK с использованием Flutter
 echo "Building APK"
-# Сборка APK для заданного окружения
-# flutter build apk --release --flavor $ENV_VERSION  
-flutter build apk 
+# Сборка APK для заданного окружения (основная команда)
+flutter build apk
+
+# Альтернативная команда сборки с указанием flavor (если используется)
+# flutter build apk --release --flavor $ENV_VERSION 
 
 # Формирование имени APK файла с использованием генерированного имени
 echo "Generating APK filename"
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
+
+# Создание директории для артефактов, если она не существует
+echo "Creating directory for artifacts if it doesn't exist"
+mkdir -p build/artifacts/$PLATFORM
 
 # Переименование и перемещение APK файла
 echo "Renaming and moving APK file"
