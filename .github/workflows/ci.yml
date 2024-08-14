@@ -59,9 +59,9 @@ jobs:
           name: common-generates-${{ github.run_number }}
           path: ./
 
-      - name: Print /lib/domain/model/dto after download
+      - name: Print after download
         run: |
-          ls lib/domain/model/dto
+          ls 
 
       - name: Build Android APK
         run: |
