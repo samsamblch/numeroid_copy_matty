@@ -16,16 +16,11 @@ jobs:
     runs-on: flutter-runner
 
     outputs:
-      ENV_VERSION: ${{ steps.set-env-output.outputs.ENV_VERSION }}
+      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set ENV_VERSION as output
-        id: set-env-output
-        run: |
-          echo "ENV_VERSION=${{ env.ENV_VERSION }}" >> $GITHUB_ENV
 
       - name: Determine Environment
         id: set-env
