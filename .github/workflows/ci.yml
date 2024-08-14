@@ -16,7 +16,7 @@ jobs:
     runs-on: flutter-runner
 
     outputs:
-      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
+      ENV_VERSION: ${{ steps.set-env-output.outputs.env_version }}
 
     steps:
       - name: Checkout code
