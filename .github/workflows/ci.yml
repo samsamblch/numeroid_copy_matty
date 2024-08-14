@@ -1,0 +1,71 @@
+name: Flutter Build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  prepare:
+    name: Prepare Build
+    runs-on: flutter-runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run common build script
+        run: |
+          BUILD_NUMBER=${{ github.run_number }}
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
+
+  build-android:
+    name: Build Android APK
+    runs-on: flutter-runner
+    needs: prepare
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Android APK
+        run: |
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          ci/scripts/build_android.sh -n $REPO_NAME -v $VERSION_NAME
+
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-apk
+          path: build/artifacts/android/*.apk
+
+  build-ios:
+    name: Build iOS IPA
+    runs-on: flutter-runner
+    needs: prepare
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build iOS IPA
+        run: |
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
+
+      - name: Upload IPA as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-ipa
+          path: build/artifacts/ios/*.ipa
