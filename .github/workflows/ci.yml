@@ -22,8 +22,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Set ENV_VERSION as output
+        id: set-env-output
+        run: |
+          echo "ENV_VERSION=${{ env.ENV_VERSION }}" >> $GITHUB_ENV
 
       - name: Determine Environment
         id: set-env
@@ -35,12 +37,10 @@ jobs:
           else
             echo "ENV_VERSION=unknown" >> $GITHUB_ENV
           fi
-
-      - name: Set ENV_VERSION as output
-        id: set-env-output
-        run: |
-          echo "ENV_VERSION=${{ env.ENV_VERSION }}" >> $GITHUB_ENV
-
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
       - name: Set execute permissions for build_common.sh
         run: chmod +x ci/scripts/build_common.sh
 
