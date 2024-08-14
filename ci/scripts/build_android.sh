@@ -2,23 +2,24 @@
 
 # Инициализация переменных
 REPO_NAME=""
-VERSION_NAME=""
 PLATFORM="android"
 
 # Обработка аргументов с флагами
-while getopts n:v: flag
+while getopts n: flag
 do
     case "${flag}" in
         n) REPO_NAME=${OPTARG};;
-        v) VERSION_NAME=${OPTARG};;
     esac
 done
 
 # Проверка обязательных параметров
-if [ -z "$REPO_NAME" ] || [ -z "$VERSION_NAME" ]; then
-    echo "Usage: $0 -n REPO_NAME -v VERSION_NAME"
+if [ -z "$REPO_NAME" ]; then
+    echo "Usage: $0 -n REPO_NAME"
     exit 1
 fi
+
+# Извлечение версии из pubspec.yaml
+VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
 
 # Сборка APK
 flutter build apk
