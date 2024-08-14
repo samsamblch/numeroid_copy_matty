@@ -9,6 +9,7 @@ on:
     branches:
       - main
       - develop
+
 jobs:
   common:
     name: Common Setup
@@ -37,8 +38,8 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: common-generates-${{ github.run_number }}
-          path: lib/
+          name: common-artifacts-lib
+          path: lib/  # Указываем путь к папке lib/
           retention-days: 1
 
   build-android:
@@ -56,12 +57,12 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-generates-${{ github.run_number }}
-          path: ./
+          name: common-artifacts
+          path: ./lib/
 
-      - name: Print after download
+      - name: Print /lib/domain/model/dto after download
         run: |
-          ls 
+          ls lib/domain/model/dto
 
       - name: Build Android APK
         run: |
@@ -74,3 +75,37 @@ jobs:
         with:
           name: android-apk
           path: build/artifacts/android/*.apk
+
+  build-ios:
+    name: Build iOS IPA
+    runs-on: flutter-runner
+    needs: common
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set execute permissions for build_ios.sh
+        run: chmod +x ci/scripts/build_ios.sh
+
+      - name: Download generated files
+        uses: actions/download-artifact@v4
+        with:
+          name: common-artifacts
+          path: ./
+
+      - name: Print /lib/domain/model/dto after download
+        run: |
+          ls lib/domain/model/dto
+
+      - name: Build iOS IPA
+        run: |
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
+
+      - name: Upload IPA as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: build/artifacts/ios/*.ipa
