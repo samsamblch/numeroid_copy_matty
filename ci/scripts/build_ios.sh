@@ -12,7 +12,7 @@ CERT="sign/ios/cert_dist_12345678.p12"  # Путь к сертификату
 CERT_PASSWORD="12345678"  # Пароль к сертификату (если есть)
 MOBILEPROVISION="sign/ios/GJL3XCUNGUcomexamplenumeroid.mobileprovision"  # Путь к профилю подписания
 EXPORT_OPTIONS_PLIST="sign/ios/exportOptionsBeta.plist"  # Путь к файлу exportOptionsPlist
-FLAVOR=ENV_VERSION  # Использование переменной ENV_VERSION для указания FLAVOR
+FLAVOR=$ENV_VERSION  # Использование переменной ENV_VERSION для указания FLAVOR
 
 # Обработка аргументов с флагами
 while getopts n:e: flag
@@ -60,7 +60,7 @@ CERT_IDENTITY=$(security find-identity -v -p codesigning "$MY_KEYCHAIN" | head -
 # Разрешение использования ключа для кодирования
 security set-key-partition-list -S apple-tool:,apple: -s -k $MY_KEYCHAIN_PASSWORD -D "$CERT_IDENTITY" -t private $MY_KEYCHAIN  
 
-## Очистка старых артефактов и кэша
+## Очистка старых артефактов и кэша (опционально)
 # Удаление кэша Xcode
 # rm -rf ~/Library/Developer/Xcode/DerivedData 
 # Удаление предыдущих сборок
@@ -72,22 +72,10 @@ security set-key-partition-list -S apple-tool:,apple: -s -k $MY_KEYCHAIN_PASSWOR
 
 # Сборка IPA с использованием Flutter и Xcode
 
-# Сборка iOS проекта с Flutter без подписания
-# flutter build ios --release --no-codesign --build-number $CI_PIPELINE_IID \
-    # --flavor $FLAVOR --dart-define=app.flavor=$FLAVOR  
-# Архивирование проекта с использованием Xcode и подписанием
-# xcodebuild -workspace ios/Runner.xcworkspace -scheme $FLAVOR -sdk iphoneos \
-   # -configuration "Release-$FLAVOR" archive -archivePath ios/build/Runner.xcarchive \
-    # CODE_SIGN_IDENTITY="${CERT_IDENTITY}" OTHER_CODE_SIGN_FLAGS="--keychain ${MY_KEYCHAIN}" \
-    # PROVISIONING_PROFILE="${MOBILEPROVISION_UUID}"
-# Экспорт IPA с использованием Xcode 
-# xcodebuild -exportArchive -archivePath ios/build/Runner.xcarchive -exportOptionsPlist \
-    # "$EXPORT_OPTIONS_PLIST" -exportPath ios/build/Runner.ipa
-
-# Cборка iOS проекта базовая
+# Сборка iOS проекта и экспорт IPA с использованием Flutter
 flutter build ipa --export-options-plist="$EXPORT_OPTIONS_PLIST"
 
-## Очистка keychain после сборки
+# Очистка keychain после сборки
 # Удаление временного keychain после завершения сборки
 security delete-keychain "$MY_KEYCHAIN"
 
@@ -96,7 +84,6 @@ chmod +x ci/scripts/gen_filename.sh
 
 # Генерация имени файла для IPA
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
-# Копирование сгенерированного IPA в директорию артефактов
 
 # Создание директории для артефактов, если она не существует
 echo "Creating directory for artifacts if it doesn't exist"
@@ -110,6 +97,6 @@ mv build/ios/ipa/$NAME.ipa build/artifacts/$PLATFORM/${FILENAME}.ipa
 if [ $? -eq 0 ]; then
     echo "IPA successfully built and moved to build/artifacts/$PLATFORM/${FILENAME}.ipa"
 else
-    echo "Failed to move ipa file"
+    echo "Failed to move IPA file"
     exit 1
 fi
