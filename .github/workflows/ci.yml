@@ -141,19 +141,27 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.APK_NAME }}
-          path: ./
+          path: ./build/artifacts/android/
 
       - name: Download IPA artifact
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.IPA_NAME }}
-          path: ./
+          path: ./build/artifacts/ios/
+
+      - name: Debug Check APK and IPA paths
+        run: |
+          echo "APK_NAME=${{ env.APK_NAME }}"
+          echo "IPA_NAME=${{ env.IPA_NAME }}"
+          ls -l build/artifacts/android/
+          ls -l build/artifacts/ios/
 
       - name: Send APK and IPA to Telegram
         run: |
           BOT_TOKEN="7172340571:AAHRykv8vTA_6fk9lvjaH1beOHd4TIPeGeA"
           CHAT_ID="-1002093809569"
-          THREAD_ID="2823"  # Замените на ID темы группы
-          FILE_PATHS="${{ env.APK_NAME }},${{ env.IPA_NAME }}"
+          THREAD_ID="2823"
+          FILE_PATHS="./build/artifacts/android/${{ env.APK_NAME }},./build/artifacts/ios/${{ env.IPA_NAME }}"
           CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ needs.common.outputs.ENV_VERSION }}-${{ github.run_number }}"
+          echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
