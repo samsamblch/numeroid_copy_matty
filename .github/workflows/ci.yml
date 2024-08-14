@@ -31,16 +31,12 @@ jobs:
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
 
-      - name: Verify files in lib/domain/model/dto
-        run: |
-          ls lib/domain/model/dto
-
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: common-artifacts-lib
-          path: lib/  # Указываем путь к папке lib/
-          retention-days: 1
+          name: common-artifact-lib  # Переименовано
+          path: lib/                  # Сохраняем всю папку lib/
+          retention-days: 1           # Хранить артефакт 1 день
 
   build-android:
     name: Build Android APK
@@ -57,12 +53,8 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifacts
-          path: ./lib/
-
-      - name: Print /lib/domain/model/dto after download
-        run: |
-          ls lib/domain/model/dto
+          name: common-artifact-lib  # Используем переименованный артефакт
+          path: ./lib/               # Извлекаем артефакт в папку lib/
 
       - name: Build Android APK
         run: |
@@ -91,12 +83,8 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifacts
-          path: ./
-
-      - name: Print /lib/domain/model/dto after download
-        run: |
-          ls lib/domain/model/dto
+          name: common-artifact-lib  # Используем переименованный артефакт
+          path: ./lib/               # Извлекаем артефакт в папку lib/
 
       - name: Build iOS IPA
         run: |
