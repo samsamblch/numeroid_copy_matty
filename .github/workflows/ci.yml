@@ -15,6 +15,9 @@ jobs:
     name: Common Setup
     runs-on: flutter-runner
 
+    outputs:
+      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,15 +26,16 @@ jobs:
         run: flutter pub get
 
       - name: Determine Environment
+        id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "ENV_VERSION=prod" >> $GITHUB_ENV
+            echo "::set-output name=ENV_VERSION::prod"
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "ENV_VERSION=dev" >> $GITHUB_ENV
+            echo "::set-output name=ENV_VERSION::dev"
           else
-            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+            echo "::set-output name=ENV_VERSION::unknown"
           fi
-
+    
       - name: Set execute permissions for scripts
         run: chmod +x ci/scripts/*.sh
 
@@ -40,14 +44,6 @@ jobs:
           BUILD_NUMBER=${{ github.run_number }}
           NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $NAME
-
-      - name: Check Environment Version
-        run: |
-          echo "ENV_VERSION=${{ env.ENV_VERSION }}"
-          if [ -z "${{ env.ENV_VERSION }}" ]; then
-            echo "Environment version is not set. Exiting."
-            exit 1
-          fi
 
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
@@ -79,24 +75,12 @@ jobs:
       - name: Set execute permissions for gen_filename.sh
         run: chmod +x ci/scripts/gen_filename.sh
 
-      - name: Check Environment Version
-        run: |
-          echo "ENV_VERSION=${{ env.ENV_VERSION }}"
-          if [ -z "${{ env.ENV_VERSION }}" ]; then
-            echo "Environment version is not set. Exiting."
-            exit 1
-          fi
-
       - name: Build Android APK
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ env.ENV_VERSION }}
-          if [ -z "$ENV_VERSION" ]; then
-            echo "Environment version is not set. Exiting."
-            exit 1
-          fi
+          ENV_VERSION=${{ needs.common.outputs.ENV_VERSION }}
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
-          ci/scripts.build_android.sh -n $NAME -e $ENV_VERSION
+          ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
           echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
       
       - name: Upload APK as Artifact
@@ -129,11 +113,7 @@ jobs:
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ env.ENV_VERSION }}
-          if [ -z "$ENV_VERSION" ]; then
-            echo "Environment version is not set. Exiting."
-            exit 1
-          fi
+          ENV_VERSION=${{ needs.common.outputs.ENV_VERSION }}
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
           echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
@@ -171,5 +151,5 @@ jobs:
           CHAT_ID="-1002093809569"
           THREAD_ID="2823"  # Замените на ID темы группы
           FILE_PATHS="${{ env.APK_NAME }},${{ env.IPA_NAME }}"
-          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ env.ENV_VERSION }} ${{ github.run_number }}"
+          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ env.ENV_VERSION }}-${{ github.run_number }}"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
