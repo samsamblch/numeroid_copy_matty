@@ -34,9 +34,9 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: common-artifact-lib  # Переименовано
-          path: lib/                  # Сохраняем всю папку lib/
-          retention-days: 1           # Хранить артефакт 1 день
+          name: common-artifact-lib
+          path: lib/
+          retention-days: 1
 
   build-android:
     name: Build Android APK
@@ -53,20 +53,23 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifact-lib  # Используем переименованный артефакт
-          path: ./lib/               # Извлекаем артефакт в папку lib/
+          name: common-artifact-lib
+          path: ./lib/
 
       - name: Build Android APK
+        id: build_apk
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          APK_NAME="${REPO_NAME}-${VERSION_NAME}-beta.apk"
           ci/scripts/build_android.sh -n $REPO_NAME -v $VERSION_NAME
+          echo "apk_name=${APK_NAME}" >> $GITHUB_ENV
 
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: android-apk
-          path: build/artifacts/android/*.apk
+          name: ${{ steps.build_apk.outputs.apk_name }}
+          path: build/artifacts/android/${{ steps.build_apk.outputs.apk_name }}
 
   build-ios:
     name: Build iOS IPA
@@ -83,17 +86,20 @@ jobs:
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
-          name: common-artifact-lib  # Используем переименованный артефакт
-          path: ./lib/               # Извлекаем артефакт в папку lib/
+          name: common-artifact-lib
+          path: ./lib/
 
       - name: Build iOS IPA
+        id: build_ipa
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           VERSION_NAME=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2)
+          IPA_NAME="${REPO_NAME}-${VERSION_NAME}-beta.ipa"
           ci/scripts/build_ios.sh -n $REPO_NAME -v $VERSION_NAME
+          echo "ipa_name=${IPA_NAME}" >> $GITHUB_ENV
 
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-ipa
-          path: build/artifacts/ios/*.ipa
+          name: ${{ steps.build_ipa.outputs.ipa_name }}
+          path: build/artifacts/ios/${{ steps.build_ipa.outputs.ipa_name }}
