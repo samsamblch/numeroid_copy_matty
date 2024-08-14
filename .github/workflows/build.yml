@@ -13,7 +13,7 @@ on:
 jobs:
   build-android:
     name: Build Android APK
-    runs-on: mac-runner # Ваш self-hosted runner
+    runs-on: flutter-runner # Ваш self-hosted runner
 
     steps:
       - name: Checkout code
@@ -45,7 +45,7 @@ jobs:
 
   build-ios:
     name: Build iOS IPA
-    runs-on: mac-runner # Ваш self-hosted runner
+    runs-on: flutter-runner # Ваш self-hosted runner
     needs: build-android
 
     steps:
