@@ -35,6 +35,9 @@ flutter build apk
 # Альтернативная команда сборки с указанием flavor (если используется)
 # flutter build apk --release --flavor $ENV_VERSION 
 
+# Установка разрешений на выполнение для скрипта генерирования имени файла
+chmod +x ci/scripts/gen_filename.sh
+
 # Формирование имени APK файла с использованием генерированного имени
 echo "Generating APK filename"
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)

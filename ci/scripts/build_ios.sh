@@ -91,6 +91,9 @@ flutter build ipa --export-options-plist="$EXPORT_OPTIONS_PLIST"
 # Удаление временного keychain после завершения сборки
 security delete-keychain "$MY_KEYCHAIN"
 
+# Установка разрешений на выполнение для скрипта генерирования имени файла
+chmod +x ci/scripts/gen_filename.sh
+
 # Генерация имени файла для IPA
 FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 # Копирование сгенерированного IPA в директорию артефактов
