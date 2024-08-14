@@ -30,6 +30,7 @@ jobs:
             echo "ENV_VERSION=dev" >> $GITHUB_ENV
           else
             echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+          fi
 
       - name: Set execute permissions for scripts
         run: chmod +x ci/scripts/*.sh
