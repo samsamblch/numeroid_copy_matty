@@ -31,7 +31,7 @@ rm -rf build/app/outputs/flutter-apk/*
 echo "Building APK"
 # Сборка APK для заданного окружения
 # flutter build apk --release --flavor $ENV_VERSION  
-flutter build apk
+flutter build apk 
 
 # Формирование имени APK файла с использованием генерированного имени
 echo "Generating APK filename"
