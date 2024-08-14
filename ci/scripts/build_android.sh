@@ -39,7 +39,7 @@ FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p $PLATFORM -e $ENV_VERSION)
 
 # Переименование и перемещение APK файла
 echo "Renaming and moving APK file"
-mv build/app/outputs/flutter-apk/app-$ENV_VERSION-release.apk build/artifacts/$PLATFORM/${FILENAME}.apk
+mv build/app/outputs/flutter-apk/app-release.apk build/artifacts/$PLATFORM/${FILENAME}.apk
 
 # Проверка на успешное перемещение
 if [ $? -eq 0 ]; then
