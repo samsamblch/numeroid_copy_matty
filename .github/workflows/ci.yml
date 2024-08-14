@@ -30,7 +30,6 @@ jobs:
             echo "ENV_VERSION=dev" >> $GITHUB_ENV
           else
             echo "ENV_VERSION=unknown" >> $GITHUB_ENV
-          fi
 
       - name: Set execute permissions for scripts
         run: chmod +x ci/scripts/*.sh
@@ -40,6 +39,14 @@ jobs:
           BUILD_NUMBER=${{ github.run_number }}
           NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $NAME
+
+      - name: Check Environment Version
+        run: |
+          echo "ENV_VERSION=${{ env.ENV_VERSION }}"
+          if [ -z "${{ env.ENV_VERSION }}" ]; then
+            echo "Environment version is not set. Exiting."
+            exit 1
+          fi
 
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
@@ -70,6 +77,14 @@ jobs:
 
       - name: Set execute permissions for gen_filename.sh
         run: chmod +x ci/scripts/gen_filename.sh
+
+      - name: Check Environment Version
+        run: |
+          echo "ENV_VERSION=${{ env.ENV_VERSION }}"
+          if [ -z "${{ env.ENV_VERSION }}" ]; then
+            echo "Environment version is not set. Exiting."
+            exit 1
+          fi
 
       - name: Build Android APK
         run: |
