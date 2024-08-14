@@ -59,8 +59,10 @@ jobs:
       - name: Print /
         run: ls
 
-      - name: Print /lib
-        run: ls /lib
+      - name: Print /lib/domain/model/dto
+        run: |
+          cd lib/domain/model/dto
+          ls
       
       - name: Build Android APK
         run: |
