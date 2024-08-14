@@ -11,8 +11,8 @@ on:
       - develop
 
 jobs:
-  prepare:
-    name: Prepare Build
+  common:
+    name: Common Setup
     runs-on: flutter-runner
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: Set execute permissions for scripts
-        run: chmod +x ci/scripts/build_common.sh
+        run: chmod +x ci/scripts/*.sh
 
       - name: Run common build script
         run: |
@@ -31,17 +31,27 @@ jobs:
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           ci/scripts/build_common.sh -b $BUILD_NUMBER -n $REPO_NAME
 
+      - name: Save generated files as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: common-generates-${{ github.run_number }}
+          path: lib/
+          retention-days: 1  # Хранить артефакты 1 день
+
   build-android:
     name: Build Android APK
     runs-on: flutter-runner
-    needs: prepare
+    needs: common
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set execute permissions for scripts
-        run: chmod +x ci/scripts/build_android.sh
+      - name: Download generated files
+        uses: actions/download-artifact@v3
+        with:
+          name: common-generates-${{ github.run_number }}
+          path: ./
 
       - name: Build Android APK
         run: |
@@ -58,14 +68,17 @@ jobs:
   build-ios:
     name: Build iOS IPA
     runs-on: flutter-runner
-    needs: prepare
+    needs: common
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set execute permissions for scripts
-        run: chmod +x ci/scripts/build_ios.sh
+      - name: Download generated files
+        uses: actions/download-artifact@v3
+        with:
+          name: common-generates-${{ github.run_number }}
+          path: ./
 
       - name: Build iOS IPA
         run: |
