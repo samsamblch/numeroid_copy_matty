@@ -59,14 +59,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for build_android.sh
-        run: chmod +x ci/scripts/build_android.sh
-
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
           name: common-artifacts
           path: ./
+
+      - name: Set execute permissions for build_android.sh
+        run: chmod +x ci/scripts/build_android.sh
+
+      - name: Set execute permissions for gen_filename.sh
+        run: chmod +x ci/scripts/gen_filename.sh
 
       - name: Build Android APK
         run: |
@@ -90,15 +93,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for build_ios.sh
-        run: chmod +x ci/scripts/build_ios.sh
-
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
           name: common-artifacts
           path: ./
 
+      - name: Set execute permissions for build_ios.sh
+        run: chmod +x ci/scripts/build_ios.sh
+
+      - name: Set execute permissions for gen_filename.sh
+        run: chmod +x ci/scripts/gen_filename.sh
+      
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
