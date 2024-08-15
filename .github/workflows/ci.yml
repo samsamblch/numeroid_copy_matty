@@ -173,10 +173,9 @@ jobs:
       - name: Send APK and IPA to Telegram
         run: |
           source artifact_output/environment.env
-          BOT_TOKEN="7172340571:AAHRykv8vTA_6fk9lvjaH1beOHd4TIPeGeA"
-          CHAT_ID="-1002093809569"
-          THREAD_ID="2823"
+          BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
+          CHAT_ID="-4209434197"
           FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
           CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
-          ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
+          ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
