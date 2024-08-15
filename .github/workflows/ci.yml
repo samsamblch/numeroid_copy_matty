@@ -92,8 +92,15 @@ jobs:
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
-          echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
+          echo "APK_NAME=${FILENAME}.apk" >> environment.env
       
+      - name: Save updated environment to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment
+          path: environment.env
+          retention-days: 1
+
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -134,7 +141,14 @@ jobs:
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
-          echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
+          echo "IPA_NAME=${FILENAME}.ipa" >> environment.env
+
+      - name: Save updated environment to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment
+          path: environment.env
+          retention-days: 1
 
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v4
@@ -158,10 +172,11 @@ jobs:
 
       - name: Send APK and IPA to Telegram
         run: |
+          source artifact_output/environment.env
           BOT_TOKEN="7172340571:AAHRykv8vTA_6fk9lvjaH1beOHd4TIPeGeA"
           CHAT_ID="-1002093809569"
           THREAD_ID="2823"
-          FILE_PATHS="artifact_output/${{ env.APK_NAME }},artifact_output/${{ env.IPA_NAME }}"
-          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ needs.common.outputs.ENV_VERSION }}-${{ github.run_number }}"
+          FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
+          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
