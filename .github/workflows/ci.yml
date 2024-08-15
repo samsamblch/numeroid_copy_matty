@@ -93,7 +93,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.APK_NAME }}
+          name: apk
           path: build/artifacts/android/${{ env.APK_NAME }}
           retention-days: 1
 
@@ -138,7 +138,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.IPA_NAME }}
+          name: ipa
           path: build/artifacts/ios/${{ env.IPA_NAME }}
           retention-days: 1
 
@@ -163,7 +163,7 @@ jobs:
           source artifact_output/ios-artifacts/ipa_name.env
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
-          FILE_PATHS="artifact_output/android-artifacts/${APK_NAME}/${APK_NAME},artifact_output/ios-artifacts/${IPA_NAME}/${IPA_NAME}"
+          FILE_PATHS="artifact_output/apk/${APK_NAME},artifact_output/ipa/${IPA_NAME}"
           CAPTION="Apps build: $(basename $GITHUB_REPOSITORY)-$ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
