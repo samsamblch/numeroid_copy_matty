@@ -93,6 +93,7 @@ jobs:
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
           echo "APK_NAME=${FILENAME}.apk" >> apk_name.env
+          echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
       
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
@@ -142,6 +143,7 @@ jobs:
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
           echo "IPA_NAME=${FILENAME}.ipa" >> ipa_name.env
+          echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
