@@ -174,8 +174,8 @@ jobs:
 
       - name: Send APK and IPA to Telegram
         run: |
-          source artifact_output/ipa_name.env
-          source artifact_output/apk_name.env
+          source artifact_output/ipa_name/ipa_name.env
+          source artifact_output/apk_name/apk_name.env
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
           FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
