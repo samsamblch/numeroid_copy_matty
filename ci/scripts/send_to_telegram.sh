@@ -39,7 +39,7 @@ for FILE_PATH in "${FILE_PATHS[@]}"; do
              -F caption="$CAPTION" \
              https://api.telegram.org/bot$BOT_TOKEN/sendDocument
     fi
-     
+    
     # Проверка на успешную отправку
     if [ $? -ne 0 ]; then
         echo "Failed to send file $FILE_PATH to Telegram"

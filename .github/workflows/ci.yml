@@ -154,17 +154,17 @@ jobs:
       - name: Set execute permissions for send_to_telegram.sh
         run: chmod +x ci/scripts/send_to_telegram.sh
 
-      - name: Download APK artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ env.APK_NAME }}
-          path: ./build/artifacts/android/
+      # - name: Download APK artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: ${{ env.APK_NAME }}
+      #     path: ./build/artifacts/android/
 
-      - name: Download IPA artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ env.IPA_NAME }}
-          path: ./build/artifacts/ios/
+      # - name: Download IPA artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: ${{ env.IPA_NAME }}
+      #     path: ./build/artifacts/ios/
 
       - name: Debug Check APK and IPA paths
         run: |
