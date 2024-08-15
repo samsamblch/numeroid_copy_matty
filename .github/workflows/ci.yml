@@ -34,6 +34,7 @@ jobs:
           else
             echo "env_version=unknown" >> $GITHUB_ENV
             echo "env_version=unknown" >> $GITHUB_ENV
+          fi
           echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
           echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
       
