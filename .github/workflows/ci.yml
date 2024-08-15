@@ -71,7 +71,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: environments
-          path: ./
+          path: artifact_output/
 
       - name: Download generated files
         uses: actions/download-artifact@v4
@@ -87,7 +87,7 @@ jobs:
 
       - name: Build Android APK
         run: |
-          source environment.env
+          source artifact_output/environments/env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
@@ -161,7 +161,7 @@ jobs:
   send-telegram:
     name: Send Build to Telegram
     runs-on: flutter-runner
-    needs: [common] #build-android, build-ios]
+    needs: [build-android, build-ios]
 
     steps:
       - name: Download all artifacts
