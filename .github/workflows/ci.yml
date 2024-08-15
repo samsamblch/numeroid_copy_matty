@@ -16,7 +16,7 @@ jobs:
     runs-on: flutter-runner
 
     outputs:
-      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
+      ENV_VERSION: ${{ steps.set-env-output.outputs.env_version }}
 
     steps:
       - name: Checkout code
@@ -26,15 +26,16 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "::set-output name=ENV_VERSION::prod"
+            echo "env_version=prod" >> $GITHUB_ENV
+            echo "env_version=prod" >> $GITHUB_ENV
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-           
-            echo "::set-output name=ENV_VERSION::dev"
+            echo "env_version=dev" >> $GITHUB_ENV
+            echo "env_version=dev" >> $GITHUB_ENV
           else
-          
-            echo "::set-output name=ENV_VERSION::unknown"
-          fi
-
+            echo "env_version=unknown" >> $GITHUB_ENV
+            echo "env_version=unknown" >> $GITHUB_ENV
+          echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
+          echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
       
       - name: Install dependencies
         run: flutter pub get
@@ -81,7 +82,8 @@ jobs:
       - name: Build Android APK
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ needs.common.outputs.ENV_VERSION }}
+          ENV_VERSION=${{ needs.common.outputs.env_version }}
+          echo $ENV_VERSION
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
           echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
@@ -116,7 +118,8 @@ jobs:
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ needs.common.outputs.ENV_VERSION }}
+          ENV_VERSION=${{ needs.common.outputs.env_version }}
+          echo $ENV_VERSION
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
           echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
@@ -164,3 +167,5 @@ jobs:
           CAPTION="Сборка $(basename $GITHUB_REPOSITORY) ${{ needs.common.outputs.ENV_VERSION }}-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION" -d "$THREAD_ID"
+
+          
