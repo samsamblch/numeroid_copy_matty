@@ -86,7 +86,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: common-artifacts
+          name: android-artifacts
           path: |
             build/artifacts/android/${{ env.APK_NAME }}
             apk_name.env
@@ -100,12 +100,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Download environment artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: environments
-          path: artifact_output/
     
       - name: Download generated files
         uses: actions/download-artifact@v4
@@ -121,7 +115,7 @@ jobs:
       
       - name: Build iOS IPA
         run: |
-          source artifact_output/env_version.env
+          source env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
@@ -129,18 +123,14 @@ jobs:
           echo "IPA_NAME=${FILENAME}.ipa" >> ipa_name.env
           echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
-      - name: Save updated environment to artifact
+      - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ipa_name
-          path: ipa_name.env
+          name: android-artifacts
+          path: |
+            build/artifacts/ios/${{ env.IPA_NAME }}
+            ipa_name.env
           retention-days: 1
-
-      - name: Upload IPA as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.IPA_NAME }}
-          path: build/artifacts/ios/${{ env.IPA_NAME }}
 
   send-telegram:
     name: Send Build to Telegram
