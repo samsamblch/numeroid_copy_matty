@@ -52,7 +52,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: common-artifacts
+          name: ./
           path: |
             lib/
             pubspec.yaml
