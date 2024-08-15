@@ -58,127 +58,137 @@ jobs:
             pubspec.yaml
           retention-days: 1
 
-  build-android:
-    name: Build Android APK
-    runs-on: flutter-runner
-    needs: common
+  # build-android:
+  #   name: Build Android APK
+  #   runs-on: flutter-runner
+  #   needs: common
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Download generated files
-        uses: actions/download-artifact@v4
-        with:
-          name: common-artifacts
-          path: ./
+  #     - name: Download generated files
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: common-artifacts
+  #         path: ./
 
-      - name: Set execute permissions for build_android.sh
-        run: chmod +x ci/scripts/build_android.sh
+  #     - name: Set execute permissions for build_android.sh
+  #       run: chmod +x ci/scripts/build_android.sh
 
-      - name: Set execute permissions for gen_filename.sh
-        run: chmod +x ci/scripts/gen_filename.sh
+  #     - name: Set execute permissions for gen_filename.sh
+  #       run: chmod +x ci/scripts/gen_filename.sh
 
-      - name: Download environment artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: environment
-          path: .
+  #     - name: Download environment artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: environment
+  #         path: .
 
-      - name: Build Android APK
-        run: |
-          source environment.env
-          echo "Loaded ENV_VERSION=$ENV_VERSION"
-          NAME=$(basename $GITHUB_REPOSITORY)
-          FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
-          ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
-          echo "APK_NAME=${FILENAME}.apk" >> apk_name.env
-          echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
+  #     - name: Build Android APK
+  #       run: |
+  #         source environment.env
+  #         echo "Loaded ENV_VERSION=$ENV_VERSION"
+  #         NAME=$(basename $GITHUB_REPOSITORY)
+  #         FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
+  #         ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
+  #         echo "APK_NAME=${FILENAME}.apk" >> apk_name.env
+  #         echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
       
-      - name: Save updated environment to artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk_name
-          path: apk_name.env
-          retention-days: 1
+  #     - name: Save updated environment to artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: apk_name
+  #         path: apk_name.env
+  #         retention-days: 1
 
-      - name: Upload APK as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.APK_NAME }}
-          path: build/artifacts/android/${{ env.APK_NAME }}
+  #     - name: Upload APK as Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ env.APK_NAME }}
+  #         path: build/artifacts/android/${{ env.APK_NAME }}
 
-  build-ios:
-    name: Build iOS IPA
-    runs-on: flutter-runner
-    needs: common
+  # build-ios:
+  #   name: Build iOS IPA
+  #   runs-on: flutter-runner
+  #   needs: common
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Download generated files
-        uses: actions/download-artifact@v4
-        with:
-          name: common-artifacts
-          path: ./
+  #     - name: Download generated files
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: common-artifacts
+  #         path: ./
 
-      - name: Set execute permissions for build_ios.sh
-        run: chmod +x ci/scripts/build_ios.sh
+  #     - name: Set execute permissions for build_ios.sh
+  #       run: chmod +x ci/scripts/build_ios.sh
 
-      - name: Set execute permissions for gen_filename.sh
-        run: chmod +x ci/scripts/gen_filename.sh
+  #     - name: Set execute permissions for gen_filename.sh
+  #       run: chmod +x ci/scripts/gen_filename.sh
       
-      - name: Download environment artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: environment
-          path: .
+  #     - name: Download environment artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: environment
+  #         path: .
 
-      - name: Build iOS IPA
-        run: |
-          source environment.env
-          echo "Loaded ENV_VERSION=$ENV_VERSION"
-          NAME=$(basename $GITHUB_REPOSITORY)
-          FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
-          ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
-          echo "IPA_NAME=${FILENAME}.ipa" >> ipa_name.env
-          echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
+  #     - name: Build iOS IPA
+  #       run: |
+  #         source environment.env
+  #         echo "Loaded ENV_VERSION=$ENV_VERSION"
+  #         NAME=$(basename $GITHUB_REPOSITORY)
+  #         FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
+  #         ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
+  #         echo "IPA_NAME=${FILENAME}.ipa" >> ipa_name.env
+  #         echo "IPA_NAME=${FILENAME}.ipa" >> $GITHUB_ENV
 
-      - name: Save updated environment to artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ipa_name
-          path: ipa_name.env
-          retention-days: 1
+  #     - name: Save updated environment to artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ipa_name
+  #         path: ipa_name.env
+  #         retention-days: 1
 
-      - name: Upload IPA as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.IPA_NAME }}
-          path: build/artifacts/ios/${{ env.IPA_NAME }}
+  #     - name: Upload IPA as Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ env.IPA_NAME }}
+  #         path: build/artifacts/ios/${{ env.IPA_NAME }}
 
   send-telegram:
     name: Send Build to Telegram
     runs-on: flutter-runner
-    needs: [build-android, build-ios]
+    needs: [common] #build-android, build-ios]
 
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          path: artifact_output
+          path: artifact_output/
 
       - name: Set execute permissions for send_to_telegram.sh
         run: chmod +x ci/scripts/send_to_telegram.sh
 
       - name: Send APK and IPA to Telegram
         run: |
-          source artifact_output/ipa_name/ipa_name.env
-          source artifact_output/apk_name/apk_name.env
+          source artifact_output/environment.env
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
-          FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
+          FILE_PATHS="artifact_output/environment.env"
           CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
+
+      # - name: Send APK and IPA to Telegram
+      #   run: |
+      #     source artifact_output/ipa_name/ipa_name.env
+      #     # source artifact_output/apk_name/apk_name.env
+      #     BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
+      #     CHAT_ID="-4209434197"
+      #     FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
+      #     CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
+      #     echo "Sending files: $FILE_PATHS"
+      #     ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
