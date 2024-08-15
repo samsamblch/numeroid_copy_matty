@@ -36,52 +36,52 @@ for FILE_PATH in "${FILE_PATHS[@]}"; do
     }")
 done
 
-# Формируем команду curl для отправки через sendMediaGroup
-CURL_CMD=("curl")
+# # Формируем команду curl для отправки через sendMediaGroup
+# CURL_CMD=("curl")
 
-if [ -n "$THREAD_ID" ]; then
-    CURL_CMD+=("-F chat_id=$CHAT_ID"
-               "-F message_thread_id=$THREAD_ID"
-               "-F $(printf "%s" "${MEDIA_GROUP[@]}")")
-else
-    CURL_CMD+=("-F chat_id=$CHAT_ID"
-               "-F $(printf "%s" "${MEDIA_GROUP[@]}")")
-fi
+# if [ -n "$THREAD_ID" ]; then
+#     CURL_CMD+=("-F chat_id=$CHAT_ID"
+#                "-F message_thread_id=$THREAD_ID"
+#                "-F $(printf "%s" "${MEDIA_GROUP[@]}")")
+# else
+#     CURL_CMD+=("-F chat_id=$CHAT_ID"
+#                "-F $(printf "%s" "${MEDIA_GROUP[@]}")")
+# fi
 
-# Добавляем все файлы в виде параметров для curl
-for FILE_PATH in "${FILE_PATHS[@]}"; do
-    CURL_CMD+=("-F $(basename "$FILE_PATH")=@$FILE_PATH")
-done
-
-# Отправляем запрос через curl
-"${CURL_CMD[@]}" https://api.telegram.org/bot$BOT_TOKEN/sendMediaGroup
-
-# Проверка на успешную отправку
-if [ $? -ne 0 ]; then
-    echo "Failed to send media group to Telegram"
-    exit 1
-fi
-
-# # Отправка файлов в Telegram
+# # Добавляем все файлы в виде параметров для curl
 # for FILE_PATH in "${FILE_PATHS[@]}"; do
-#     if [ -n "$THREAD_ID" ]; then
-#         curl -F chat_id="$CHAT_ID" \
-#              -F message_thread_id="$THREAD_ID" \
-#              -F document=@"$FILE_PATH" \
-#              -F caption="$CAPTION" \
-#              https://api.telegram.org/bot$BOT_TOKEN/sendDocument
-#     else
-#         curl -F chat_id="$CHAT_ID" \
-#              -F document=@"$FILE_PATH" \
-#              -F caption="$CAPTION" \
-#              https://api.telegram.org/bot$BOT_TOKEN/sendDocument
-#     fi
-    
-#     # Проверка на успешную отправку
-#     if [ $? -ne 0 ]; then
-#         echo "Failed to send file $FILE_PATH to Telegram"
-#         exit 1
-#     fi
+#     CURL_CMD+=("-F $(basename "$FILE_PATH")=@$FILE_PATH")
 # done
 
-# echo "Files successfully sent to Telegram"
+# # Отправляем запрос через curl
+# "${CURL_CMD[@]}" https://api.telegram.org/bot$BOT_TOKEN/sendMediaGroup
+
+# # Проверка на успешную отправку
+# if [ $? -ne 0 ]; then
+#     echo "Failed to send media group to Telegram"
+#     exit 1
+# fi
+
+# Отправка файлов в Telegram
+for FILE_PATH in "${FILE_PATHS[@]}"; do
+    if [ -n "$THREAD_ID" ]; then
+        curl -F chat_id="$CHAT_ID" \
+             -F message_thread_id="$THREAD_ID" \
+             -F document=@"$FILE_PATH" \
+             -F caption="$CAPTION" \
+             https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+    else
+        curl -F chat_id="$CHAT_ID" \
+             -F document=@"$FILE_PATH" \
+             -F caption="$CAPTION" \
+             https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+    fi
+    
+    # Проверка на успешную отправку
+    if [ $? -ne 0 ]; then
+        echo "Failed to send file $FILE_PATH to Telegram"
+        exit 1
+    fi
+done
+
+echo "Files successfully sent to Telegram"
