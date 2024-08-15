@@ -87,9 +87,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: android-artifacts
-          path: |
-            build/artifacts/android/${{ env.APK_NAME }}
-            apk_name.env
+          path: apk_name.env
+          retention-days: 1
+
+      - name: Save generated files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APK_NAME }}
+          path: build/artifacts/android/${{ env.APK_NAME }}
           retention-days: 1
 
   build-ios:
@@ -127,9 +132,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ios-artifacts
-          path: |
-            build/artifacts/ios/${{ env.IPA_NAME }}
-            ipa_name.env
+          path: ipa_name.env
+          retention-days: 1
+      
+      - name: Save generated files as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.IPA_NAME }}
+          path: build/artifacts/ios/${{ env.IPA_NAME }}
           retention-days: 1
 
   send-telegram:
