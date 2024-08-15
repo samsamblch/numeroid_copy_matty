@@ -126,7 +126,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: android-artifacts
+          name: ios-artifacts
           path: |
             build/artifacts/ios/${{ env.IPA_NAME }}
             ipa_name.env
