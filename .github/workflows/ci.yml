@@ -87,7 +87,7 @@ jobs:
 
       - name: Build Android APK
         run: |
-          source artifact_output/environments/env_version.env
+          source artifact_output/env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
@@ -137,7 +137,7 @@ jobs:
 
       - name: Build iOS IPA
         run: |
-          source artifact_output/environments/env_version.env
+          source artifact_output/env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
