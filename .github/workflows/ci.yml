@@ -137,7 +137,7 @@ jobs:
 
       - name: Build iOS IPA
         run: |
-          source environment.env
+          source artifact_output/environments/env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
@@ -178,7 +178,7 @@ jobs:
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
           FILE_PATHS="artifact_output/environments/env_version.env"
-          CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
+          CAPTION="Apps build: $(basename $GITHUB_REPOSITORY)-$ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
 
