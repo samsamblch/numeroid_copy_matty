@@ -16,7 +16,7 @@ jobs:
     runs-on: flutter-runner
 
     outputs:
-      ENV_VERSION: ${{ steps.set-env-output.outputs.env_version }}
+      ENV_VERSION: ${{ steps.set-env.outputs.ENV_VERSION }}
 
     steps:
       - name: Checkout code
@@ -26,12 +26,15 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "ENV_VERSION=prod" >> $GITHUB_ENV
+            echo "::set-output name=ENV_VERSION::prod"
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "ENV_VERSION=dev" >> $GITHUB_ENV
+           
+            echo "::set-output name=ENV_VERSION::dev"
           else
-            echo "ENV_VERSION=unknown" >> $GITHUB_ENV
+          
+            echo "::set-output name=ENV_VERSION::unknown"
           fi
+
       
       - name: Install dependencies
         run: flutter pub get
