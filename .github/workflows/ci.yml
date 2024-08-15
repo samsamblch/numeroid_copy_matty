@@ -26,17 +26,18 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "env_version=prod" >> $GITHUB_ENV
-            echo "env_version=prod" >> $GITHUB_ENV
+            echo "ENV_VERSION=prod" > environment.env
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "env_version=dev" >> $GITHUB_ENV
-            echo "env_version=dev" >> $GITHUB_ENV
+            echo "ENV_VERSION=dev" > environment.env
           else
-            echo "env_version=unknown" >> $GITHUB_ENV
-            echo "env_version=unknown" >> $GITHUB_ENV
-          fi
-          echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
-          echo "env_version=${{ env.env_version }}" >> $GITHUB_ENV
+            echo "ENV_VERSION=unknown" > environment.env
+
+      - name: Save environment to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment
+          path: environment.env
+          retention-days: 1
       
       - name: Install dependencies
         run: flutter pub get
@@ -80,10 +81,20 @@ jobs:
       - name: Set execute permissions for gen_filename.sh
         run: chmod +x ci/scripts/gen_filename.sh
 
+      - name: Download environment artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: environment
+          path: .
+
+      - name: Load ENV_VERSION from artifact
+        run: |
+          source environment.env
+          echo "Loaded ENV_VERSION=$ENV_VERSION"
+
       - name: Build Android APK
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ needs.common.outputs.env_version }}
           echo $ENV_VERSION
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
@@ -116,10 +127,20 @@ jobs:
       - name: Set execute permissions for gen_filename.sh
         run: chmod +x ci/scripts/gen_filename.sh
       
+      - name: Download environment artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: environment
+          path: .
+
+      - name: Load ENV_VERSION from artifact
+        run: |
+          source environment.env
+          echo "Loaded ENV_VERSION=$ENV_VERSION"
+
       - name: Build iOS IPA
         run: |
           NAME=$(basename $GITHUB_REPOSITORY)
-          ENV_VERSION=${{ needs.common.outputs.env_version }}
           echo $ENV_VERSION
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
