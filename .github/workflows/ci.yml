@@ -29,13 +29,6 @@ jobs:
           else
             echo "ENV_VERSION=unknown" > env_version.env
           fi
-
-      - name: Save environment to artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: environments
-          path: env_version.env
-          retention-days: 1
       
       - name: Install dependencies
         run: flutter pub get
@@ -56,6 +49,7 @@ jobs:
           path: |
             lib/
             pubspec.yaml
+            env_version.env
           retention-days: 1
 
   build-android:
@@ -66,12 +60,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Download environment artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: environments
-          path: artifact_output/
 
       - name: Download generated files
         uses: actions/download-artifact@v4
@@ -87,7 +75,7 @@ jobs:
 
       - name: Build Android APK
         run: |
-          source artifact_output/env_version.env
+          source env_version.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
@@ -95,18 +83,14 @@ jobs:
           echo "APK_NAME=${FILENAME}.apk" >> apk_name.env
           echo "APK_NAME=${FILENAME}.apk" >> $GITHUB_ENV
       
-      - name: Save updated environment to artifact
+      - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apk_name
-          path: apk_name.env
+          name: common-artifacts
+          path: |
+            build/artifacts/android/${{ env.APK_NAME }}
+            apk_name.env
           retention-days: 1
-
-      - name: Upload APK as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.APK_NAME }}
-          path: build/artifacts/android/${{ env.APK_NAME }}
 
   build-ios:
     name: Build iOS IPA
@@ -117,6 +101,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download environment artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: environments
+          path: artifact_output/
+    
       - name: Download generated files
         uses: actions/download-artifact@v4
         with:
@@ -129,12 +119,6 @@ jobs:
       - name: Set execute permissions for gen_filename.sh
         run: chmod +x ci/scripts/gen_filename.sh
       
-      - name: Download environment artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: environment
-          path: .
-
       - name: Build iOS IPA
         run: |
           source artifact_output/env_version.env
