@@ -97,7 +97,7 @@ jobs:
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
         with:
-          name: environment
+          name: apk_name
           path: apk_name.env
           retention-days: 1
 
@@ -146,7 +146,7 @@ jobs:
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
         with:
-          name: environment
+          name: ipa_name
           path: ipa_name.env
           retention-days: 1
 
