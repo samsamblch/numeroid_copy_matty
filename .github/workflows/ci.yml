@@ -88,13 +88,10 @@ jobs:
           name: environment
           path: .
 
-      - name: Load ENV_VERSION from artifact
+      - name: Build Android APK
         run: |
           source environment.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
-
-      - name: Build Android APK
-        run: |
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
@@ -133,13 +130,10 @@ jobs:
           name: environment
           path: .
 
-      - name: Load ENV_VERSION from artifact
+      - name: Build iOS IPA
         run: |
           source environment.env
           echo "Loaded ENV_VERSION=$ENV_VERSION"
-
-      - name: Build iOS IPA
-        run: |
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
