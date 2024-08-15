@@ -92,13 +92,13 @@ jobs:
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p android -e $ENV_VERSION)
           ci/scripts/build_android.sh -n $NAME -e $ENV_VERSION
-          echo "APK_NAME=${FILENAME}.apk" >> environment.env
+          echo "APK_NAME=${FILENAME}.apk" >> apk_name.env
       
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
         with:
           name: environment
-          path: environment.env
+          path: apk_name.env
           retention-days: 1
 
       - name: Upload APK as Artifact
@@ -141,13 +141,13 @@ jobs:
           NAME=$(basename $GITHUB_REPOSITORY)
           FILENAME=$(ci/scripts/gen_filename.sh -n $NAME -p ios -e $ENV_VERSION)
           ci/scripts/build_ios.sh -n $NAME -e $ENV_VERSION
-          echo "IPA_NAME=${FILENAME}.ipa" >> environment.env
+          echo "IPA_NAME=${FILENAME}.ipa" >> ipa_name.env
 
       - name: Save updated environment to artifact
         uses: actions/upload-artifact@v4
         with:
           name: environment
-          path: environment.env
+          path: ipa_name.env
           retention-days: 1
 
       - name: Upload IPA as Artifact
@@ -172,7 +172,8 @@ jobs:
 
       - name: Send APK and IPA to Telegram
         run: |
-          source artifact_output/environment.env
+          source artifact_output/ipa_name.env
+          source artifact_output/apk_name.env
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
           FILE_PATHS="artifact_output/${APK_NAME},artifact_output/${IPA_NAME}"
