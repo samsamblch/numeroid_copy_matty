@@ -23,18 +23,18 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "ENV_VERSION=prod" > environment.env
+            echo "ENV_VERSION=prod" > env_version.env
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            echo "ENV_VERSION=dev" > environment.env
+            echo "ENV_VERSION=dev" > env_version.env
           else
-            echo "ENV_VERSION=unknown" > environment.env
+            echo "ENV_VERSION=unknown" > env_version.env
           fi
 
       - name: Save environment to artifact
         uses: actions/upload-artifact@v4
         with:
-          name: environment
-          path: environment.env
+          name: environments
+          path: env_version.env
           retention-days: 1
       
       - name: Install dependencies
@@ -52,7 +52,7 @@ jobs:
       - name: Save generated files as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ./
+          name: common-artifacts
           path: |
             lib/
             pubspec.yaml
@@ -174,10 +174,10 @@ jobs:
 
       - name: Send APK and IPA to Telegram
         run: |
-          source artifact_output/environment.env
+          source artifact_output/environments/env_version.env
           BOT_TOKEN="7286312653:AAGCLsYs59qNNA-i_3mO0uIE34NsczwvMc8"
           CHAT_ID="-4209434197"
-          FILE_PATHS="artifact_output/environment.env"
+          FILE_PATHS="artifact_output/environments/env_version.env"
           CAPTION="Сборка $(basename $GITHUB_REPOSITORY) $ENV_VERSION-${{ github.run_number }}"
           echo "Sending files: $FILE_PATHS"
           ci/scripts/send_to_telegram.sh -t $BOT_TOKEN -c $CHAT_ID -f "$FILE_PATHS" -m "$CAPTION"
