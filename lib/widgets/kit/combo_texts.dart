@@ -13,18 +13,23 @@ class KitLocationText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          'assets/icons/pin.png',
-          width: 18,
-          color: appTheme.colors.elements.blue,
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Image.asset(
+            'assets/icons/pin.png',
+            width: 18,
+            color: appTheme.colors.elements.blue,
+          ),
         ),
         const SizedBox(width: 4),
-        Text(
-          text,
-          style: KitTextStyles.medium14.copyWith(
-            color: appTheme.colors.elements.blue,
+        Expanded(
+          child: Text(
+            text,
+            style: KitTextStyles.medium14.copyWith(
+              color: appTheme.colors.elements.blue,
+            ),
           ),
         ),
       ],

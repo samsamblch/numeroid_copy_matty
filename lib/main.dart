@@ -51,7 +51,7 @@ class MainApp extends StatelessWidget {
         value: appBloc,
         child: BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
-            return (state is AppStarting) ? child! : _AppShell(child: child);
+            return state.isStarting ? child! : _AppShell(child: child);
           },
         ),
       ),

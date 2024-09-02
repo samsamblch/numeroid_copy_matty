@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numeroid/core/app_route.dart';
 import 'package:numeroid/core/locator.dart';
 import 'package:numeroid/domain/bloc/search/search_bloc.dart';
 import 'package:numeroid/presenter/hotel_detail/bloc/hotel_detail_screen_bloc.dart';
@@ -10,10 +11,10 @@ import 'package:numeroid/widgets/kit/decorations.dart';
 
 import '../../widgets/components/containers.dart';
 import '../../widgets/kit/texts.dart';
-import 'hotel_detail_facilities_block.dart';
-import 'hotel_detail_header_block.dart';
-import 'hotel_detail_images_block.dart';
-import 'hotel_detail_section_container.dart';
+import 'widgets/hotel_detail_facilities_block.dart';
+import 'widgets/hotel_detail_header_block.dart';
+import 'widgets/hotel_detail_images_block.dart';
+import 'widgets/hotel_detail_section_container.dart';
 
 class HotelDetailScreen extends StatefulWidget {
   const HotelDetailScreen({
@@ -49,11 +50,11 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                         child: Column(
                           children: [
                             HolelDetailHeaderBlock(hotel: state.hotel!),
-                            if (state.hotel!.info.photos != null)
+                            if (state.hotel!.info.photos.isNotEmpty)
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14),
                                 child: HotelDetailImagesBlock(
-                                  photos: state.hotel!.info.photos!,
+                                  photos: state.hotel!.info.photos,
                                 ),
                               ),
                             if (state.hotel?.info.facilities != null)
@@ -207,7 +208,12 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                                 ),
                                                 KitButtonBlue(
                                                   text: 'Я бронирую',
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    AppRoute.router.push(
+                                                      AppRoutes.reserve,
+                                                      extra: state.hotel,
+                                                    );
+                                                  },
                                                 ),
                                               ],
                                             ),

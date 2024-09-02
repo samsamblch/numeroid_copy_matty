@@ -20,7 +20,9 @@ mixin _$HotelDetailScreenState {
   Hotel? get hotel => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HotelDetailScreenStateCopyWith<HotelDetailScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$HotelDetailScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,6 +74,8 @@ class _$HotelDetailScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SearchStateCopyWith<$Res> get searchState {
@@ -104,6 +110,8 @@ class __$$HotelDetailScreenStateImplCopyWithImpl<$Res>
       $Res Function(_$HotelDetailScreenStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,7 +170,9 @@ class _$HotelDetailScreenStateImpl extends _HotelDetailScreenState {
   @override
   int get hashCode => Object.hash(runtimeType, searchState, hotel, loading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HotelDetailScreenStateImplCopyWith<_$HotelDetailScreenStateImpl>
@@ -183,8 +193,11 @@ abstract class _HotelDetailScreenState extends HotelDetailScreenState {
   Hotel? get hotel;
   @override
   bool get loading;
+
+  /// Create a copy of HotelDetailScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HotelDetailScreenStateImplCopyWith<_$HotelDetailScreenStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

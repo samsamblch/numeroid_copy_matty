@@ -16,4 +16,20 @@ class KitDecorations {
       borderRadius: BorderRadius.circular(radius),
     );
   }
+
+  static BoxDecoration whiteRBoxWithShadow({
+    double radius = 4,
+  }) {
+    return BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(radius),
+      boxShadow: const [
+        BoxShadow(
+          color: Color(0x22828282),
+          blurRadius: 10,
+          offset: Offset(0, 0),
+        ),
+      ],
+    );
+  }
 }

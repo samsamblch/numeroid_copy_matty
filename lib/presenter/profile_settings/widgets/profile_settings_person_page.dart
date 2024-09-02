@@ -29,7 +29,7 @@ class ProfileSettingsPersonPage extends StatelessWidget {
         const SizedBox(height: 10),
         BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
-            if (state is AppRunningAuth) {
+            if (state.isLogged) {
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: WhiteContainer(

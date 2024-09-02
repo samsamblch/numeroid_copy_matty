@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:numeroid/core/app_route.dart';
@@ -9,13 +8,14 @@ import 'package:numeroid/domain/repository/user_repository.dart';
 import '../../../core/locator.dart';
 import '../../model/dto/user.dart';
 
+part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc()
       : super(
-          const AppStarting(),
+          AppState(),
         ) {
     on<AuthLogin>(onAuthLogin);
     on<AuthLogout>(onAuthLogout);
@@ -32,9 +32,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     if (data != null) {
       locator<AuthNetworkService>().token = data.token;
-      emit(AppRunningAuth(user: data.user));
+      emit(state.copyWith(isStarting: false, loggedUser: data.user));
     } else {
-      emit(const AppRunningUnauth());
+      emit(state.copyWith(isStarting: false));
     }
     AppRoute.router.go(AppRoutes.searchWelcome);
   }
@@ -45,7 +45,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) {
     locator<AuthNetworkService>().token = event.response.token;
     UserRepository().saveAuthData(event.response);
-    emit(AppRunningAuth(user: event.response.user));
+    emit(
+      state.copyWith(
+        isStarting: false,
+        loggedUser: event.response.user,
+      ),
+    );
   }
 
   void onAuthLogout(
@@ -53,6 +58,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     Emitter<AppState> emit,
   ) {
     locator<AuthNetworkService>().token = '';
-    emit(const AppRunningUnauth());
+    emit(
+      state.copyWith(loggedUser: null),
+    );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:numeroid/presenter/auth/forgot_password_finish_screen.dart';
+import 'package:numeroid/presenter/reserve_form/reserve_form_screen.dart';
 
+import '../domain/model/bo/hotel.dart';
 import '../presenter/auth/forgot_password_screen.dart';
 import '../presenter/auth/login_screen.dart';
 import '../presenter/auth/password_screen.dart';
@@ -133,6 +135,12 @@ class AppRoute {
         return const OrganizationSettingsScreen();
       },
     ),
+    GoRoute(
+      path: AppRoutes.reserve,
+      builder: (BuildContext context, GoRouterState state) {
+        return ReserveFormScreen(hotel: state.extra as Hotel);
+      },
+    ),
   ];
 
   ///return router object
@@ -143,7 +151,6 @@ class AppRoute {
       _router.pop();
     }
   }
-
 }
 
 class AppRoutes {
@@ -162,4 +169,5 @@ class AppRoutes {
   static const String searchFilter = '/search_filter';
   static const String hotelDetail = '/hotel_detail';
   static const String organizationSettings = '/organization_settings';
+  static const String reserve = '/reserve';
 }

@@ -1,24 +1,15 @@
 part of 'app_bloc.dart';
 
-@immutable
-sealed class AppState {
-  const AppState();
+@freezed
+class AppState with _$AppState {
+  factory AppState({
+    User? loggedUser,
+    @Default(true) final bool isStarting,
+  }) = _AppState;
 
-  bool get isLogged => this is AppRunningAuth;
-}
+  const AppState._();
 
-final class AppStarting extends AppState {
-  const AppStarting();
-}
+  bool get isLogged => user != null;
 
-final class AppRunningUnauth extends AppState {
-  const AppRunningUnauth();
-}
-
-final class AppRunningAuth extends AppState {
-  const AppRunningAuth({
-    required this.user,
-  });
-
-  final User user;
+  User get user => user!;
 }
