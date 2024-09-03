@@ -9,7 +9,7 @@ class AppState with _$AppState {
 
   const AppState._();
 
-  bool get isLogged => user != null;
+  bool get isLogged => loggedUser != null;
 
   User get user => user!;
 }

@@ -11,6 +11,8 @@ import '../../../core/locator.dart';
 import '../../../widgets/kit/buttons.dart';
 import '../../../widgets/kit/combo_texts.dart';
 import '../../../widgets/kit/stars_rate_view.dart';
+import 'reserve_form_additional_services.dart';
+import 'reserve_form_room.dart';
 
 class ReserveFormBody extends StatefulWidget {
   const ReserveFormBody({super.key});
@@ -165,9 +167,26 @@ class _ReserveFormBodyState extends State<ReserveFormBody> {
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: ReserveFormPersonalData(),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: ReserveFormRoom(),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: ReserveFormAdditionalServices(),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: KitButtonBlue(text: 'Забронировать', onTap: () {}),
+                    child: KitButtonBlue(
+                        text: 'Забронировать',
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Ошибка сервера'),
+                              duration: Durations.medium3,
+                            ),
+                          );
+                        }),
                   ),
                 ],
               ),
