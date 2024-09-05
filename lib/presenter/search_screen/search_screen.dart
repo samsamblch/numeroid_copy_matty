@@ -178,7 +178,7 @@ class _FilterMore extends StatelessWidget {
                               beginPeriod: globalState.search.startDate,
                               endPeriod: globalState.search.endDate,
                               onApplyPeriod: ((DateTime, DateTime) value) {
-                                context.read<SearchBloc>().add(
+                                context.read<SearchScreenBloc>().searchBloc.add(
                                       SearchChangeDate(start: value.$1, end: value.$2),
                                     );
                                 context.pop();
