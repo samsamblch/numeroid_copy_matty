@@ -16,29 +16,30 @@ class HotelDetailFacilitiesBlock extends StatelessWidget {
 
   void _showFullFacilities(BuildContext context) {
     Dialogs.showAppDialog(
-        context: context,
-        title: 'Удобства и услуги',
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              ...facilities.map(
-                (e) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Image.asset(
-                      e.imagePath,
-                      width: 24,
-                      height: 24,
-                    ),
-                    const SizedBox(width: 6),
-                    Flexible(child: KitTextMedium14(e.name)),
-                  ]),
-                ),
+      context: context,
+      title: 'Удобства и услуги',
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            ...facilities.map(
+              (e) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Image.asset(
+                    e.imagePath,
+                    width: 24,
+                    height: 24,
+                  ),
+                  const SizedBox(width: 6),
+                  Flexible(child: KitTextMedium14(e.name)),
+                ]),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override

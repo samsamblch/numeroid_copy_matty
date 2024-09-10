@@ -21,43 +21,46 @@ class Dialogs {
             backgroundColor: Colors.white,
             insetPadding: const EdgeInsets.all(10),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(width: 44),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          title,
-                          style: KitTextStyles.semiBold16.copyWith(
-                            color: appTheme.colors.text.primary,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 44),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            title,
+                            style: KitTextStyles.semiBold16.copyWith(
+                              color: appTheme.colors.text.primary,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 44,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.cancel_outlined,
-                          color: appTheme.colors.text.secondary,
-                          size: 24,
+                      SizedBox(
+                        width: 44,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.cancel_outlined,
+                            color: appTheme.colors.text.secondary,
+                            size: 24,
+                          ),
+                          onPressed: () {
+                            context.pop();
+                          },
                         ),
-                        onPressed: () {
-                          context.pop();
-                        },
                       ),
-                    ),
-                  ],
-                ),
-                const KitSeparator(),
-                if (autoScroll) Flexible(child: SingleChildScrollView(child: body)) else body,
-              ],
+                    ],
+                  ),
+                  const KitSeparator(),
+                  if (autoScroll) Flexible(child: SingleChildScrollView(child: body)) else body,
+                ],
+              ),
             ),
           );
         });

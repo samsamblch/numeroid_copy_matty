@@ -5,10 +5,12 @@ part 'room.g.dart';
 
 @JsonSerializable(includeIfNull: true)
 class Room {
-  Room({
+  Room( {
     required this.name1,
     required this.name2,
+    required this.description,
     required this.photo,
+    required this.photos,
     required this.area,
   });
 
@@ -20,11 +22,13 @@ class Room {
   final String? name1;
   @JsonKey(name: 'name_ru')
   final String? name2;
-  // @JsonKey(defaultValue: [])
+  @JsonKey(name: 'description_ru')
+  final String? description;
   final Photo? photo;
+  @JsonKey(defaultValue: [])
+  final List<Photo> photos;
   @JsonKey(defaultValue: 0)
   final int area;
 
   String get name => name1 ?? name2 ?? '';
-  // List<Photo> get photo => [];
 }

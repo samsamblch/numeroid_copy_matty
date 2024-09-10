@@ -13,9 +13,17 @@ class HolelDetailHeaderBlock extends StatelessWidget {
   const HolelDetailHeaderBlock({
     super.key,
     required this.hotel,
+    required this.onTapPrice,
+    required this.onTapConditions,
+    required this.onTapRecerve,
+    required this.onTapMap,
   });
 
   final Hotel hotel;
+  final VoidCallback onTapPrice;
+  final VoidCallback onTapConditions;
+  final VoidCallback onTapRecerve;
+  final VoidCallback onTapMap;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,9 @@ class HolelDetailHeaderBlock extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 6),
                   child: KitButtonBlue(
                     text: 'Показать на карте',
-                    onTap: () {},
+                    onTap: () {
+                      onTapMap();
+                    },
                     outlined: true,
                   ),
                 ),
@@ -53,7 +63,9 @@ class HolelDetailHeaderBlock extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 6),
                   child: KitButtonBlue(
                     text: 'Забронировать',
-                    onTap: () {},
+                    onTap: () {
+                      onTapRecerve();
+                    },
                   ),
                 ),
               ),
@@ -67,19 +79,9 @@ class HolelDetailHeaderBlock extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 14),
             child: KitButtonGrey(
               text: 'Информация о варианте и стоимости',
-              onTap: () {},
-              outlined: true,
-              radius: 12,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: KitButtonGrey(
-              text: 'Удобства и услуги',
-              onTap: () {},
+              onTap: () {
+                onTapPrice();
+              },
               outlined: true,
               radius: 12,
             ),
@@ -91,7 +93,9 @@ class HolelDetailHeaderBlock extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: KitButtonGrey(
               text: 'Условия размещения',
-              onTap: () {},
+              onTap: () {
+                onTapConditions();
+              },
               outlined: true,
               radius: 12,
             ),

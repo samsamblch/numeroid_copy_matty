@@ -52,18 +52,25 @@ class _LocationTextFieldState extends State<LocationTextField> {
   }
 
   void selectCity(City city) {
-    _controller.text = '${city.name}, ${city.country?.name}';
+    _controller.text = getCityName();
     _focusNode.unfocus();
     widget.onChange(city);
+  }
+
+  String getCityName() {
+    final city = widget.city;
+    if (city == null) return '';
+
+    return '${city.name}${city.country != null ? ', ${city.country!.name}' : ''}';
   }
 
   @override
   void initState() {
     super.initState();
 
-    final city = widget.city;
-    if (city != null) {
-      _controller.text = '${city.name}, ${city.country?.name}';
+    final cityName = getCityName();
+    if (cityName.isNotEmpty) {
+      _controller.text = cityName;
     } else {
       loadLocations();
     }

@@ -8,10 +8,13 @@ import '../../../widgets/components/containers.dart';
 import '../../../widgets/kit/buttons.dart';
 import '../../../widgets/kit/common.dart';
 import '../../../widgets/kit/texts.dart';
+import 'hetel_detail_room_detail_dialog.dart';
 import 'hotel_detail_section_container.dart';
 
 class HotelDetailsRoomsBlock extends StatelessWidget {
-  const HotelDetailsRoomsBlock({super.key});
+  const HotelDetailsRoomsBlock({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,12 @@ class HotelDetailsRoomsBlock extends StatelessWidget {
                                         const Spacer(),
                                         KitButtonBlue(
                                           text: 'Подробнее о номере',
-                                          onTap: () {},
+                                          onTap: () {
+                                            HotelDetailRoomDetailDialog.showSheet(
+                                              context: context,
+                                              room: e,
+                                            );
+                                          },
                                           outlined: true,
                                         ),
                                       ],

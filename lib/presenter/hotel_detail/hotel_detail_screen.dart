@@ -26,6 +26,9 @@ class HotelDetailScreen extends StatefulWidget {
 }
 
 class _HotelDetailScreenState extends State<HotelDetailScreen> {
+  final priceKey = GlobalKey();
+  final conditionsKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -46,10 +49,33 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                         top: false,
                         child: Column(
                           children: [
-                            HolelDetailHeaderBlock(hotel: state.hotel!),
+                            HolelDetailHeaderBlock(
+                              hotel: state.hotel!,
+                              onTapPrice: () {
+                                Scrollable.ensureVisible(
+                                  priceKey.currentContext!,
+                                  duration: Durations.medium2,
+                                );
+                              },
+                              onTapConditions: () {
+                                Scrollable.ensureVisible(
+                                  conditionsKey.currentContext!,
+                                  duration: Durations.medium2,
+                                );
+                              },
+                              onTapRecerve: () {
+                                Scrollable.ensureVisible(
+                                  priceKey.currentContext!,
+                                  duration: Durations.medium2,
+                                );
+                              },
+                              onTapMap: () {
+                                //TODO
+                              },
+                            ),
                             if (state.hotel!.info.photos.isNotEmpty)
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 14),
+                                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 14),
                                 child: HotelDetailImagesBlock(
                                   photos: state.hotel!.info.photos,
                                 ),
@@ -67,10 +93,12 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                               ),
                             ),
                             Padding(
+                              key: priceKey,
                               padding: const EdgeInsets.only(bottom: 14),
-                              child: HotelDetailsRoomsBlock(),
+                              child: const HotelDetailsRoomsBlock(),
                             ),
                             Padding(
+                              key: conditionsKey,
                               padding: const EdgeInsets.only(bottom: 14),
                               child: HotelDetailSectionContainer(
                                 title: 'Условия размещения',

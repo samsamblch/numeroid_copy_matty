@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'kit/app_typography.dart';
 
-class AppNavbar extends StatelessWidget implements PreferredSizeWidget {
+class AppNavbar extends StatelessWidget {
   const AppNavbar({
     super.key,
     required this.text,
@@ -52,7 +52,4 @@ class AppNavbar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(45);
 }

@@ -16,19 +16,17 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: appTheme.colors.background.primary,
-        child: Column(
-          children: [
-            if (title != null)
-              AppNavbar(
-                text: title!,
-                hasBack: hasBack,
-              ),
-            Expanded(child: child),
-          ],
-        ),
+    return Container(
+      color: appTheme.colors.background.primary,
+      child: Column(
+        children: [
+          if (title != null)
+            AppNavbar(
+              text: title!,
+              hasBack: hasBack,
+            ),
+          Expanded(child: child),
+        ],
       ),
     );
   }

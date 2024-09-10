@@ -30,9 +30,11 @@ class HotelDetailScreenBloc extends Bloc<_HotelDetailScreenEvent, HotelDetailScr
   final SearchBloc searchBloc;
   late StreamSubscription subscription;
 
-  void _handleSearchBloc(SearchState searchState) => add(
-        HotelDetailScreenUpdate(searchState: searchState),
-      );
+  void _handleSearchBloc(SearchState searchState) {
+    if (!isClosed) {
+      add(HotelDetailScreenUpdate(searchState: searchState));
+    }
+  }
 
   Future<void> _onSearchWelcomeScreenInit(
     HotelDetailScreenInit event,

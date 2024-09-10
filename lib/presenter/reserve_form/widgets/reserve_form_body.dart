@@ -181,7 +181,7 @@ class _ReserveFormBodyState extends State<ReserveFormBody> {
                         text: 'Забронировать',
                         onTap: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content: Text('Ошибка сервера'),
                               duration: Durations.medium3,
                             ),

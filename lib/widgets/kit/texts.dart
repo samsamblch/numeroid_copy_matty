@@ -65,6 +65,16 @@ class KitTextSemibold15 extends StatelessWidget {
   Widget build(BuildContext context) => Text(text, style: KitTextStyles.semiBold15.copyWith(color: color));
 }
 
+class KitTextSemibold16 extends StatelessWidget {
+  const KitTextSemibold16(this.text, {super.key, this.color});
+
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) => Text(text, style: KitTextStyles.semiBold16.copyWith(color: color));
+}
+
 class KitTextMedium13 extends StatelessWidget {
   const KitTextMedium13(this.text, {super.key, this.color});
 

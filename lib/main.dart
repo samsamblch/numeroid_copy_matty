@@ -74,87 +74,89 @@ class _AppShellState extends State<_AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
-          children: [
-            BlueHeader(
-              showMenu: _showMenu,
-              onTapSupport: () {
-                setState(() {
-                  _showMenu = !_showMenu;
-                });
+    return Scaffold(
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              BlueHeader(
+                showMenu: _showMenu,
+                onTapSupport: () {
+                  setState(() {
+                    _showMenu = !_showMenu;
+                  });
+                },
+                onTapProfile: () {
+                  setState(() {
+                    _showProfile = !_showProfile;
+                  });
+                },
+              ),
+              if (widget.child != null) Expanded(child: widget.child!),
+            ],
+          ),
+          if (_showMenu)
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                setState(() => _showMenu = false);
               },
-              onTapProfile: () {
-                setState(() {
-                  _showProfile = !_showProfile;
-                });
-              },
-            ),
-            if (widget.child != null) Expanded(child: widget.child!),
-          ],
-        ),
-        if (_showMenu)
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              setState(() => _showMenu = false);
-            },
-            child: SizedBox(
-              height: double.maxFinite,
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 54, left: 10, right: 10),
-                  child: Column(
-                    children: [
-                      MenuBanner(
-                        onTapClose: () => setState(() => _showMenu = false),
-                        onTapCall: () {
-                          setState(() => _showMenu = false);
-                          launchUrl(Uri.parse('tel://+74954457445'));
-                        },
-                        onTapMail: () {
-                          setState(() => _showMenu = false);
-                          launchUrl(Uri.parse('mailto:booking@numeroid.ru'));
-                        },
-                        onTapSupport: () {
-                          setState(() => _showMenu = false);
-                          AppRoute.router.push(AppRoutes.supportCenter);
-                        },
-                      ),
-                    ],
+              child: SizedBox(
+                height: double.maxFinite,
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 54, left: 10, right: 10),
+                    child: Column(
+                      children: [
+                        MenuBanner(
+                          onTapClose: () => setState(() => _showMenu = false),
+                          onTapCall: () {
+                            setState(() => _showMenu = false);
+                            launchUrl(Uri.parse('tel://+74954457445'));
+                          },
+                          onTapMail: () {
+                            setState(() => _showMenu = false);
+                            launchUrl(Uri.parse('mailto:booking@numeroid.ru'));
+                          },
+                          onTapSupport: () {
+                            setState(() => _showMenu = false);
+                            AppRoute.router.push(AppRoutes.supportCenter);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        if (_showProfile)
-          ProfileDropMenu(
-            onTapSettings: () {
-              setState(() => _showProfile = false);
-              AppRoute.router.go(AppRoutes.profile);
-            },
-            onTapOrganization: () {
-              setState(() => _showProfile = false);
-              AppRoute.router.go(AppRoutes.profile);
-            },
-            onTapBooking: () {
-              setState(() => _showProfile = false);
-              AppRoute.router.go(AppRoutes.booking);
-            },
-            onTapFavourite: () {
-              setState(() => _showProfile = false);
-              AppRoute.router.go(AppRoutes.favourites);
-            },
-            onTapLogout: () {
-              setState(() => _showProfile = false);
-              appBloc.add(AuthLogout());
-            },
-            onTapClose: () {
-              setState(() => _showProfile = false);
-            },
-          )
-      ],
+          if (_showProfile)
+            ProfileDropMenu(
+              onTapSettings: () {
+                setState(() => _showProfile = false);
+                AppRoute.router.go(AppRoutes.profile);
+              },
+              onTapOrganization: () {
+                setState(() => _showProfile = false);
+                AppRoute.router.go(AppRoutes.profile);
+              },
+              onTapBooking: () {
+                setState(() => _showProfile = false);
+                AppRoute.router.go(AppRoutes.booking);
+              },
+              onTapFavourite: () {
+                setState(() => _showProfile = false);
+                AppRoute.router.go(AppRoutes.favourites);
+              },
+              onTapLogout: () {
+                setState(() => _showProfile = false);
+                appBloc.add(AuthLogout());
+              },
+              onTapClose: () {
+                setState(() => _showProfile = false);
+              },
+            )
+        ],
+      ),
     );
   }
 }
