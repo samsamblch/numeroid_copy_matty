@@ -24,7 +24,7 @@ export PATH=$PATH:/Users/matty/.flutter/bin
 
 P.S. Строчки ниже опциональны по системам
 // Если macos на семействе процессоров M - то после установки brew всеравно ее потребует
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"--
 
 // Иногда просит java_home тоже потребуется после установки Android Studio
 export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
